@@ -1,0 +1,109 @@
+<div
+  class="rounded-xl border border-border-light bg-card-light p-5 transition-shadow hover:shadow-md dark:border-border-dark dark:bg-card-dark dark:hover:shadow-lg dark:hover:shadow-black/20"
+>
+  <!-- Header: Service Type -->
+  <h3 class="mb-4 text-base font-semibold text-text-title dark:text-text-dark-title">
+    {{ appointment().serviceType }}
+  </h3>
+
+  <!-- Workshop info (optional) -->
+  @if (workshop(); as ws) {
+    <div class="mb-3 flex items-start gap-2.5">
+      <lucide-angular
+        [img]="icons.mapPin"
+        [size]="15"
+        [strokeWidth]="2"
+        class="mt-0.5 shrink-0 text-text-tertiary dark:text-text-dark-muted"
+      />
+      <div>
+        <p class="text-sm font-medium text-text-dark dark:text-text-dark-tertiary">
+          {{ ws.name }}
+        </p>
+        <p class="text-xs text-text-secondary dark:text-text-dark-secondary">
+          {{ ws.address }}
+        </p>
+      </div>
+    </div>
+  }
+
+  <!-- Date & Time -->
+  <div class="mb-3 flex items-center gap-4">
+    <div class="flex items-center gap-1.5">
+      <lucide-angular
+        [img]="icons.calendar"
+        [size]="14"
+        [strokeWidth]="2"
+        class="text-text-tertiary dark:text-text-dark-muted"
+      />
+      <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+        {{ formattedDate() }}
+      </span>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <lucide-angular
+        [img]="icons.clock"
+        [size]="14"
+        [strokeWidth]="2"
+        class="text-text-tertiary dark:text-text-dark-muted"
+      />
+      <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+        {{ formattedTime() }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="mb-3 border-b border-border-light dark:border-border-dark"></div>
+
+  <!-- Contact info -->
+  <div class="mb-2 flex items-center gap-2">
+    <lucide-angular
+      [img]="icons.user"
+      [size]="14"
+      [strokeWidth]="2"
+      class="text-text-tertiary dark:text-text-dark-muted"
+    />
+    <span class="text-sm text-text-dark dark:text-text-dark-tertiary">
+      {{ appointment().contact.name }}
+    </span>
+  </div>
+
+  <div class="mb-2 flex items-center gap-2">
+    <lucide-angular
+      [img]="icons.mail"
+      [size]="14"
+      [strokeWidth]="2"
+      class="text-text-tertiary dark:text-text-dark-muted"
+    />
+    <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+      {{ appointment().contact.email }}
+    </span>
+  </div>
+
+  <div class="mb-2 flex items-center gap-2">
+    <lucide-angular
+      [img]="icons.phone"
+      [size]="14"
+      [strokeWidth]="2"
+      class="text-text-tertiary dark:text-text-dark-muted"
+    />
+    <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+      {{ appointment().contact.phone }}
+    </span>
+  </div>
+
+  <!-- Vehicle info (optional) -->
+  @if (vehicleDisplay(); as vehicle) {
+    <div class="mt-1 flex items-center gap-2">
+      <lucide-angular
+        [img]="icons.car"
+        [size]="14"
+        [strokeWidth]="2"
+        class="text-text-tertiary dark:text-text-dark-muted"
+      />
+      <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+        {{ vehicle }}
+      </span>
+    </div>
+  }
+</div>

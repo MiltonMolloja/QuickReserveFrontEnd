@@ -1,0 +1,140 @@
+<!-- Navbar (full variant with controls) -->
+<app-navbar>
+  <app-language-selector />
+  <app-theme-selector />
+  <a
+    routerLink="/new-appointment"
+    class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-gradient"
+  >
+    <lucide-angular [img]="icons.plus" [size]="16" [strokeWidth]="2" />
+    {{ 'NAV.NEW_APPOINTMENT' | translate }}
+  </a>
+</app-navbar>
+
+<!-- Main content -->
+<main class="mx-auto max-w-7xl px-6 py-8">
+  <!-- Stats Row -->
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <app-stat-card
+      [icon]="icons.calendarClock"
+      [label]="'APPOINTMENTS.STATS.TOTAL' | translate"
+      [value]="appointmentsState.total().toString()"
+      iconColorClass="text-primary"
+      iconBgClass="bg-info-bg dark:bg-indigo-dark"
+    />
+    <app-stat-card
+      [icon]="icons.calendar"
+      [label]="'APPOINTMENTS.STATS.TODAY' | translate"
+      [value]="appointmentsState.todayCount().toString()"
+      iconColorClass="text-amber"
+      iconBgClass="bg-orange-bg dark:bg-stat-amber"
+    />
+    <app-stat-card
+      [icon]="icons.activity"
+      [label]="'APPOINTMENTS.STATS.OCCUPANCY' | translate"
+      [value]="occupancy()"
+      iconColorClass="text-success"
+      iconBgClass="bg-green-bg dark:bg-stat-green"
+    />
+  </div>
+
+  <!-- Section Header -->
+  <div class="mb-4 flex items-center gap-3">
+    <h2 class="text-xl font-extrabold text-text-title dark:text-text-dark-title">
+      {{ 'APPOINTMENTS.TITLE' | translate }}
+    </h2>
+    <span
+      class="rounded-full bg-info-bg px-3 py-0.5 text-sm font-semibold text-primary dark:bg-indigo-dark"
+    >
+      {{ filterUseCase.filteredCount() }}
+    </span>
+  </div>
+
+  <!-- Filters Bar -->
+  <div class="mb-6">
+    <app-filters-bar
+      [workshops]="workshopsState.workshops()"
+      [serviceTypes]="serviceTypeOptions"
+      [hasActiveFilters]="hasActiveFilters()"
+      (searchChange)="onSearch($event)"
+      (workshopChange)="onWorkshopFilter($event)"
+      (serviceChange)="onServiceFilter($event)"
+      (dateChange)="onDateFilter($event)"
+      (clearFilters)="onClearFilters()"
+    />
+  </div>
+
+  <!-- Loading state -->
+  @if (appointmentsState.loading()) {
+    <div class="flex items-center justify-center py-20">
+      <svg
+        class="h-8 w-8 animate-spin text-primary"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        aria-label="Loading"
+      >
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+    </div>
+  }
+
+  <!-- Error state -->
+  @if (appointmentsState.error(); as error) {
+    <div
+      class="rounded-xl border border-danger/30 bg-danger/10 p-6 text-center text-sm text-danger"
+      role="alert"
+    >
+      {{ error }}
+    </div>
+  }
+
+  <!-- Appointments Grid -->
+  @if (!appointmentsState.loading() && !appointmentsState.error()) {
+    @if (filterUseCase.filteredAppointments().length > 0) {
+      @defer (on idle) {
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          @for (appointment of filterUseCase.filteredAppointments(); track appointment.id) {
+            <app-appointment-card
+              [appointment]="appointment"
+              [workshop]="workshopMap().get(appointment.placeId)"
+            />
+          }
+        </div>
+      } @placeholder {
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+            <div
+              class="h-52 animate-pulse rounded-xl border border-border-light bg-card-light dark:border-border-dark dark:bg-card-dark"
+            ></div>
+          }
+        </div>
+      }
+    } @else {
+      <!-- Empty state -->
+      <div class="py-20 text-center">
+        <lucide-angular
+          [img]="icons.calendarClock"
+          [size]="48"
+          [strokeWidth]="1.5"
+          class="mx-auto mb-4 text-text-tertiary dark:text-text-dark-muted"
+        />
+        <p class="text-lg font-medium text-text-secondary dark:text-text-dark-secondary">
+          No se encontraron turnos
+        </p>
+        <p class="mt-1 text-sm text-text-tertiary dark:text-text-dark-muted">
+          @if (hasActiveFilters()) {
+            Intenta ajustar los filtros de búsqueda
+          } @else {
+            Crea tu primer turno para comenzar
+          }
+        </p>
+      </div>
+    }
+  }
+</main>

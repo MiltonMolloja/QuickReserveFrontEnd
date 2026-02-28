@@ -1,0 +1,86 @@
+{
+  "APP": {
+    "TITLE": "Sistema de Turnos",
+    "SUBTITLE": "Gestión de reservas para talleres"
+  },
+  "NAV": {
+    "NEW_APPOINTMENT": "Nuevo Turno",
+    "BACK_HOME": "Volver al inicio"
+  },
+  "APPOINTMENTS": {
+    "TITLE": "Turnos Agendados",
+    "STATS": {
+      "TOTAL": "Total de Turnos",
+      "TODAY": "Turnos Hoy",
+      "OCCUPANCY": "Ocupación Talleres"
+    },
+    "FILTERS": {
+      "SEARCH": "Buscar por nombre o email...",
+      "WORKSHOP": "Taller",
+      "SERVICE": "Servicio",
+      "DATE": "Fecha",
+      "CLEAR": "Limpiar filtros"
+    }
+  },
+  "STEPPER": {
+    "TITLE": "Nuevo Turno",
+    "STEP_OF": "Paso {{current}} de {{total}}",
+    "STEP1": {
+      "TITLE": "Información del Servicio",
+      "SUBTITLE": "Selecciona el taller y tipo de servicio",
+      "WORKSHOP": "Taller",
+      "SERVICE_TYPE": "Tipo de Servicio",
+      "DATE": "Fecha",
+      "TIME": "Hora"
+    },
+    "STEP2": {
+      "TITLE": "Información de Contacto",
+      "SUBTITLE": "Ingresa tus datos personales",
+      "NAME": "Nombre Completo",
+      "EMAIL": "Email",
+      "PHONE": "Teléfono"
+    },
+    "STEP3": {
+      "TITLE": "Información del Vehículo",
+      "SUBTITLE": "Opcional - Ingresa los datos de tu vehículo",
+      "MAKE": "Marca",
+      "MODEL": "Modelo",
+      "YEAR": "Año",
+      "LICENSE_PLATE": "Patente",
+      "INFO_NOTE": "La información del vehículo es opcional. Puedes dejarla en blanco si lo prefieres."
+    },
+    "BUTTONS": {
+      "CANCEL": "Cancelar",
+      "PREVIOUS": "Anterior",
+      "NEXT": "Siguiente",
+      "CREATE": "Crear Turno"
+    }
+  },
+  "SUCCESS": {
+    "TITLE": "¡Turno Creado Exitosamente!",
+    "SUBTITLE": "Tu reserva ha sido registrada correctamente en el sistema",
+    "SUMMARY": "Resumen del Turno",
+    "FIELDS": {
+      "SERVICE": "Servicio",
+      "WORKSHOP": "Taller",
+      "DATE": "Fecha",
+      "TIME": "Hora",
+      "CONTACT": "Contacto",
+      "VEHICLE": "Vehículo"
+    },
+    "BUTTONS": {
+      "CREATE_ANOTHER": "Crear otro turno",
+      "VIEW_LIST": "Ver Turnos"
+    }
+  },
+  "THEME": {
+    "LIGHT": "Claro",
+    "DARK": "Oscuro",
+    "AUTO": "Auto"
+  },
+  "VALIDATION": {
+    "REQUIRED": "Este campo es requerido",
+    "EMAIL_INVALID": "El formato del email no es válido",
+    "DATE_PAST": "La fecha debe ser futura"
+  }
+}

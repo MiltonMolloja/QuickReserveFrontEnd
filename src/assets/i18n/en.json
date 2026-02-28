@@ -1,0 +1,86 @@
+{
+  "APP": {
+    "TITLE": "Appointment System",
+    "SUBTITLE": "Workshop booking management"
+  },
+  "NAV": {
+    "NEW_APPOINTMENT": "New Appointment",
+    "BACK_HOME": "Back to home"
+  },
+  "APPOINTMENTS": {
+    "TITLE": "Scheduled Appointments",
+    "STATS": {
+      "TOTAL": "Total Appointments",
+      "TODAY": "Today's Appointments",
+      "OCCUPANCY": "Workshop Occupancy"
+    },
+    "FILTERS": {
+      "SEARCH": "Search by name or email...",
+      "WORKSHOP": "Workshop",
+      "SERVICE": "Service",
+      "DATE": "Date",
+      "CLEAR": "Clear filters"
+    }
+  },
+  "STEPPER": {
+    "TITLE": "New Appointment",
+    "STEP_OF": "Step {{current}} of {{total}}",
+    "STEP1": {
+      "TITLE": "Service Information",
+      "SUBTITLE": "Select the workshop and service type",
+      "WORKSHOP": "Workshop",
+      "SERVICE_TYPE": "Service Type",
+      "DATE": "Date",
+      "TIME": "Time"
+    },
+    "STEP2": {
+      "TITLE": "Contact Information",
+      "SUBTITLE": "Enter your personal details",
+      "NAME": "Full Name",
+      "EMAIL": "Email",
+      "PHONE": "Phone"
+    },
+    "STEP3": {
+      "TITLE": "Vehicle Information",
+      "SUBTITLE": "Optional - Enter your vehicle details",
+      "MAKE": "Make",
+      "MODEL": "Model",
+      "YEAR": "Year",
+      "LICENSE_PLATE": "License Plate",
+      "INFO_NOTE": "Vehicle information is optional. You can leave it blank if you prefer."
+    },
+    "BUTTONS": {
+      "CANCEL": "Cancel",
+      "PREVIOUS": "Previous",
+      "NEXT": "Next",
+      "CREATE": "Create Appointment"
+    }
+  },
+  "SUCCESS": {
+    "TITLE": "Appointment Created Successfully!",
+    "SUBTITLE": "Your reservation has been registered in the system",
+    "SUMMARY": "Appointment Summary",
+    "FIELDS": {
+      "SERVICE": "Service",
+      "WORKSHOP": "Workshop",
+      "DATE": "Date",
+      "TIME": "Time",
+      "CONTACT": "Contact",
+      "VEHICLE": "Vehicle"
+    },
+    "BUTTONS": {
+      "CREATE_ANOTHER": "Create another appointment",
+      "VIEW_LIST": "View Appointments"
+    }
+  },
+  "THEME": {
+    "LIGHT": "Light",
+    "DARK": "Dark",
+    "AUTO": "Auto"
+  },
+  "VALIDATION": {
+    "REQUIRED": "This field is required",
+    "EMAIL_INVALID": "Invalid email format",
+    "DATE_PAST": "Date must be in the future"
+  }
+}

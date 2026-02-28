@@ -1,0 +1,90 @@
+<!-- Navbar (simple variant with back link) -->
+<app-navbar variant="simple" />
+
+<!-- Main content -->
+<main class="mx-auto max-w-[960px] px-6 py-12">
+  @if (appointment(); as appt) {
+    <!-- Success Section -->
+    <div class="mb-8 text-center">
+      <!-- Success Icon (RF-03.2) -->
+      <div class="mb-6">
+        <app-success-icon />
+      </div>
+
+      <!-- Title (RF-03.3) -->
+      <h1 class="mb-2 text-[26px] font-extrabold text-text-title dark:text-text-dark-title">
+        {{ 'SUCCESS.TITLE' | translate }}
+      </h1>
+      <p class="text-sm text-text-secondary dark:text-text-dark-secondary">
+        {{ 'SUCCESS.SUBTITLE' | translate }}
+      </p>
+    </div>
+
+    <!-- Summary Card (RF-03.4) -->
+    <div
+      class="mx-auto max-w-[560px] rounded-2xl border border-border-light bg-card-light px-8 py-6 dark:border-border-dark dark:bg-card-dark"
+    >
+      <h2 class="mb-2 text-base font-semibold text-text-title dark:text-text-dark-title">
+        {{ 'SUCCESS.SUMMARY' | translate }}
+      </h2>
+
+      <!-- 6 summary rows -->
+      <app-summary-row
+        [icon]="icons.wrench"
+        [label]="'SUCCESS.FIELDS.SERVICE' | translate"
+        [value]="appt.serviceType"
+      />
+      <app-summary-row
+        [icon]="icons.mapPin"
+        [label]="'SUCCESS.FIELDS.WORKSHOP' | translate"
+        [value]="workshopName()"
+      />
+      <app-summary-row
+        [icon]="icons.calendar"
+        [label]="'SUCCESS.FIELDS.DATE' | translate"
+        [value]="formattedDate()"
+      />
+      <app-summary-row
+        [icon]="icons.clock"
+        [label]="'SUCCESS.FIELDS.TIME' | translate"
+        [value]="formattedTime()"
+      />
+      <app-summary-row
+        [icon]="icons.user"
+        [label]="'SUCCESS.FIELDS.CONTACT' | translate"
+        [value]="contactDisplay()"
+      />
+      @if (vehicleDisplay(); as vehicle) {
+        <app-summary-row
+          [icon]="icons.car"
+          [label]="'SUCCESS.FIELDS.VEHICLE' | translate"
+          [value]="vehicle"
+          [showDivider]="false"
+        />
+      } @else {
+        <!-- Last row without vehicle: hide divider on contact row -->
+        <app-summary-row
+          [icon]="icons.car"
+          [label]="'SUCCESS.FIELDS.VEHICLE' | translate"
+          value="-"
+          [showDivider]="false"
+        />
+      }
+    </div>
+
+    <!-- Action Buttons (RF-03.5, RF-03.6) -->
+    <div class="mx-auto mt-8 flex max-w-[560px] items-center justify-center gap-4">
+      <app-loading-button
+        [label]="'SUCCESS.BUTTONS.CREATE_ANOTHER' | translate"
+        [icon]="icons.plus"
+        variant="outline"
+        (buttonClick)="createAnother()"
+      />
+      <app-loading-button
+        [label]="'SUCCESS.BUTTONS.VIEW_LIST' | translate"
+        [icon]="icons.list"
+        (buttonClick)="viewAppointments()"
+      />
+    </div>
+  }
+</main>

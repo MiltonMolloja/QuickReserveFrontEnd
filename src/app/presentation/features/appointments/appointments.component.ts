@@ -9,7 +9,6 @@ import { GetAppointmentsUseCase } from '../../../application/use-cases/get-appoi
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
 import { FilterAppointmentsUseCase } from '../../../application/use-cases/filter-appointments.use-case';
 import { SERVICE_TYPE_OPTIONS } from '../../../domain/enums/service-type.enum';
-import { ThemeAdapter } from '../../../infrastructure/theme/theme.adapter';
 
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { LanguageSelectorComponent } from '../../shared/components/language-selector/language-selector.component';
@@ -51,7 +50,6 @@ export class AppointmentsComponent implements OnInit {
   // --- Injected services ---
   private readonly getAppointments = inject(GetAppointmentsUseCase);
   private readonly getWorkshops = inject(GetWorkshopsUseCase);
-  private readonly _themeAdapter = inject(ThemeAdapter);
 
   // --- Public state for template ---
   protected readonly appointmentsState = inject(AppointmentsState);

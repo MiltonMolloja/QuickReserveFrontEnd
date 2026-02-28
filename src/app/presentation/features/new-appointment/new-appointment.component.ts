@@ -10,7 +10,6 @@ import { WorkshopsState } from '../../../application/state/workshops.state';
 import { AppointmentsState } from '../../../application/state/appointments.state';
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
 import { CreateAppointmentUseCase } from '../../../application/use-cases/create-appointment.use-case';
-import { ThemeAdapter } from '../../../infrastructure/theme/theme.adapter';
 
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { ProgressBarComponent } from '../../shared/components/progress-bar/progress-bar.component';
@@ -53,7 +52,6 @@ export class NewAppointmentComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly getWorkshops = inject(GetWorkshopsUseCase);
   private readonly createAppointment = inject(CreateAppointmentUseCase);
-  private readonly _themeAdapter = inject(ThemeAdapter);
 
   protected readonly workshopsState = inject(WorkshopsState);
   protected readonly appointmentsState = inject(AppointmentsState);

@@ -20,6 +20,16 @@
       "SERVICE": "Service",
       "DATE": "Date",
       "CLEAR": "Clear filters"
+    },
+    "EMPTY": {
+      "TITLE": "No appointments found",
+      "SUBTITLE_FILTERS": "Try adjusting the search filters",
+      "SUBTITLE_NO_DATA": "Create your first appointment to get started"
+    },
+    "LOADING": "Loading appointments...",
+    "ERROR": {
+      "CONNECTION": "Connection error while loading appointments",
+      "GENERIC": "Error loading appointments"
     }
   },
   "STEPPER": {
@@ -54,6 +64,9 @@
       "PREVIOUS": "Previous",
       "NEXT": "Next",
       "CREATE": "Create Appointment"
+    },
+    "ERROR": {
+      "SUBMIT": "Error creating appointment"
     }
   },
   "SUCCESS": {

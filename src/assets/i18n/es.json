@@ -20,6 +20,16 @@
       "SERVICE": "Servicio",
       "DATE": "Fecha",
       "CLEAR": "Limpiar filtros"
+    },
+    "EMPTY": {
+      "TITLE": "No se encontraron turnos",
+      "SUBTITLE_FILTERS": "Intenta ajustar los filtros de búsqueda",
+      "SUBTITLE_NO_DATA": "Crea tu primer turno para comenzar"
+    },
+    "LOADING": "Cargando turnos...",
+    "ERROR": {
+      "CONNECTION": "Error de conexión al cargar los turnos",
+      "GENERIC": "Error al cargar los turnos"
     }
   },
   "STEPPER": {
@@ -54,6 +64,9 @@
       "PREVIOUS": "Anterior",
       "NEXT": "Siguiente",
       "CREATE": "Crear Turno"
+    },
+    "ERROR": {
+      "SUBMIT": "Error al crear el turno"
     }
   },
   "SUCCESS": {

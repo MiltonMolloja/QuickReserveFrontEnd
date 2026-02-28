@@ -20,8 +20,13 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,html}": ["eslint --fix", "prettier --write"],
-    "*.{json,css,md}": ["prettier --write"]
+    "*.{ts,html}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -44,11 +49,11 @@
     "@angular/cli": "^20.3.6",
     "@angular/compiler-cli": "^20.3.0",
     "@compodoc/compodoc": "^1.2.1",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/jest": "^30.0.0",
     "angular-eslint": "^19.8.1",
-    "eslint": "^10.0.2",
+    "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "jest": "^30.2.0",

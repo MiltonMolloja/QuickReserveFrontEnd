@@ -1,0 +1,21 @@
+<div
+  class="flex items-center gap-4 rounded-xl border border-border-light bg-card-light p-5 dark:border-border-dark dark:bg-card-dark"
+>
+  <!-- Icon circle -->
+  <div
+    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+    [class]="iconBgClass()"
+  >
+    <lucide-angular [img]="icon()" [size]="22" [strokeWidth]="2" [class]="iconColorClass()" />
+  </div>
+
+  <!-- Label + Value -->
+  <div>
+    <p class="text-xs font-medium text-text-secondary dark:text-text-dark-secondary">
+      {{ label() }}
+    </p>
+    <p class="text-2xl font-extrabold text-text-title dark:text-text-dark-title">
+      {{ value() }}
+    </p>
+  </div>
+</div>

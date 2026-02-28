@@ -1,0 +1,40 @@
+<button
+  [type]="type()"
+  class="flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50"
+  [class.bg-primary]="variant() === 'solid'"
+  [class.text-white]="variant() === 'solid' || variant() === 'danger'"
+  [class.hover:bg-primary-gradient]="variant() === 'solid' && !loading() && !disabled()"
+  [class.border]="variant() === 'outline'"
+  [class.border-border-light]="variant() === 'outline'"
+  [class.dark:border-border-dark]="variant() === 'outline'"
+  [class.text-text-dark]="variant() === 'outline'"
+  [class.dark:text-text-dark-tertiary]="variant() === 'outline'"
+  [class.dark:bg-card-dark]="variant() === 'outline'"
+  [class.hover:bg-bg-light]="variant() === 'outline' && !loading() && !disabled()"
+  [class.dark:hover:bg-theme-bg]="variant() === 'outline' && !loading() && !disabled()"
+  [class.bg-danger]="variant() === 'danger'"
+  [class.hover:bg-red-600]="variant() === 'danger' && !loading() && !disabled()"
+  [disabled]="loading() || disabled()"
+  (click)="onClick()"
+>
+  @if (loading()) {
+    <!-- Spinner -->
+    <svg
+      class="h-4 w-4 animate-spin"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      />
+    </svg>
+  } @else if (icon()) {
+    <lucide-angular [img]="icon()!" [size]="16" [strokeWidth]="2" />
+  }
+  <span>{{ label() }}</span>
+</button>

@@ -1,0 +1,19 @@
+<div class="relative flex items-center">
+  <lucide-angular
+    [img]="icon()"
+    [size]="16"
+    [strokeWidth]="2"
+    class="pointer-events-none absolute left-3 text-text-tertiary dark:text-text-dark-muted"
+  />
+  <select
+    class="w-full appearance-none rounded-lg border border-border-light bg-card-light py-2.5 pl-9 pr-8 text-sm text-text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-tertiary dark:focus:border-primary dark:focus:ring-primary"
+    [value]="value()"
+    (change)="onChange($event)"
+    [attr.aria-label]="label()"
+  >
+    <option value="">{{ label() }}</option>
+    @for (option of options(); track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+</div>

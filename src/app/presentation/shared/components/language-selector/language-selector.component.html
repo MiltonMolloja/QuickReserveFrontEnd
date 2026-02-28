@@ -1,0 +1,49 @@
+<div class="relative">
+  <button
+    type="button"
+    class="flex items-center gap-1.5 rounded-lg border border-border-light bg-card-light px-3 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-light dark:border-border-dark dark:bg-card-dark dark:text-text-dark-tertiary dark:hover:bg-theme-bg"
+    (click)="toggleDropdown()"
+    (keydown.escape)="closeDropdown()"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="listbox"
+    aria-label="Select language"
+  >
+    <lucide-angular [img]="globeIcon" [size]="16" [strokeWidth]="2" />
+    <span class="uppercase">{{ currentLang() }}</span>
+    <lucide-angular [img]="chevronDownIcon" [size]="14" [strokeWidth]="2" />
+  </button>
+
+  @if (isOpen()) {
+    <!-- Backdrop to close dropdown on outside click -->
+    <div
+      class="fixed inset-0 z-10"
+      (click)="closeDropdown()"
+      (keydown.escape)="closeDropdown()"
+      role="presentation"
+    ></div>
+
+    <!-- Dropdown menu -->
+    <ul
+      class="absolute right-0 z-20 mt-1 w-24 overflow-hidden rounded-lg border border-border-light bg-card-light shadow-lg dark:border-border-dark dark:bg-card-dark"
+      role="listbox"
+      [attr.aria-label]="'Select language'"
+    >
+      @for (lang of languages; track lang.code) {
+        <li
+          class="cursor-pointer px-3 py-2 text-sm transition-colors hover:bg-bg-light dark:hover:bg-theme-bg"
+          [class.text-primary]="currentLang() === lang.code"
+          [class.font-semibold]="currentLang() === lang.code"
+          [class.text-text-secondary]="currentLang() !== lang.code"
+          [class.dark:text-text-dark-tertiary]="currentLang() !== lang.code"
+          role="option"
+          [attr.aria-selected]="currentLang() === lang.code"
+          (click)="selectLanguage(lang.code)"
+          (keydown.enter)="selectLanguage(lang.code)"
+          tabindex="0"
+        >
+          {{ lang.label }}
+        </li>
+      }
+    </ul>
+  }
+</div>

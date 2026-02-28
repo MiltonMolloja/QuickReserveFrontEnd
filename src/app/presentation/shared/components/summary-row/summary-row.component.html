@@ -1,0 +1,24 @@
+<div>
+  <div class="flex items-center gap-4 py-4">
+    <!-- Icon circle -->
+    <div
+      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark"
+    >
+      <lucide-angular [img]="icon()" [size]="18" [strokeWidth]="2" class="text-primary" />
+    </div>
+
+    <!-- Label + Value -->
+    <div class="flex flex-1 items-center justify-between">
+      <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+        {{ label() }}
+      </span>
+      <span class="text-sm font-medium text-text-title dark:text-text-dark-title">
+        {{ value() }}
+      </span>
+    </div>
+  </div>
+
+  @if (showDivider()) {
+    <div class="border-b border-border-light dark:border-border-dark"></div>
+  }
+</div>

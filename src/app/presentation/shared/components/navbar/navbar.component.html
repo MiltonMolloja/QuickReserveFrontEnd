@@ -1,0 +1,38 @@
+<nav
+  class="flex items-center justify-between bg-card-light px-6 py-4 shadow-sm dark:bg-card-dark dark:shadow-none dark:border-b dark:border-border-dark"
+  role="navigation"
+  [attr.aria-label]="'APP.TITLE' | translate"
+>
+  <!-- Logo + Title -->
+  <div class="flex items-center gap-3">
+    <div
+      class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-gradient"
+    >
+      <lucide-angular [img]="wrenchIcon" class="text-white" [size]="20" [strokeWidth]="2" />
+    </div>
+    <div>
+      <h1 class="text-lg font-bold text-text-title dark:text-text-dark-title">
+        {{ 'APP.TITLE' | translate }}
+      </h1>
+      @if (variant() === 'full') {
+        <p class="text-xs text-text-secondary dark:text-text-dark-secondary">
+          {{ 'APP.SUBTITLE' | translate }}
+        </p>
+      }
+    </div>
+  </div>
+
+  <!-- Nav Controls -->
+  @if (variant() === 'full') {
+    <div class="flex items-center gap-3">
+      <ng-content />
+    </div>
+  } @else {
+    <a
+      routerLink="/appointments"
+      class="text-sm font-medium text-primary hover:text-primary-gradient transition-colors"
+    >
+      {{ 'NAV.BACK_HOME' | translate }}
+    </a>
+  }
+</nav>

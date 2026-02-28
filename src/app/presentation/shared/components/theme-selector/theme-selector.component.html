@@ -1,0 +1,26 @@
+<div
+  class="flex items-center gap-1 rounded-lg border border-border-light bg-bg-light p-1 dark:border-border-dark dark:bg-theme-bg"
+  role="radiogroup"
+  aria-label="Theme selector"
+>
+  @for (option of themeOptions; track option.theme) {
+    <button
+      type="button"
+      class="flex h-8 w-8 items-center justify-center rounded-md transition-all"
+      [class.bg-card-light]="currentTheme() === option.theme"
+      [class.shadow-sm]="currentTheme() === option.theme"
+      [class.dark:bg-card-dark]="currentTheme() === option.theme"
+      [class.text-primary]="currentTheme() === option.theme"
+      [class.text-text-tertiary]="currentTheme() !== option.theme"
+      [class.dark:text-text-dark-muted]="currentTheme() !== option.theme"
+      [class.hover:text-text-secondary]="currentTheme() !== option.theme"
+      [class.dark:hover:text-text-dark-secondary]="currentTheme() !== option.theme"
+      role="radio"
+      [attr.aria-checked]="currentTheme() === option.theme"
+      [attr.aria-label]="option.label"
+      (click)="setTheme(option.theme)"
+    >
+      <lucide-angular [img]="option.icon" [size]="16" [strokeWidth]="2" />
+    </button>
+  }
+</div>

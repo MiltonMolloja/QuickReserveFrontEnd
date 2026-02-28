@@ -1,0 +1,17 @@
+<div
+  class="flex gap-2"
+  role="progressbar"
+  [attr.aria-valuenow]="currentStep()"
+  [attr.aria-valuemin]="1"
+  [attr.aria-valuemax]="totalSteps()"
+  [attr.aria-label]="'Step ' + currentStep() + ' of ' + totalSteps()"
+>
+  @for (step of steps(); track step) {
+    <div
+      class="h-2 flex-1 rounded-full transition-colors"
+      [class.bg-primary]="step <= currentStep()"
+      [class.bg-border-light]="step > currentStep()"
+      [class.dark:bg-border-dark]="step > currentStep()"
+    ></div>
+  }
+</div>

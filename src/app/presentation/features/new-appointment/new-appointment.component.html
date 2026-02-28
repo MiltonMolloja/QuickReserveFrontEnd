@@ -1,0 +1,92 @@
+<!-- Navbar (simple variant with back link) -->
+<app-navbar variant="simple" />
+
+<!-- Main content -->
+<main class="mx-auto max-w-[960px] px-6 py-8">
+  <!-- Header -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-extrabold text-text-title dark:text-text-dark-title">
+      {{ 'STEPPER.TITLE' | translate }}
+    </h2>
+    <p class="mt-1 text-sm text-text-secondary dark:text-text-dark-muted">
+      {{ 'STEPPER.STEP_OF' | translate: { current: currentStep(), total: totalSteps } }}
+    </p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="mb-8">
+    <app-progress-bar [totalSteps]="totalSteps" [currentStep]="currentStep()" />
+  </div>
+
+  <!-- Form Card -->
+  <div
+    class="rounded-2xl border border-border-light bg-card-light p-8 dark:border-border-dark dark:bg-card-dark"
+  >
+    <!-- Step 1: Service -->
+    @if (currentStep() === 1) {
+      <app-service-step
+        [formGroup]="serviceForm"
+        [workshops]="workshopsState.workshops()"
+        [serviceTypes]="serviceTypeOptions"
+      />
+    }
+
+    <!-- Step 2: Contact -->
+    @if (currentStep() === 2) {
+      <app-contact-step [formGroup]="contactForm" />
+    }
+
+    <!-- Step 3: Vehicle -->
+    @if (currentStep() === 3) {
+      <app-vehicle-step [formGroup]="vehicleForm" />
+    }
+
+    <!-- Submit error -->
+    @if (submitError(); as error) {
+      <div
+        class="mt-4 rounded-lg border border-danger/30 bg-danger/10 p-3 text-sm text-danger"
+        role="alert"
+      >
+        {{ error }}
+      </div>
+    }
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="mt-6 flex items-center justify-between">
+    <!-- Left side: Cancel / Previous -->
+    <div class="flex gap-3">
+      @if (currentStep() === 1) {
+        <app-loading-button
+          [label]="'STEPPER.BUTTONS.CANCEL' | translate"
+          variant="outline"
+          (buttonClick)="cancel()"
+        />
+      } @else {
+        <app-loading-button
+          [label]="'STEPPER.BUTTONS.PREVIOUS' | translate"
+          [icon]="arrowLeftIcon"
+          variant="outline"
+          (buttonClick)="previousStep()"
+        />
+      }
+    </div>
+
+    <!-- Right side: Next / Create -->
+    <div>
+      @if (currentStep() < totalSteps) {
+        <app-loading-button
+          [label]="'STEPPER.BUTTONS.NEXT' | translate"
+          (buttonClick)="nextStep()"
+        />
+      } @else {
+        <app-loading-button
+          [label]="'STEPPER.BUTTONS.CREATE' | translate"
+          [icon]="checkIcon"
+          [loading]="submitting()"
+          (buttonClick)="onSubmit()"
+        />
+      }
+    </div>
+  </div>
+</main>

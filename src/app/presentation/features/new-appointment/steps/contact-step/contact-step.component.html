@@ -1,0 +1,108 @@
+<!-- Step header -->
+<div class="mb-6 flex items-center gap-3">
+  <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark">
+    <lucide-angular [img]="userIcon" [size]="20" [strokeWidth]="2" class="text-primary" />
+  </div>
+  <div>
+    <h3 class="text-lg font-semibold text-text-title dark:text-text-dark-title">
+      {{ 'STEPPER.STEP2.TITLE' | translate }}
+    </h3>
+    <p class="text-sm text-text-secondary dark:text-text-dark-muted">
+      {{ 'STEPPER.STEP2.SUBTITLE' | translate }}
+    </p>
+  </div>
+</div>
+
+<div [formGroup]="formGroup()" class="space-y-5">
+  <!-- Full Name -->
+  <div>
+    <label
+      for="contact-name"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP2.NAME' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <input
+      id="contact-name"
+      type="text"
+      formControlName="name"
+      [placeholder]="'STEPPER.STEP2.NAME' | translate"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      [class.border-border-light]="
+        !formGroup().controls.name.touched || formGroup().controls.name.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.name.touched || formGroup().controls.name.valid
+      "
+      [class.border-danger]="formGroup().controls.name.touched && formGroup().controls.name.invalid"
+    />
+    @if (formGroup().controls.name.touched && formGroup().controls.name.hasError('required')) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label
+      for="contact-email"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP2.EMAIL' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <input
+      id="contact-email"
+      type="email"
+      formControlName="email"
+      [placeholder]="'STEPPER.STEP2.EMAIL' | translate"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      [class.border-border-light]="
+        !formGroup().controls.email.touched || formGroup().controls.email.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.email.touched || formGroup().controls.email.valid
+      "
+      [class.border-danger]="
+        formGroup().controls.email.touched && formGroup().controls.email.invalid
+      "
+    />
+    @if (formGroup().controls.email.touched && formGroup().controls.email.hasError('required')) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    } @else if (
+      formGroup().controls.email.touched && formGroup().controls.email.hasError('email')
+    ) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</p>
+    }
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label
+      for="contact-phone"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP2.PHONE' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <input
+      id="contact-phone"
+      type="tel"
+      formControlName="phone"
+      [placeholder]="'STEPPER.STEP2.PHONE' | translate"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      [class.border-border-light]="
+        !formGroup().controls.phone.touched || formGroup().controls.phone.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.phone.touched || formGroup().controls.phone.valid
+      "
+      [class.border-danger]="
+        formGroup().controls.phone.touched && formGroup().controls.phone.invalid
+      "
+    />
+    @if (formGroup().controls.phone.touched && formGroup().controls.phone.hasError('required')) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
+  </div>
+</div>

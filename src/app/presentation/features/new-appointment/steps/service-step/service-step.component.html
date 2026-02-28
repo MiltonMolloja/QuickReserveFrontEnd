@@ -1,0 +1,146 @@
+<!-- Step header -->
+<div class="mb-6 flex items-center gap-3">
+  <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark">
+    <lucide-angular [img]="wrenchIcon" [size]="20" [strokeWidth]="2" class="text-primary" />
+  </div>
+  <div>
+    <h3 class="text-lg font-semibold text-text-title dark:text-text-dark-title">
+      {{ 'STEPPER.STEP1.TITLE' | translate }}
+    </h3>
+    <p class="text-sm text-text-secondary dark:text-text-dark-muted">
+      {{ 'STEPPER.STEP1.SUBTITLE' | translate }}
+    </p>
+  </div>
+</div>
+
+<div [formGroup]="formGroup()" class="space-y-5">
+  <!-- Workshop select -->
+  <div>
+    <label
+      for="workshop"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP1.WORKSHOP' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <select
+      id="workshop"
+      formControlName="place_id"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
+      [class.border-border-light]="
+        !formGroup().controls.place_id.touched || formGroup().controls.place_id.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.place_id.touched || formGroup().controls.place_id.valid
+      "
+      [class.border-danger]="
+        formGroup().controls.place_id.touched && formGroup().controls.place_id.invalid
+      "
+    >
+      <option [ngValue]="0" disabled>{{ 'STEPPER.STEP1.WORKSHOP' | translate }}</option>
+      @for (ws of workshops(); track ws.id) {
+        <option [ngValue]="ws.id">{{ ws.name }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Workshop info box -->
+  @if (selectedWorkshop(); as ws) {
+    <div class="rounded-lg bg-bg-light px-4 py-3 dark:bg-theme-bg">
+      <p class="text-sm font-medium text-text-dark dark:text-text-dark-tertiary">{{ ws.name }}</p>
+      <p class="text-xs text-text-secondary dark:text-text-dark-secondary">{{ ws.address }}</p>
+    </div>
+  }
+
+  <!-- Service type select -->
+  <div>
+    <label
+      for="service-type"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP1.SERVICE_TYPE' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <select
+      id="service-type"
+      formControlName="service_type"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
+      [class.border-border-light]="
+        !formGroup().controls.service_type.touched || formGroup().controls.service_type.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.service_type.touched || formGroup().controls.service_type.valid
+      "
+      [class.border-danger]="
+        formGroup().controls.service_type.touched && formGroup().controls.service_type.invalid
+      "
+    >
+      <option value="" disabled>{{ 'STEPPER.STEP1.SERVICE_TYPE' | translate }}</option>
+      @for (st of serviceTypes(); track st.value) {
+        <option [value]="st.value">{{ st.label }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Date and Time row -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <!-- Date -->
+    <div>
+      <label
+        for="appointment-date"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP1.DATE' | translate }}
+        <span class="text-danger">*</span>
+      </label>
+      <input
+        id="appointment-date"
+        type="date"
+        formControlName="appointment_date"
+        [min]="minDate"
+        class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
+        [class.border-border-light]="
+          !formGroup().controls.appointment_date.touched ||
+          formGroup().controls.appointment_date.valid
+        "
+        [class.dark:border-border-dark]="
+          !formGroup().controls.appointment_date.touched ||
+          formGroup().controls.appointment_date.valid
+        "
+        [class.border-danger]="
+          formGroup().controls.appointment_date.touched &&
+          formGroup().controls.appointment_date.invalid
+        "
+      />
+    </div>
+
+    <!-- Time -->
+    <div>
+      <label
+        for="appointment-time"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP1.TIME' | translate }}
+        <span class="text-danger">*</span>
+      </label>
+      <input
+        id="appointment-time"
+        type="time"
+        formControlName="appointment_time"
+        class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
+        [class.border-border-light]="
+          !formGroup().controls.appointment_time.touched ||
+          formGroup().controls.appointment_time.valid
+        "
+        [class.dark:border-border-dark]="
+          !formGroup().controls.appointment_time.touched ||
+          formGroup().controls.appointment_time.valid
+        "
+        [class.border-danger]="
+          formGroup().controls.appointment_time.touched &&
+          formGroup().controls.appointment_time.invalid
+        "
+      />
+    </div>
+  </div>
+</div>

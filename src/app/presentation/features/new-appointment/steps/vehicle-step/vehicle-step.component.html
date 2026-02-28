@@ -1,0 +1,98 @@
+<!-- Step header -->
+<div class="mb-6 flex items-center gap-3">
+  <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark">
+    <lucide-angular [img]="carIcon" [size]="20" [strokeWidth]="2" class="text-primary" />
+  </div>
+  <div>
+    <h3 class="text-lg font-semibold text-text-title dark:text-text-dark-title">
+      {{ 'STEPPER.STEP3.TITLE' | translate }}
+    </h3>
+    <p class="text-sm text-text-secondary dark:text-text-dark-muted">
+      {{ 'STEPPER.STEP3.SUBTITLE' | translate }}
+    </p>
+  </div>
+</div>
+
+<!-- Info note (RF-02.9) -->
+<div class="mb-6 flex items-center gap-2 rounded-[10px] bg-info-bg px-4 py-3.5 dark:bg-indigo-dark">
+  <span aria-hidden="true">💡</span>
+  <p class="text-sm text-primary">
+    {{ 'STEPPER.STEP3.INFO_NOTE' | translate }}
+  </p>
+</div>
+
+<div [formGroup]="formGroup()" class="space-y-5">
+  <!-- Make and Model row -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <!-- Make -->
+    <div>
+      <label
+        for="vehicle-make"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP3.MAKE' | translate }}
+      </label>
+      <input
+        id="vehicle-make"
+        type="text"
+        formControlName="make"
+        [placeholder]="'STEPPER.STEP3.MAKE' | translate"
+        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      />
+    </div>
+
+    <!-- Model -->
+    <div>
+      <label
+        for="vehicle-model"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP3.MODEL' | translate }}
+      </label>
+      <input
+        id="vehicle-model"
+        type="text"
+        formControlName="model"
+        [placeholder]="'STEPPER.STEP3.MODEL' | translate"
+        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      />
+    </div>
+  </div>
+
+  <!-- Year and License Plate row -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <!-- Year -->
+    <div>
+      <label
+        for="vehicle-year"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP3.YEAR' | translate }}
+      </label>
+      <input
+        id="vehicle-year"
+        type="number"
+        formControlName="year"
+        [placeholder]="'STEPPER.STEP3.YEAR' | translate"
+        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      />
+    </div>
+
+    <!-- License Plate -->
+    <div>
+      <label
+        for="vehicle-plate"
+        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+      >
+        {{ 'STEPPER.STEP3.LICENSE_PLATE' | translate }}
+      </label>
+      <input
+        id="vehicle-plate"
+        type="text"
+        formControlName="license_plate"
+        [placeholder]="'STEPPER.STEP3.LICENSE_PLATE' | translate"
+        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+      />
+    </div>
+  </div>
+</div>

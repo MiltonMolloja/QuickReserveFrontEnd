@@ -133,60 +133,6 @@ describe('NavbarComponent', () => {
       expect(langSpan.textContent.trim().toLowerCase()).toContain('es');
     });
 
-    it('should render compact theme pill group with radiogroup role', () => {
-      const group = fixture.nativeElement.querySelector('.sm\\:hidden [role="radiogroup"]');
-      expect(group).toBeTruthy();
-      expect(group.getAttribute('aria-label')).toBe('Theme selector');
-    });
-
-    it('should render 3 compact theme buttons', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.sm\\:hidden [role="radio"]');
-      expect(buttons.length).toBe(3);
-    });
-
-    it('should have Light, Dark, Auto labels on compact theme buttons', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.sm\\:hidden [role="radio"]');
-      expect(buttons[0].getAttribute('aria-label')).toBe('Light');
-      expect(buttons[1].getAttribute('aria-label')).toBe('Dark');
-      expect(buttons[2].getAttribute('aria-label')).toBe('Auto');
-    });
-
-    it('should mark LIGHT as checked by default in compact theme', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.sm\\:hidden [role="radio"]');
-      expect(buttons[0].getAttribute('aria-checked')).toBe('true');
-      expect(buttons[1].getAttribute('aria-checked')).toBe('false');
-    });
-
-    it('should switch theme on compact button click', () => {
-      const themeState = TestBed.inject(ThemeState);
-      const buttons = fixture.nativeElement.querySelectorAll('.sm\\:hidden [role="radio"]');
-      (buttons[1] as HTMLButtonElement).click();
-      fixture.detectChanges();
-
-      expect(themeState.theme()).toBe(Theme.DARK);
-      expect(buttons[1].getAttribute('aria-checked')).toBe('true');
-    });
-
-    it('should switch to AUTO theme on compact button click', () => {
-      const themeState = TestBed.inject(ThemeState);
-      const buttons = fixture.nativeElement.querySelectorAll('.sm\\:hidden [role="radio"]');
-      (buttons[2] as HTMLButtonElement).click();
-      fixture.detectChanges();
-
-      expect(themeState.theme()).toBe(Theme.AUTO);
-    });
-
-    it('should not render compact controls in simple variant', () => {
-      host.variant.set('simple');
-      fixture.detectChanges();
-
-      const langBtn = fixture.nativeElement.querySelector('button[aria-label="Toggle language"]');
-      expect(langBtn).toBeFalsy();
-
-      const themeGroup = fixture.nativeElement.querySelector('.sm\\:hidden [role="radiogroup"]');
-      expect(themeGroup).toBeFalsy();
-    });
-
     it('should update document lang attribute on language toggle', () => {
       const langBtn = fixture.nativeElement.querySelector(
         'button[aria-label="Toggle language"]',
@@ -196,11 +142,76 @@ describe('NavbarComponent', () => {
 
       expect(document.documentElement.lang).toBe('en');
 
-      // Toggle back
       langBtn.click();
       fixture.detectChanges();
 
       expect(document.documentElement.lang).toBe('es');
+    });
+
+    it('should render compact theme toggle button', () => {
+      const themeBtn = fixture.nativeElement.querySelector('button[aria-label^="Theme:"]');
+      expect(themeBtn).toBeTruthy();
+    });
+
+    it('should show current theme in aria-label', () => {
+      const themeBtn = fixture.nativeElement.querySelector('button[aria-label^="Theme:"]');
+      expect(themeBtn.getAttribute('aria-label')).toBe('Theme: light');
+    });
+
+    it('should cycle theme light → dark on click', () => {
+      const themeState = TestBed.inject(ThemeState);
+      const themeBtn = fixture.nativeElement.querySelector(
+        'button[aria-label^="Theme:"]',
+      ) as HTMLButtonElement;
+
+      themeBtn.click();
+      fixture.detectChanges();
+
+      expect(themeState.theme()).toBe(Theme.DARK);
+      expect(themeBtn.getAttribute('aria-label')).toBe('Theme: dark');
+    });
+
+    it('should cycle theme dark → auto on second click', () => {
+      const themeState = TestBed.inject(ThemeState);
+      const themeBtn = fixture.nativeElement.querySelector(
+        'button[aria-label^="Theme:"]',
+      ) as HTMLButtonElement;
+
+      themeBtn.click(); // light → dark
+      fixture.detectChanges();
+      themeBtn.click(); // dark → auto
+      fixture.detectChanges();
+
+      expect(themeState.theme()).toBe(Theme.AUTO);
+      expect(themeBtn.getAttribute('aria-label')).toBe('Theme: auto');
+    });
+
+    it('should cycle theme auto → light on third click', () => {
+      const themeState = TestBed.inject(ThemeState);
+      const themeBtn = fixture.nativeElement.querySelector(
+        'button[aria-label^="Theme:"]',
+      ) as HTMLButtonElement;
+
+      themeBtn.click(); // light → dark
+      fixture.detectChanges();
+      themeBtn.click(); // dark → auto
+      fixture.detectChanges();
+      themeBtn.click(); // auto → light
+      fixture.detectChanges();
+
+      expect(themeState.theme()).toBe(Theme.LIGHT);
+      expect(themeBtn.getAttribute('aria-label')).toBe('Theme: light');
+    });
+
+    it('should not render compact controls in simple variant', () => {
+      host.variant.set('simple');
+      fixture.detectChanges();
+
+      const langBtn = fixture.nativeElement.querySelector('button[aria-label="Toggle language"]');
+      expect(langBtn).toBeFalsy();
+
+      const themeBtn = fixture.nativeElement.querySelector('button[aria-label^="Theme:"]');
+      expect(themeBtn).toBeFalsy();
     });
   });
 });

@@ -26,10 +26,10 @@
   @if (variant() === 'full') {
     <!-- Mobile compact controls (< sm) -->
     <div class="flex items-center gap-2 sm:hidden">
-      <!-- Compact lang toggle -->
+      <!-- Compact lang toggle: 🌐 ES -->
       <button
         type="button"
-        class="flex items-center gap-1 rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:bg-bg-light dark:text-text-dark-muted dark:hover:bg-theme-bg"
+        class="flex items-center gap-1 rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
         (click)="toggleLanguage()"
         aria-label="Toggle language"
       >
@@ -37,30 +37,15 @@
         <span class="text-xs font-medium uppercase">{{ currentLang() }}</span>
       </button>
 
-      <!-- Compact theme pill group -->
-      <div
-        class="flex items-center gap-0.5 rounded-lg border border-border-light bg-bg-light p-0.5 dark:border-border-dark dark:bg-theme-bg"
-        role="radiogroup"
-        aria-label="Theme selector"
+      <!-- Compact theme toggle: cycles light → dark → auto -->
+      <button
+        type="button"
+        class="flex items-center justify-center rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
+        (click)="cycleTheme()"
+        [attr.aria-label]="'Theme: ' + currentTheme()"
       >
-        @for (option of themeOptions; track option.theme) {
-          <button
-            type="button"
-            [class]="
-              'flex h-7 w-7 items-center justify-center rounded-md transition-all ' +
-              (currentTheme() === option.theme
-                ? 'bg-card-light text-primary shadow-sm dark:bg-card-dark'
-                : 'text-text-tertiary hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary')
-            "
-            role="radio"
-            [attr.aria-checked]="currentTheme() === option.theme"
-            [attr.aria-label]="option.label"
-            (click)="setTheme(option.theme)"
-          >
-            <lucide-angular [img]="option.icon" [size]="14" [strokeWidth]="2" />
-          </button>
-        }
-      </div>
+        <lucide-angular [img]="currentThemeIcon()" [size]="14" [strokeWidth]="2" />
+      </button>
     </div>
 
     <!-- Desktop controls (≥ sm) -->

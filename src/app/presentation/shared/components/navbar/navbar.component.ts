@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LucideAngularModule, Wrench, Globe, Sun, Moon, Monitor } from 'lucide-angular';
@@ -6,12 +6,15 @@ import { LucideAngularModule, Wrench, Globe, Sun, Moon, Monitor } from 'lucide-a
 import { Theme } from '../../../../domain/enums/theme.enum';
 import { ThemeState } from '../../../../application/state/theme.state';
 
+/** Theme cycle order: light → dark → auto → light */
+const THEME_CYCLE: readonly Theme[] = [Theme.LIGHT, Theme.DARK, Theme.AUTO];
+
 /**
  * Shared navbar component used across all pages.
  *
  * Supports two variants:
  * - **full** (default): Logo + title + subtitle + nav controls via ng-content.
- *   On mobile (< sm) shows compact inline controls (lang toggle + theme pill group).
+ *   On mobile (< sm) shows compact inline controls (lang toggle + theme icon toggle).
  *   On desktop (≥ sm) shows projected content via ng-content slots.
  * - **simple**: Logo + title + "Back to home" link (used in success/error pages)
  *
@@ -47,9 +50,6 @@ export class NavbarComponent {
   protected readonly icons = {
     wrench: Wrench,
     globe: Globe,
-    sun: Sun,
-    moon: Moon,
-    monitor: Monitor,
   };
 
   /** Current language code for compact mobile selector */
@@ -58,15 +58,15 @@ export class NavbarComponent {
   /** Current theme signal for compact mobile selector */
   protected readonly currentTheme = this.themeState.theme;
 
-  /** Theme enum reference for template */
-  protected readonly Theme = Theme;
+  /** Icon map for each theme */
+  private readonly themeIconMap = {
+    [Theme.LIGHT]: Sun,
+    [Theme.DARK]: Moon,
+    [Theme.AUTO]: Monitor,
+  } as const;
 
-  /** Compact theme options for mobile pill group */
-  protected readonly themeOptions = [
-    { theme: Theme.LIGHT, icon: Sun, label: 'Light' },
-    { theme: Theme.DARK, icon: Moon, label: 'Dark' },
-    { theme: Theme.AUTO, icon: Monitor, label: 'Auto' },
-  ] as const;
+  /** Computed icon for the current theme */
+  protected readonly currentThemeIcon = computed(() => this.themeIconMap[this.currentTheme()]);
 
   /** Toggle language between ES/EN (compact mobile control) */
   protected toggleLanguage(): void {
@@ -76,8 +76,11 @@ export class NavbarComponent {
     document.documentElement.lang = next;
   }
 
-  /** Set theme (compact mobile control) */
-  protected setTheme(theme: Theme): void {
-    this.themeState.setTheme(theme);
+  /** Cycle theme: light → dark → auto → light (compact mobile control) */
+  protected cycleTheme(): void {
+    const currentIndex = THEME_CYCLE.indexOf(this.currentTheme());
+    const nextIndex = (currentIndex + 1) % THEME_CYCLE.length;
+    const nextTheme = THEME_CYCLE[nextIndex] ?? Theme.LIGHT;
+    this.themeState.setTheme(nextTheme);
   }
 }

@@ -12,8 +12,11 @@ module.exports = {
     'src/app/**/*.ts',
     '!src/app/**/*.spec.ts',
     '!src/app/**/*.routes.ts',
+    '!src/app/**/index.ts',
     '!src/app/app.config.ts',
+    '!src/app/infrastructure/i18n/translate.config.ts',
     '!src/main.ts',
+    '!src/environments/**',
   ],
   coverageThreshold: {
     global: {

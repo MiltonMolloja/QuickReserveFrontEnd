@@ -48,6 +48,9 @@ Thumbs.db
 # Compodoc
 /docs
 
+# Temporary files
+coverage-output.txt
+
 # OpenCode AI tooling
 .opencode/
 opencode.json

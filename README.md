@@ -1,59 +1,209 @@
-# QuickReserve
+# QuickReserve Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+Angular 20 application for booking workshop appointments. Built with **Clean Architecture**, **Tailwind CSS v4**, **Zoneless Change Detection**, and full **i18n** support (ES/EN).
 
-## Development server
+> Technical challenge for **Tecnom** - Consumes a .NET backend API.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## Tech Stack
+
+| Category         | Technology                                     |
+| ---------------- | ---------------------------------------------- |
+| Framework        | Angular 20 (Standalone Components, Signals)    |
+| Styling          | Tailwind CSS v4 (`@theme` directive)           |
+| Icons            | Lucide Angular (tree-shakeable)                |
+| i18n             | ngx-translate v17 (runtime language switching) |
+| State Management | Angular Signals                                |
+| HTTP             | Angular HttpClient + RxJS                      |
+| Testing          | Jest 30 + jest-preset-angular                  |
+| Linting          | ESLint 9 (flat config, strictTypeChecked)      |
+| Formatting       | Prettier                                       |
+| Git Hooks        | Husky + lint-staged                            |
+| Documentation    | Compodoc                                       |
+| Quality Gate     | SonarQube                                      |
+| Change Detection | Zoneless (no Zone.js overhead)                 |
+
+---
+
+## Architecture
+
+The project follows **Clean Architecture** with 4 layers and strict dependency inversion:
+
+```
+src/app/
+├── domain/                    # Pure business logic (no framework deps)
+│   ├── models/                # Appointment, Contact, Vehicle, Workshop, DTOs
+│   ├── enums/                 # ServiceType, Theme
+│   ├── ports/                 # Abstract classes (AppointmentPort, WorkshopPort, StoragePort)
+│   └── validators/            # Pure validation functions
+│
+├── application/               # Use cases & state (depends only on domain)
+│   ├── use-cases/             # GetAppointments, CreateAppointment, FilterAppointments, GetWorkshops
+│   ├── state/                 # Signal-based stores (AppointmentsState, WorkshopsState, ThemeState)
+│   └── mappers/               # API DTO <-> Domain model mappers (snake_case <-> camelCase)
+│
+├── infrastructure/            # External implementations (depends on domain + application)
+│   ├── http/                  # HTTP adapters implementing ports, interceptors (apiUrl, error)
+│   ├── storage/               # LocalStorageAdapter implementing StoragePort
+│   ├── theme/                 # ThemeAdapter (dark mode via class strategy)
+│   └── i18n/                  # ngx-translate configuration
+│
+└── presentation/              # UI layer (depends on application)
+    ├── shared/                # Reusable components (Navbar, StatCard, LoadingButton, etc.)
+    │   ├── components/        # 10 shared components
+    │   └── types/             # LucideIconData type workaround
+    └── features/              # Feature pages (lazy-loaded)
+        ├── appointments/      # List page with filters, stats, @defer grid
+        ├── new-appointment/   # 3-step stepper (Service, Contact, Vehicle)
+        └── appointment-success/ # Confirmation page with summary
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Design Patterns
 
-## Code scaffolding
+- **Container-Presentational**: Smart components inject use cases, dumb components receive data via `input()`
+- **Ports & Adapters**: Domain defines abstract ports, infrastructure provides concrete implementations
+- **Signal-based State**: Reactive state management without RxJS subscriptions for UI state
+- **Mapper Pattern**: Clean separation between API DTOs (snake_case) and domain models (camelCase)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Prerequisites
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Node.js** >= 22.x
+- **npm** >= 10.x
+- **Angular CLI** >= 20.x (`npm install -g @angular/cli`)
 
-```bash
-ng generate --help
-```
+---
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Getting Started
 
 ```bash
-ng test
+# Clone the repository
+git clone https://github.com/<your-username>/QuickReserveFrontEnd.git
+cd QuickReserveFrontEnd
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
 ```
 
-## Running end-to-end tests
+Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-For end-to-end (e2e) testing, run:
+### Backend API
+
+The app expects a .NET backend running at the URL configured in `src/environments/environment.ts`. The `apiUrlInterceptor` prepends this base URL to all API requests.
+
+---
+
+## Available Scripts
+
+| Script                  | Command                       | Description                               |
+| ----------------------- | ----------------------------- | ----------------------------------------- |
+| `npm start`             | `ng serve`                    | Start dev server at localhost:4200        |
+| `npm run build`         | `ng build`                    | Production build to `dist/`               |
+| `npm test`              | `jest`                        | Run all unit tests                        |
+| `npm run test:watch`    | `jest --watch`                | Run tests in watch mode                   |
+| `npm run test:coverage` | `jest --coverage`             | Run tests with coverage report            |
+| `npm run lint`          | `eslint "src/**/*.{ts,html}"` | Lint TypeScript and HTML files            |
+| `npm run lint:fix`      | `eslint ... --fix`            | Auto-fix lint errors                      |
+| `npm run format`        | `prettier --write ...`        | Format all source files                   |
+| `npm run format:check`  | `prettier --check ...`        | Check formatting without changes          |
+| `npm run docs:generate` | `compodoc ...`                | Generate documentation in `docs/`         |
+| `npm run docs:serve`    | `compodoc ... -s -o`          | Generate and serve docs at localhost:8080 |
+| `npm run sonar`         | `sonar-scanner`               | Run SonarQube analysis                    |
+| `npm run sonar:full`    | `test:coverage && sonar`      | Run tests + SonarQube analysis            |
+
+---
+
+## Quality Metrics
+
+| Metric     | Value      | Threshold |
+| ---------- | ---------- | --------- |
+| Statements | 99.06%     | >= 80%    |
+| Branches   | 88.63%     | >= 80%    |
+| Functions  | 100%       | >= 80%    |
+| Lines      | 98.96%     | >= 80%    |
+| ESLint     | 0 errors   | 0         |
+| Tests      | 298/298    | All pass  |
+| Build      | 0 warnings | 0         |
+
+---
+
+## Features
+
+- **Appointments List**: View all appointments with real-time search, service type filter, and statistics cards
+- **New Appointment**: 3-step stepper with reactive form validation (Service > Contact > Vehicle)
+- **Success Page**: Confirmation with appointment summary and navigation actions
+- **Dark Mode**: Toggle between light/dark themes, persisted in localStorage
+- **i18n**: Switch between Spanish and English at runtime (no rebuild needed)
+- **Responsive Design**: Mobile-first layout with adaptive grid (1 -> 2 -> 3 columns)
+- **Accessibility**: ARIA labels, keyboard navigation, focus management, semantic HTML
+- **Error Handling**: Centralized error interceptor + loading/error states in UI
+- **Lazy Loading**: Routes and `@defer` blocks for optimal initial load
+
+---
+
+## Project Structure Highlights
+
+### TypeScript Configuration
+
+- `strict: true` with `noUncheckedIndexedAccess`
+- `strictTemplates` in Angular compiler options
+- `ChangeDetectionStrategy.OnPush` on all components
+
+### ESLint Configuration
+
+- Flat config (`eslint.config.js`)
+- `strictTypeChecked` from typescript-eslint
+- Angular ESLint with template accessibility rules
+- Prettier integration via `eslint-config-prettier`
+
+### Testing
+
+- **Jest 30** with `jest-preset-angular` (no Karma/browser needed)
+- Coverage thresholds enforced at 80% (statements, branches, functions, lines)
+- Barrel files (`index.ts`) excluded from coverage metrics
+
+### Git Hooks
+
+- **Husky** pre-commit hook runs `lint-staged`
+- `lint-staged` runs ESLint fix + Prettier on staged `.ts` and `.html` files
+
+---
+
+## Design Decisions
+
+| ID    | Decision                           | Rationale                                               |
+| ----- | ---------------------------------- | ------------------------------------------------------- |
+| ND-01 | Tailwind CSS (no Angular Material) | Custom design faithful to Pencil mockups                |
+| ND-02 | Signals over RxJS for local state  | Modern Angular; RxJS only for HTTP via HttpClient       |
+| ND-03 | Custom stepper with Signals        | Demonstrates framework mastery without third-party deps |
+| ND-10 | Jest over Karma/Jasmine            | Faster, better DX, no browser required                  |
+| ND-12 | ngx-translate over Angular i18n    | Runtime language switching without rebuild              |
+| ND-20 | Zoneless Change Detection          | Production-ready in Angular 20, eliminates Zone.js      |
+| ND-23 | Tailwind v4 `@theme` directive     | CSS-first config, design tokens as custom properties    |
+
+See the full list of 26 design decisions in the project analysis document.
+
+---
+
+## Documentation
+
+Generate and view the Compodoc documentation:
 
 ```bash
-ng e2e
+# Generate static docs
+npm run docs:generate
+
+# Generate and open in browser
+npm run docs:serve
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## License
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is part of a technical challenge and is not licensed for public use.

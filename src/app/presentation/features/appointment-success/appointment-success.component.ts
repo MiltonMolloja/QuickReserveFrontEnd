@@ -136,21 +136,14 @@ export class AppointmentSuccessComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // Read appointment data from router navigation state
-    const nav = this.router.getCurrentNavigation();
-    const state = nav?.extras.state as { appointment?: CreateAppointmentDto } | undefined;
+    // Read appointment data from router navigation state or history state
+    const historyState = history.state as { appointment?: CreateAppointmentDto } | undefined;
 
-    if (state?.appointment) {
-      this.appointment.set(state.appointment);
+    if (historyState?.appointment) {
+      this.appointment.set(historyState.appointment);
     } else {
-      // Try history state (browser back/forward)
-      const historyState = history.state as { appointment?: CreateAppointmentDto } | undefined;
-      if (historyState?.appointment) {
-        this.appointment.set(historyState.appointment);
-      } else {
-        // No data available, redirect to appointments
-        void this.router.navigate(['/appointments']);
-      }
+      // No data available, redirect to appointments
+      void this.router.navigate(['/appointments']);
     }
   }
 

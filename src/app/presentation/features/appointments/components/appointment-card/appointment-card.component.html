@@ -1,5 +1,7 @@
 <div
   class="rounded-xl border border-border-light bg-card-light p-5 transition-shadow hover:shadow-md dark:border-border-dark dark:bg-card-dark dark:hover:shadow-lg dark:hover:shadow-black/20"
+  role="article"
+  [attr.aria-label]="appointment().serviceType + ' - ' + appointment().contact.name"
 >
   <!-- Header: Service Type -->
   <h3 class="mb-4 text-base font-semibold text-text-title dark:text-text-dark-title">

@@ -2,7 +2,7 @@
 <app-navbar variant="simple" />
 
 <!-- Main content -->
-<main class="mx-auto max-w-[960px] px-6 py-12">
+<main class="mx-auto max-w-[960px] px-6 py-12" aria-labelledby="success-title">
   @if (appointment(); as appt) {
     <!-- Success Section -->
     <div class="mb-8 text-center">
@@ -12,7 +12,10 @@
       </div>
 
       <!-- Title (RF-03.3) -->
-      <h1 class="mb-2 text-[26px] font-extrabold text-text-title dark:text-text-dark-title">
+      <h1
+        id="success-title"
+        class="mb-2 text-[26px] font-extrabold text-text-title dark:text-text-dark-title"
+      >
         {{ 'SUCCESS.TITLE' | translate }}
       </h1>
       <p class="text-sm text-text-secondary dark:text-text-dark-secondary">

@@ -27,7 +27,7 @@ export class LanguageSelectorComponent {
   protected readonly isOpen = signal(false);
 
   /** Current language code */
-  protected readonly currentLang = signal(this.translate.currentLang || 'es');
+  protected readonly currentLang = signal(this.translate.getCurrentLang() || 'es');
 
   /** Available languages */
   protected readonly languages: readonly { readonly code: string; readonly label: string }[] = [

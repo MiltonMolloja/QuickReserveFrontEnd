@@ -12,7 +12,7 @@
 </app-navbar>
 
 <!-- Main content -->
-<main class="mx-auto max-w-7xl px-6 py-8">
+<main class="mx-auto max-w-7xl px-6 py-8" aria-labelledby="appointments-title">
   <!-- Stats Row -->
   <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
     <app-stat-card
@@ -40,7 +40,10 @@
 
   <!-- Section Header -->
   <div class="mb-4 flex items-center gap-3">
-    <h2 class="text-xl font-extrabold text-text-title dark:text-text-dark-title">
+    <h2
+      id="appointments-title"
+      class="text-xl font-extrabold text-text-title dark:text-text-dark-title"
+    >
       {{ 'APPOINTMENTS.TITLE' | translate }}
     </h2>
     <span
@@ -66,13 +69,17 @@
 
   <!-- Loading state -->
   @if (appointmentsState.loading()) {
-    <div class="flex items-center justify-center py-20">
+    <div
+      class="flex items-center justify-center py-20"
+      role="status"
+      [attr.aria-label]="'APPOINTMENTS.LOADING' | translate"
+    >
       <svg
         class="h-8 w-8 animate-spin text-primary"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        aria-label="Loading"
+        aria-hidden="true"
       >
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
         <path
@@ -117,21 +124,22 @@
       }
     } @else {
       <!-- Empty state -->
-      <div class="py-20 text-center">
+      <div class="py-20 text-center" role="status">
         <lucide-angular
           [img]="icons.calendarClock"
           [size]="48"
           [strokeWidth]="1.5"
           class="mx-auto mb-4 text-text-tertiary dark:text-text-dark-muted"
+          aria-hidden="true"
         />
         <p class="text-lg font-medium text-text-secondary dark:text-text-dark-secondary">
-          No se encontraron turnos
+          {{ 'APPOINTMENTS.EMPTY.TITLE' | translate }}
         </p>
         <p class="mt-1 text-sm text-text-tertiary dark:text-text-dark-muted">
           @if (hasActiveFilters()) {
-            Intenta ajustar los filtros de búsqueda
+            {{ 'APPOINTMENTS.EMPTY.SUBTITLE_FILTERS' | translate }}
           } @else {
-            Crea tu primer turno para comenzar
+            {{ 'APPOINTMENTS.EMPTY.SUBTITLE_NO_DATA' | translate }}
           }
         </p>
       </div>

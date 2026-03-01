@@ -73,6 +73,11 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-redundant-type-constituents': 'error',
       '@typescript-eslint/prefer-string-starts-ends-with': 'error',
       '@typescript-eslint/prefer-for-of': 'error',
+      '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
+      '@typescript-eslint/no-invalid-void-type': [
+        'error',
+        { allowAsThisParameter: false, allowInGenericTypeArguments: true },
+      ],
 
       // ---- TypeScript: Variables & imports ----
       '@typescript-eslint/no-unused-vars': [
@@ -137,6 +142,37 @@ module.exports = tseslint.config(
       '@angular-eslint/template/table-scope': 'error',
       '@angular-eslint/template/elements-content': 'error',
       '@angular-eslint/template/interactive-supports-focus': 'error',
+    },
+  },
+
+  // ============================================
+  // TEST FILES: Relax strict type-checking rules
+  // Angular's nativeElement is typed as `any` by design
+  // ============================================
+  {
+    files: ['**/*.spec.ts'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-deprecated': 'off',
+      '@typescript-eslint/dot-notation': 'off',
+      '@typescript-eslint/unbound-method': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      '@typescript-eslint/prefer-readonly': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      '@angular-eslint/prefer-standalone': 'off',
+      '@angular-eslint/use-lifecycle-interface': 'off',
+      '@angular-eslint/component-selector': 'off',
     },
   },
 

@@ -60,7 +60,7 @@ export class FiltersBarComponent {
   readonly workshopChange = output<string>();
   readonly serviceChange = output<string>();
   readonly dateChange = output<string>();
-  readonly clearFilters = output<void>();
+  readonly clearFilters = output();
 
   /** Lucide icons */
   protected readonly icons = {

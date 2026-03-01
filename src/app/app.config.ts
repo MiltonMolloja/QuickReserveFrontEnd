@@ -3,10 +3,10 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { AppointmentPort } from './domain/ports/appointment.port';
@@ -18,8 +18,6 @@ import { LocalStorageAdapter } from './infrastructure/storage/local-storage.adap
 import { apiUrlInterceptor } from './infrastructure/http/api-url.interceptor';
 import { errorInterceptor } from './infrastructure/http/error.interceptor';
 
-const httpLoaderFactory = (): TranslateHttpLoader => new TranslateHttpLoader();
-
 export const appConfig: ApplicationConfig = {
   providers: [
     // Angular Core
@@ -28,14 +26,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([apiUrlInterceptor, errorInterceptor])),
 
-    // i18n (ngx-translate)
+    // i18n (ngx-translate v17)
     provideTranslateService({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'es',
+      loader: provideTranslateHttpLoader({ prefix: '/assets/i18n/' }),
+      fallbackLang: 'es',
     }),
 
     // Clean Architecture: Port -> Adapter bindings

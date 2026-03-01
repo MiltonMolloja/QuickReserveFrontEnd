@@ -56,7 +56,7 @@ export class LoadingButtonComponent {
   readonly type = input<'button' | 'submit'>('button');
 
   /** Emits when the button is clicked */
-  readonly buttonClick = output<void>();
+  readonly buttonClick = output();
 
   /** Handle click */
   protected onClick(): void {

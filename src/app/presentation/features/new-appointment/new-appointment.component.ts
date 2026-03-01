@@ -214,7 +214,11 @@ export class NewAppointmentComponent implements OnInit {
     const appointmentAt = `${service.appointment_date}T${service.appointment_time}:00`;
 
     // Build vehicle only if at least one field has a value
-    const hasVehicle = vehicle.make || vehicle.model || vehicle.year || vehicle.license_plate;
+    const hasVehicle =
+      vehicle.make.length > 0 ||
+      vehicle.model.length > 0 ||
+      vehicle.year !== null ||
+      vehicle.license_plate.length > 0;
 
     return {
       placeId: service.place_id,
@@ -227,10 +231,10 @@ export class NewAppointmentComponent implements OnInit {
       },
       vehicle: hasVehicle
         ? {
-            make: vehicle.make || undefined,
-            model: vehicle.model || undefined,
+            make: vehicle.make.length > 0 ? vehicle.make : undefined,
+            model: vehicle.model.length > 0 ? vehicle.model : undefined,
             year: vehicle.year ?? undefined,
-            licensePlate: vehicle.license_plate || undefined,
+            licensePlate: vehicle.license_plate.length > 0 ? vehicle.license_plate : undefined,
           }
         : undefined,
     };

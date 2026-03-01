@@ -92,10 +92,21 @@ describe('ServiceStepComponent', () => {
     expect(input.type).toBe('date');
   });
 
-  it('should render time input', () => {
-    const input = fixture.nativeElement.querySelector('#appointment-time');
-    expect(input).toBeTruthy();
-    expect(input.type).toBe('time');
+  it('should render time slot picker', () => {
+    const picker = fixture.nativeElement.querySelector('app-time-slot-picker');
+    expect(picker).toBeTruthy();
+  });
+
+  it('should update form control when time slot is selected', () => {
+    const form = component.formGroup();
+    const slotButton = fixture.nativeElement.querySelector(
+      'app-time-slot-picker button[aria-label="10:00"]',
+    ) as HTMLButtonElement;
+    slotButton.click();
+    fixture.detectChanges();
+
+    expect(form.controls.appointment_time.value).toBe('10:00');
+    expect(form.controls.appointment_time.touched).toBe(true);
   });
 
   it('should set min date to today', () => {

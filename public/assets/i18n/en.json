@@ -101,6 +101,10 @@
       "GO_HOME": "Go Home"
     }
   },
+  "TIME_PICKER": {
+    "PLACEHOLDER": "Select a time slot",
+    "HINT": "Select an available time slot (09:00 - 17:00)"
+  },
   "THEME": {
     "LIGHT": "Light",
     "DARK": "Dark",

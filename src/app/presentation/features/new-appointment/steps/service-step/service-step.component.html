@@ -82,65 +82,40 @@
     </select>
   </div>
 
-  <!-- Date and Time row -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-    <!-- Date -->
-    <div>
-      <label
-        for="appointment-date"
-        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
-      >
-        {{ 'STEPPER.STEP1.DATE' | translate }}
-        <span class="text-danger">*</span>
-      </label>
-      <input
-        id="appointment-date"
-        type="date"
-        formControlName="appointment_date"
-        [min]="minDate"
-        class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
-        [class.border-border-light]="
-          !formGroup().controls.appointment_date.touched ||
-          formGroup().controls.appointment_date.valid
-        "
-        [class.dark:border-border-dark]="
-          !formGroup().controls.appointment_date.touched ||
-          formGroup().controls.appointment_date.valid
-        "
-        [class.border-danger]="
-          formGroup().controls.appointment_date.touched &&
-          formGroup().controls.appointment_date.invalid
-        "
-      />
-    </div>
-
-    <!-- Time -->
-    <div>
-      <label
-        for="appointment-time"
-        class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
-      >
-        {{ 'STEPPER.STEP1.TIME' | translate }}
-        <span class="text-danger">*</span>
-      </label>
-      <input
-        id="appointment-time"
-        type="time"
-        formControlName="appointment_time"
-        class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
-        [class.border-border-light]="
-          !formGroup().controls.appointment_time.touched ||
-          formGroup().controls.appointment_time.valid
-        "
-        [class.dark:border-border-dark]="
-          !formGroup().controls.appointment_time.touched ||
-          formGroup().controls.appointment_time.valid
-        "
-        [class.border-danger]="
-          formGroup().controls.appointment_time.touched &&
-          formGroup().controls.appointment_time.invalid
-        "
-      />
-    </div>
+  <!-- Date field -->
+  <div>
+    <label
+      for="appointment-date"
+      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
+    >
+      {{ 'STEPPER.STEP1.DATE' | translate }}
+      <span class="text-danger">*</span>
+    </label>
+    <input
+      id="appointment-date"
+      type="date"
+      formControlName="appointment_date"
+      [min]="minDate"
+      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
+      [class.border-border-light]="
+        !formGroup().controls.appointment_date.touched ||
+        formGroup().controls.appointment_date.valid
+      "
+      [class.dark:border-border-dark]="
+        !formGroup().controls.appointment_date.touched ||
+        formGroup().controls.appointment_date.valid
+      "
+      [class.border-danger]="
+        formGroup().controls.appointment_date.touched &&
+        formGroup().controls.appointment_date.invalid
+      "
+    />
   </div>
+
+  <!-- Time slot picker -->
+  <app-time-slot-picker
+    [selectedTime]="formGroup().controls.appointment_time.value"
+    [disabledSlots]="disabledTimeSlots"
+    (timeSelected)="onTimeSelected($event)"
+  />
 </div>

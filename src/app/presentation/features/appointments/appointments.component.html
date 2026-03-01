@@ -2,10 +2,20 @@
 <app-navbar>
   <app-language-selector navIcons />
   <app-theme-selector navIcons />
+  <!-- Desktop action button -->
   <a
     navAction
     routerLink="/new-appointment"
-    class="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-gradient px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:opacity-90 sm:w-auto sm:bg-none sm:bg-primary sm:hover:bg-primary-gradient"
+    class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-gradient"
+  >
+    <lucide-angular [img]="icons.plus" [size]="16" [strokeWidth]="2" />
+    {{ 'NAV.NEW_APPOINTMENT' | translate }}
+  </a>
+  <!-- Mobile action button (full width with gradient) -->
+  <a
+    navActionMobile
+    routerLink="/new-appointment"
+    class="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-gradient px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:opacity-90"
   >
     <lucide-angular [img]="icons.plus" [size]="16" [strokeWidth]="2" />
     {{ 'NAV.NEW_APPOINTMENT' | translate }}

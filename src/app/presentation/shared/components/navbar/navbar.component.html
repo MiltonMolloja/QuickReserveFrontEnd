@@ -24,38 +24,46 @@
 
   <!-- Nav Controls -->
   @if (variant() === 'full') {
-    <!-- Mobile compact controls (< sm) -->
-    <div class="flex items-center gap-2 sm:hidden">
-      <!-- Compact lang toggle: 🌐 ES -->
-      <button
-        type="button"
-        class="flex items-center gap-1 rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
-        (click)="toggleLanguage()"
-        aria-label="Toggle language"
-      >
-        <lucide-angular [img]="icons.globe" [size]="14" [strokeWidth]="2" />
-        <span class="text-xs font-medium uppercase">{{ currentLang() }}</span>
-      </button>
+    <!-- Right side: mobile compact + desktop icons + action -->
+    <div class="flex items-center gap-3">
+      <!-- Mobile compact controls (< sm) -->
+      <div class="flex items-center gap-2 sm:hidden">
+        <!-- Compact lang toggle: 🌐 ES -->
+        <button
+          type="button"
+          class="flex items-center gap-1 rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
+          (click)="toggleLanguage()"
+          aria-label="Toggle language"
+        >
+          <lucide-angular [img]="icons.globe" [size]="14" [strokeWidth]="2" />
+          <span class="text-xs font-medium uppercase">{{ currentLang() }}</span>
+        </button>
 
-      <!-- Compact theme toggle: cycles light → dark → auto -->
-      <button
-        type="button"
-        class="flex items-center justify-center rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
-        (click)="cycleTheme()"
-        [attr.aria-label]="'Theme: ' + currentTheme()"
-      >
-        <lucide-angular [img]="currentThemeIcon()" [size]="14" [strokeWidth]="2" />
-      </button>
+        <!-- Compact theme toggle: cycles light → dark → auto -->
+        <button
+          type="button"
+          class="flex items-center justify-center rounded-md px-2 py-1.5 text-text-tertiary transition-colors hover:text-text-secondary dark:text-text-dark-muted dark:hover:text-text-dark-secondary"
+          (click)="cycleTheme()"
+          [attr.aria-label]="'Theme: ' + currentTheme()"
+        >
+          <lucide-angular [img]="currentThemeIcon()" [size]="14" [strokeWidth]="2" />
+        </button>
+      </div>
+
+      <!-- Desktop icons (≥ sm) -->
+      <div class="hidden items-center gap-3 sm:flex">
+        <ng-content select="[navIcons]" />
+      </div>
+
+      <!-- Desktop action button (hidden on mobile, shown inline on sm+) -->
+      <div class="hidden sm:block">
+        <ng-content select="[navAction]" />
+      </div>
     </div>
 
-    <!-- Desktop controls (≥ sm) -->
-    <div class="hidden items-center gap-3 sm:flex">
-      <ng-content select="[navIcons]" />
-    </div>
-
-    <!-- Action button (full width on mobile, auto on desktop) -->
-    <div class="w-full sm:w-auto sm:order-none">
-      <ng-content select="[navAction]" />
+    <!-- Mobile action button (full width below nav row) -->
+    <div class="w-full sm:hidden">
+      <ng-content select="[navActionMobile]" />
     </div>
   } @else {
     <a

@@ -10,7 +10,8 @@ import { NavbarComponent } from './navbar.component';
 @Component({
   template: `<app-navbar [variant]="variant()">
     <span navIcons class="projected-icons">Icon Controls</span>
-    <span navAction class="projected-action">Action Button</span>
+    <span navAction class="projected-action">Desktop Action</span>
+    <span navActionMobile class="projected-action-mobile">Mobile Action</span>
   </app-navbar>`,
   imports: [NavbarComponent],
 })
@@ -54,10 +55,16 @@ describe('NavbarComponent', () => {
     expect(icons.textContent).toContain('Icon Controls');
   });
 
-  it('should project action button in full variant', () => {
+  it('should project desktop action in full variant', () => {
     const action = fixture.nativeElement.querySelector('.projected-action');
     expect(action).toBeTruthy();
-    expect(action.textContent).toContain('Action Button');
+    expect(action.textContent).toContain('Desktop Action');
+  });
+
+  it('should project mobile action in full variant', () => {
+    const action = fixture.nativeElement.querySelector('.projected-action-mobile');
+    expect(action).toBeTruthy();
+    expect(action.textContent).toContain('Mobile Action');
   });
 
   it('should show subtitle in full variant', () => {

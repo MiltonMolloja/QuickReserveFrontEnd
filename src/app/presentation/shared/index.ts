@@ -9,6 +9,8 @@ export { FilterDropdownComponent } from './components/filter-dropdown/filter-dro
 export { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 export { SuccessIconComponent } from './components/success-icon/success-icon.component';
 export { SummaryRowComponent } from './components/summary-row/summary-row.component';
+export { ErrorIconComponent } from './components/error-icon/error-icon.component';
+export { ErrorDetailRowComponent } from './components/error-detail-row/error-detail-row.component';
 
 // Shared types
 export type { LucideIconData } from './types/icon.type';

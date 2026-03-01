@@ -86,6 +86,21 @@
       "VIEW_LIST": "Ver Turnos"
     }
   },
+  "ERROR_PAGE": {
+    "TITLE": "Error al Crear el Turno",
+    "SUBTITLE": "No se pudo completar la reserva. Por favor, intentá nuevamente.",
+    "DETAIL_TITLE": "Detalle del Error",
+    "CODE_LABEL": "Código de Error",
+    "MESSAGE_LABEL": "Mensaje",
+    "SUGGESTIONS_LABEL": "Sugerencias",
+    "SUGGESTION_1": "Verificá tu conexión a internet",
+    "SUGGESTION_2": "Intentá nuevamente en unos minutos",
+    "SUGGESTION_3": "Si el problema persiste, contactá soporte",
+    "BUTTONS": {
+      "RETRY": "Reintentar",
+      "GO_HOME": "Volver al Inicio"
+    }
+  },
   "THEME": {
     "LIGHT": "Claro",
     "DARK": "Oscuro",

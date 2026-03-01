@@ -1,0 +1,75 @@
+<!-- Navbar (simple variant with back link) -->
+<app-navbar variant="simple" />
+
+<!-- Main content -->
+<main class="mx-auto max-w-[960px] px-6 py-12" aria-labelledby="error-title">
+  <!-- Error Section -->
+  <div class="mb-8 text-center">
+    <!-- Error Icon -->
+    <div class="mb-6">
+      <app-error-icon />
+    </div>
+
+    <!-- Title -->
+    <h1
+      id="error-title"
+      class="mb-2 text-[26px] font-extrabold text-text-title dark:text-text-dark-title"
+    >
+      {{ 'ERROR_PAGE.TITLE' | translate }}
+    </h1>
+    <p class="text-sm text-text-secondary dark:text-text-dark-secondary">
+      {{ 'ERROR_PAGE.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <!-- Error Detail Card -->
+  <div
+    class="mx-auto max-w-[560px] rounded-2xl border border-border-light bg-card-light px-8 py-6 dark:border-border-dark dark:bg-card-dark"
+  >
+    <h2 class="mb-2 text-base font-semibold text-text-title dark:text-text-dark-title">
+      {{ 'ERROR_PAGE.DETAIL_TITLE' | translate }}
+    </h2>
+
+    <!-- Error Code -->
+    <app-error-detail-row
+      [icon]="icons.serverCrash"
+      [label]="'ERROR_PAGE.CODE_LABEL' | translate"
+      [value]="errorCode()"
+      [dangerValue]="true"
+    />
+
+    <!-- Error Message -->
+    <app-error-detail-row
+      [icon]="icons.circleAlert"
+      [label]="'ERROR_PAGE.MESSAGE_LABEL' | translate"
+      [value]="errorMessage()"
+    />
+
+    <!-- Suggestions -->
+    <app-error-detail-row
+      [icon]="icons.lightbulb"
+      [label]="'ERROR_PAGE.SUGGESTIONS_LABEL' | translate"
+      [value]="'• ' + ('ERROR_PAGE.SUGGESTION_1' | translate)"
+      [extraLines]="[
+        '• ' + ('ERROR_PAGE.SUGGESTION_2' | translate),
+        '• ' + ('ERROR_PAGE.SUGGESTION_3' | translate),
+      ]"
+      [showDivider]="false"
+    />
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="mx-auto mt-8 flex max-w-[560px] items-center justify-center gap-4">
+    <app-loading-button
+      [label]="'ERROR_PAGE.BUTTONS.RETRY' | translate"
+      [icon]="icons.retry"
+      variant="outline"
+      (buttonClick)="retry()"
+    />
+    <app-loading-button
+      [label]="'ERROR_PAGE.BUTTONS.GO_HOME' | translate"
+      [icon]="icons.home"
+      (buttonClick)="goHome()"
+    />
+  </div>
+</main>

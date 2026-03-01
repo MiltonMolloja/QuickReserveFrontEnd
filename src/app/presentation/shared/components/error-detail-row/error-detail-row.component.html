@@ -1,0 +1,34 @@
+<div>
+  <div class="flex items-start gap-4 py-3">
+    <!-- Icon circle (danger variant) -->
+    <div
+      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-bg dark:bg-danger-bg-dark"
+    >
+      <lucide-angular [img]="icon()" [size]="18" [strokeWidth]="2" class="text-danger" />
+    </div>
+
+    <!-- Label + Value -->
+    <div class="flex flex-1 flex-col gap-1">
+      <span class="text-[13px] text-text-secondary dark:text-text-dark-secondary">
+        {{ label() }}
+      </span>
+      <span
+        [class]="
+          'text-sm font-medium ' +
+          (dangerValue() ? 'text-danger' : 'text-text-dark dark:text-text-dark-tertiary')
+        "
+      >
+        {{ value() }}
+      </span>
+      @for (line of extraLines(); track line) {
+        <span class="text-[13px] text-text-dark dark:text-text-dark-tertiary">
+          {{ line }}
+        </span>
+      }
+    </div>
+  </div>
+
+  @if (showDivider()) {
+    <div class="border-b border-border-light dark:border-border-dark"></div>
+  }
+</div>

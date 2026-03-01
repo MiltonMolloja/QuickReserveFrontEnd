@@ -86,6 +86,21 @@
       "VIEW_LIST": "View Appointments"
     }
   },
+  "ERROR_PAGE": {
+    "TITLE": "Error Creating Appointment",
+    "SUBTITLE": "The reservation could not be completed. Please try again.",
+    "DETAIL_TITLE": "Error Details",
+    "CODE_LABEL": "Error Code",
+    "MESSAGE_LABEL": "Message",
+    "SUGGESTIONS_LABEL": "Suggestions",
+    "SUGGESTION_1": "Check your internet connection",
+    "SUGGESTION_2": "Try again in a few minutes",
+    "SUGGESTION_3": "If the problem persists, contact support",
+    "BUTTONS": {
+      "RETRY": "Retry",
+      "GO_HOME": "Go Home"
+    }
+  },
   "THEME": {
     "LIGHT": "Light",
     "DARK": "Dark",

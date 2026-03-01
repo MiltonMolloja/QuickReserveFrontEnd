@@ -200,6 +200,13 @@ export class NewAppointmentComponent implements OnInit {
         this.submitting.set(false);
         const message = err instanceof Error ? err.message : 'Error al crear el turno';
         this.submitError.set(message);
+        void this.router.navigate(['/appointment-error'], {
+          state: {
+            error: {
+              errorMessage: message,
+            },
+          },
+        });
       },
     });
   }

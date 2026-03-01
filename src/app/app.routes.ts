@@ -8,6 +8,7 @@ import type { Routes } from '@angular/router';
  * - /appointments          -> Listado de turnos (default)
  * - /new-appointment       -> Stepper de creacion (3 pasos)
  * - /appointment-success   -> Pantalla de confirmacion
+ * - /appointment-error     -> Pantalla de error al crear turno
  */
 export const routes: Routes = [
   { path: '', redirectTo: 'appointments', pathMatch: 'full' },
@@ -28,9 +29,16 @@ export const routes: Routes = [
   {
     path: 'appointment-success',
     loadComponent: () =>
-      import(
-        './presentation/features/appointment-success/appointment-success.component'
-      ).then((m) => m.AppointmentSuccessComponent),
+      import('./presentation/features/appointment-success/appointment-success.component').then(
+        (m) => m.AppointmentSuccessComponent,
+      ),
+  },
+  {
+    path: 'appointment-error',
+    loadComponent: () =>
+      import('./presentation/features/appointment-error/appointment-error.component').then(
+        (m) => m.AppointmentErrorComponent,
+      ),
   },
   { path: '**', redirectTo: 'appointments' },
 ];

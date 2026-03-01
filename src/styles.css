@@ -41,6 +41,12 @@
   /* Success circle gradient shadow */
   --color-success-shadow: #10b98140;
 
+  /* Danger circle gradient shadow */
+  --color-danger-shadow: #ef444440;
+  --color-danger-light: #f87171;
+  --color-danger-bg: #fef2f2;
+  --color-danger-bg-dark: #3b1c1c;
+
   /* Typography */
   --font-sans: 'Inter', sans-serif;
 

@@ -50,7 +50,7 @@
     <div class="rounded-lg bg-bg-light px-4 py-3 dark:bg-theme-bg">
       <p class="text-sm font-medium text-text-dark dark:text-text-dark-tertiary">{{ ws.name }}</p>
       <p class="text-xs text-text-secondary dark:text-text-dark-secondary">{{ ws.address }}</p>
-      @if (ws.email || ws.phone) {
+      @if (ws.email || ws.whatsapp) {
         <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1">
           @if (ws.email) {
             <span
@@ -60,12 +60,12 @@
               {{ ws.email }}
             </span>
           }
-          @if (ws.phone) {
+          @if (ws.whatsapp) {
             <span
               class="inline-flex items-center gap-1 text-xs text-text-secondary dark:text-text-dark-secondary"
             >
-              <lucide-angular [img]="phoneIcon" [size]="13" [strokeWidth]="2" />
-              {{ ws.phone }}
+              <lucide-angular [img]="whatsappIcon" [size]="13" [strokeWidth]="2" />
+              {{ ws.whatsapp }}
             </span>
           }
         </div>

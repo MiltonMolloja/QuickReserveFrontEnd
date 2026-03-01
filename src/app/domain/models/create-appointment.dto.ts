@@ -14,7 +14,7 @@ import type { Vehicle } from './vehicle.model';
  *   placeId: 1,
  *   appointmentAt: '2026-03-15T10:00:00Z',
  *   serviceType: 'MANTENIMIENTO',
- *   contact: { name: 'Juan', email: 'juan@email.com', phone: '1234' },
+ *   contact: { name: 'Juan', email: 'juan@email.com', whatsapp: '1234' },
  * };
  * ```
  */

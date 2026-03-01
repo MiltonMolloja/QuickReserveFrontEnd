@@ -5,7 +5,7 @@ const API_DTO: WorkshopApiDto = {
   name: 'Taller Central',
   address: 'Av. Corrientes 1234',
   email: 'taller@email.com',
-  phone: '+54 11 9876-5432',
+  whatsapp: '+54 11 9876-5432',
 };
 
 describe('WorkshopMapper', () => {
@@ -17,7 +17,7 @@ describe('WorkshopMapper', () => {
       expect(result.name).toBe('Taller Central');
       expect(result.address).toBe('Av. Corrientes 1234');
       expect(result.email).toBe('taller@email.com');
-      expect(result.phone).toBe('+54 11 9876-5432');
+      expect(result.whatsapp).toBe('+54 11 9876-5432');
     });
   });
 
@@ -28,7 +28,7 @@ describe('WorkshopMapper', () => {
         name: 'Taller Norte',
         address: 'Av. Libertador 5678',
         email: 'norte@email.com',
-        phone: '+54 11 1111-2222',
+        whatsapp: '+54 11 1111-2222',
       };
 
       const result = workshopListFromApi([API_DTO, dto2]);

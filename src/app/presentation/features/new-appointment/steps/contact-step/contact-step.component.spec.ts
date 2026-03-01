@@ -12,7 +12,7 @@ function createContactForm(): FormGroup {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
     }),
-    phone: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+    whatsapp: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
   });
 }
 
@@ -53,8 +53,8 @@ describe('ContactStepComponent', () => {
     expect(input.type).toBe('email');
   });
 
-  it('should render phone input', () => {
-    const input = fixture.nativeElement.querySelector('#contact-phone');
+  it('should render whatsapp input', () => {
+    const input = fixture.nativeElement.querySelector('#contact-whatsapp');
     expect(input).toBeTruthy();
     expect(input.type).toBe('tel');
   });
@@ -78,9 +78,9 @@ describe('ContactStepComponent', () => {
     expect(hasRequiredError).toBe(true);
   });
 
-  it('should show required error for phone when touched and empty', () => {
+  it('should show required error for whatsapp when touched and empty', () => {
     const form = component.formGroup();
-    form.controls['phone'].markAsTouched();
+    form.controls['whatsapp'].markAsTouched();
     fixture.detectChanges();
 
     const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
@@ -91,7 +91,7 @@ describe('ContactStepComponent', () => {
     const form = component.formGroup();
     form.controls['name'].setValue('Juan');
     form.controls['email'].setValue('juan@email.com');
-    form.controls['phone'].setValue('123456');
+    form.controls['whatsapp'].setValue('123456');
     form.markAllAsTouched();
     fixture.detectChanges();
 

@@ -107,7 +107,7 @@ export class NewAppointmentComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
     }),
-    phone: new FormControl<string>('', {
+    whatsapp: new FormControl<string>('', {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -234,7 +234,7 @@ export class NewAppointmentComponent implements OnInit {
       contact: {
         name: contact.name,
         email: contact.email,
-        phone: contact.phone,
+        whatsapp: contact.whatsapp,
       },
       vehicle: hasVehicle
         ? {

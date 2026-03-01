@@ -11,7 +11,7 @@ function createAppointment(overrides: Partial<Appointment> = {}): Appointment {
     placeId: 1,
     appointmentAt: '2026-03-15T10:00:00Z',
     serviceType: 'Mantenimiento',
-    contact: { name: 'Juan Perez', email: 'juan@email.com', phone: '123' },
+    contact: { name: 'Juan Perez', email: 'juan@email.com', whatsapp: '123' },
     createdAt: '2026-02-28T12:00:00Z',
     ...overrides,
   };
@@ -30,9 +30,9 @@ describe('FilterAppointmentsUseCase', () => {
 
     // Seed with test data
     state.setAppointments([
-      createAppointment({ id: '1', placeId: 1, serviceType: 'Mantenimiento', contact: { name: 'Juan Perez', email: 'juan@email.com', phone: '123' } }),
-      createAppointment({ id: '2', placeId: 2, serviceType: 'Reparacion', contact: { name: 'Maria Lopez', email: 'maria@email.com', phone: '456' } }),
-      createAppointment({ id: '3', placeId: 1, serviceType: 'Diagnostico', appointmentAt: '2026-04-01T14:00:00Z', contact: { name: 'Carlos Garcia', email: 'carlos@email.com', phone: '789' } }),
+      createAppointment({ id: '1', placeId: 1, serviceType: 'Mantenimiento', contact: { name: 'Juan Perez', email: 'juan@email.com', whatsapp: '123' } }),
+      createAppointment({ id: '2', placeId: 2, serviceType: 'Reparacion', contact: { name: 'Maria Lopez', email: 'maria@email.com', whatsapp: '456' } }),
+      createAppointment({ id: '3', placeId: 1, serviceType: 'Diagnostico', appointmentAt: '2026-04-01T14:00:00Z', contact: { name: 'Carlos Garcia', email: 'carlos@email.com', whatsapp: '789' } }),
     ]);
   });
 

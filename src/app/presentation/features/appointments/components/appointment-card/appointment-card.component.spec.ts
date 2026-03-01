@@ -11,7 +11,7 @@ function createAppointment(overrides: Partial<Appointment> = {}): Appointment {
     placeId: 1,
     appointmentAt: '2026-03-15T10:00:00Z',
     serviceType: 'Mantenimiento',
-    contact: { name: 'Juan Perez', email: 'juan@email.com', phone: '+54 11 1234-5678' },
+    contact: { name: 'Juan Perez', email: 'juan@email.com', whatsapp: '+54 11 1234-5678' },
     createdAt: '2026-02-28T12:00:00Z',
     ...overrides,
   };
@@ -22,7 +22,7 @@ const WORKSHOP: Workshop = {
   name: 'Taller Central',
   address: 'Av. Siempreviva 742',
   email: 'taller@email.com',
-  phone: '+54 11 9999-0000',
+  whatsapp: '+54 11 9999-0000',
 };
 
 describe('AppointmentCardComponent', () => {
@@ -60,7 +60,7 @@ describe('AppointmentCardComponent', () => {
     expect(el.textContent).toContain('juan@email.com');
   });
 
-  it('should display contact phone', () => {
+  it('should display contact whatsapp', () => {
     const el = fixture.nativeElement;
     expect(el.textContent).toContain('+54 11 1234-5678');
   });

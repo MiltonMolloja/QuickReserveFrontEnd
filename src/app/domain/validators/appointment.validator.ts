@@ -14,7 +14,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * - appointmentAt: must be a non-empty string representing a future date
  * - contact.name: must be a non-empty string
  * - contact.email: must be a valid email format
- * - contact.phone: must be a non-empty string
+ * - contact.whatsapp: must be a non-empty string
  *
  * Vehicle fields are optional and not validated (RF-02.8).
  *
@@ -24,7 +24,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * @example
  * ```typescript
  * const errors = validateAppointment({});
- * // Returns 6 errors: placeId, serviceType, appointmentAt, name, email, phone
+ * // Returns 6 errors: placeId, serviceType, appointmentAt, name, email, whatsapp
  *
  * const errors = validateAppointment(validDto);
  * // Returns [] (empty = valid)
@@ -60,8 +60,8 @@ export function validateAppointment(data: Partial<CreateAppointmentDto>): Valida
     errors.push({ field: 'contact.email', message: 'El formato del email no es valido' });
   }
 
-  if (!contact?.phone.trim()) {
-    errors.push({ field: 'contact.phone', message: 'El telefono es requerido' });
+  if (!contact?.whatsapp.trim()) {
+    errors.push({ field: 'contact.whatsapp', message: 'El telefono es requerido' });
   }
 
   return errors;
@@ -118,8 +118,8 @@ export function validateContactStep(
     errors.push({ field: 'contact.email', message: 'El formato del email no es valido' });
   }
 
-  if (!data?.phone?.trim()) {
-    errors.push({ field: 'contact.phone', message: 'El telefono es requerido' });
+  if (!data?.whatsapp?.trim()) {
+    errors.push({ field: 'contact.whatsapp', message: 'El telefono es requerido' });
   }
 
   return errors;

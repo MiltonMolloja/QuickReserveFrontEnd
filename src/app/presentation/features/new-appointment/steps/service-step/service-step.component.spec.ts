@@ -12,9 +12,9 @@ const WORKSHOPS: Workshop[] = [
     name: 'Taller Central',
     address: 'Av. Siempreviva 742',
     email: 'a@a.com',
-    phone: '111',
+    whatsapp: '111',
   },
-  { id: 2, name: 'Taller Norte', address: 'Calle Falsa 123', email: 'b@b.com', phone: '222' },
+  { id: 2, name: 'Taller Norte', address: 'Calle Falsa 123', email: 'b@b.com', whatsapp: '222' },
 ];
 
 const SERVICE_TYPES = [
@@ -152,7 +152,7 @@ describe('ServiceStepComponent', () => {
     expect(infoBox.textContent).toContain('Taller Central');
   });
 
-  it('should show email and phone in workshop info box when available', () => {
+  it('should show email and whatsapp in workshop info box when available', () => {
     const form = createServiceForm();
     form.controls['place_id']!.setValue(1);
     fixture.componentRef.setInput('formGroup', form);
@@ -163,9 +163,9 @@ describe('ServiceStepComponent', () => {
     expect(infoBox.textContent).toContain('111');
   });
 
-  it('should not show email/phone section when both are empty', () => {
+  it('should not show email/whatsapp section when both are empty', () => {
     const workshopsNoContact: Workshop[] = [
-      { id: 3, name: 'Taller Vacío', address: 'Calle 1', email: '', phone: '' },
+      { id: 3, name: 'Taller Vacío', address: 'Calle 1', email: '', whatsapp: '' },
     ];
     const form = createServiceForm();
     form.controls['place_id']!.setValue(3);
@@ -176,14 +176,14 @@ describe('ServiceStepComponent', () => {
     const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
     expect(infoBox).toBeTruthy();
     expect(infoBox.textContent).toContain('Taller Vacío');
-    // No email/phone icons should be rendered
+    // No email/whatsapp icons should be rendered
     const contactSpans = infoBox.querySelectorAll('span');
     expect(contactSpans.length).toBe(0);
   });
 
-  it('should show only email when phone is empty', () => {
+  it('should show only email when whatsapp is empty', () => {
     const workshopsEmailOnly: Workshop[] = [
-      { id: 4, name: 'Solo Email', address: 'Calle 2', email: 'only@email.com', phone: '' },
+      { id: 4, name: 'Solo Email', address: 'Calle 2', email: 'only@email.com', whatsapp: '' },
     ];
     const form = createServiceForm();
     form.controls['place_id']!.setValue(4);
@@ -197,13 +197,13 @@ describe('ServiceStepComponent', () => {
     expect(contactSpans.length).toBe(1);
   });
 
-  it('should show only phone when email is empty', () => {
-    const workshopsPhoneOnly: Workshop[] = [
-      { id: 5, name: 'Solo Phone', address: 'Calle 3', email: '', phone: '+54 11 5555-0000' },
+  it('should show only whatsapp when email is empty', () => {
+    const workshopsWhatsappOnly: Workshop[] = [
+      { id: 5, name: 'Solo Whatsapp', address: 'Calle 3', email: '', whatsapp: '+54 11 5555-0000' },
     ];
     const form = createServiceForm();
     form.controls['place_id']!.setValue(5);
-    fixture.componentRef.setInput('workshops', workshopsPhoneOnly);
+    fixture.componentRef.setInput('workshops', workshopsWhatsappOnly);
     fixture.componentRef.setInput('formGroup', form);
     fixture.detectChanges();
 

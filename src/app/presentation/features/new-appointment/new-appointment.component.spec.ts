@@ -123,7 +123,7 @@ describe('NewAppointmentComponent', () => {
     // Fill step 2
     component['contactForm'].controls.name.setValue('Juan Perez');
     component['contactForm'].controls.email.setValue('juan@email.com');
-    component['contactForm'].controls.phone.setValue('+54 11 1234-5678');
+    component['contactForm'].controls.whatsapp.setValue('+54 11 1234-5678');
 
     const mockResponse = {
       success: true,
@@ -132,7 +132,7 @@ describe('NewAppointmentComponent', () => {
         place_id: 1,
         appointment_at: '2026-12-15T10:00:00Z',
         service_type: 'Mantenimiento',
-        contact: { name: 'Juan Perez', email: 'juan@email.com', phone: '+54 11 1234-5678' },
+        contact: { name: 'Juan Perez', email: 'juan@email.com', whatsapp: '+54 11 1234-5678' },
         created_at: '2026-02-28T12:00:00Z',
       },
       errors: null,
@@ -154,7 +154,7 @@ describe('NewAppointmentComponent', () => {
     component['serviceForm'].controls.appointment_time.setValue('10:00');
     component['contactForm'].controls.name.setValue('Juan');
     component['contactForm'].controls.email.setValue('j@e.com');
-    component['contactForm'].controls.phone.setValue('123');
+    component['contactForm'].controls.whatsapp.setValue('123');
 
     mockAppointmentPort.create.mockReturnValue(throwError(() => new Error('Server error')));
 

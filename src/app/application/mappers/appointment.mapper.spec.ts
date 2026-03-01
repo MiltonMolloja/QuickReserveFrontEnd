@@ -14,7 +14,7 @@ const API_DTO: AppointmentApiDto = {
   contact: {
     name: 'Juan Perez',
     email: 'juan@email.com',
-    phone: '+54 11 1234-5678',
+    whatsapp: '+54 11 1234-5678',
   },
   vehicle: {
     make: 'Toyota',
@@ -33,7 +33,7 @@ const API_DTO_NO_VEHICLE: AppointmentApiDto = {
   contact: {
     name: 'Maria Lopez',
     email: 'maria@email.com',
-    phone: '+54 11 9876-5432',
+    whatsapp: '+54 11 9876-5432',
   },
   created_at: '2026-02-28T13:00:00Z',
 };
@@ -55,7 +55,7 @@ describe('AppointmentMapper', () => {
 
       expect(result.contact.name).toBe('Juan Perez');
       expect(result.contact.email).toBe('juan@email.com');
-      expect(result.contact.phone).toBe('+54 11 1234-5678');
+      expect(result.contact.whatsapp).toBe('+54 11 1234-5678');
     });
 
     it('should map vehicle with license_plate to licensePlate', () => {
@@ -99,7 +99,7 @@ describe('AppointmentMapper', () => {
         contact: {
           name: 'Juan Perez',
           email: 'juan@email.com',
-          phone: '+54 11 1234-5678',
+          whatsapp: '+54 11 1234-5678',
         },
       };
 
@@ -116,7 +116,7 @@ describe('AppointmentMapper', () => {
         placeId: 1,
         appointmentAt: '2026-03-15T10:00:00Z',
         serviceType: 'Mantenimiento',
-        contact: { name: 'Juan', email: 'j@e.com', phone: '123' },
+        contact: { name: 'Juan', email: 'j@e.com', whatsapp: '123' },
         vehicle: { make: 'Toyota', licensePlate: 'AB 123 CD' },
       };
 
@@ -132,7 +132,7 @@ describe('AppointmentMapper', () => {
         placeId: 1,
         appointmentAt: '2026-03-15T10:00:00Z',
         serviceType: 'Mantenimiento',
-        contact: { name: 'Juan', email: 'j@e.com', phone: '123' },
+        contact: { name: 'Juan', email: 'j@e.com', whatsapp: '123' },
       };
 
       const result = appointmentToApi(dto);

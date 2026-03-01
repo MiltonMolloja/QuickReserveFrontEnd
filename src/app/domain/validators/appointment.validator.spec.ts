@@ -20,7 +20,7 @@ function createValidDto(): CreateAppointmentDto {
     contact: {
       name: 'Juan Perez',
       email: 'juan@email.com',
-      phone: '+54 11 1234-5678',
+      whatsapp: '+54 11 1234-5678',
     },
   };
 }
@@ -55,7 +55,7 @@ describe('validateAppointment', () => {
     expect(fields).toContain('appointmentAt');
     expect(fields).toContain('contact.name');
     expect(fields).toContain('contact.email');
-    expect(fields).toContain('contact.phone');
+    expect(fields).toContain('contact.whatsapp');
   });
 
   describe('placeId validation', () => {
@@ -183,23 +183,23 @@ describe('validateAppointment', () => {
     });
   });
 
-  describe('contact.phone validation', () => {
-    it('should return error when phone is missing', () => {
+  describe('contact.whatsapp validation', () => {
+    it('should return error when whatsapp is missing', () => {
       const dto = {
         ...createValidDto(),
-        contact: { ...createValidDto().contact, phone: '' },
+        contact: { ...createValidDto().contact, whatsapp: '' },
       };
       const result = validateAppointment(dto);
-      expect(result.some((e) => e.field === 'contact.phone')).toBe(true);
+      expect(result.some((e) => e.field === 'contact.whatsapp')).toBe(true);
     });
 
-    it('should return error when phone is whitespace only', () => {
+    it('should return error when whatsapp is whitespace only', () => {
       const dto = {
         ...createValidDto(),
-        contact: { ...createValidDto().contact, phone: '   ' },
+        contact: { ...createValidDto().contact, whatsapp: '   ' },
       };
       const result = validateAppointment(dto);
-      expect(result.some((e) => e.field === 'contact.phone')).toBe(true);
+      expect(result.some((e) => e.field === 'contact.whatsapp')).toBe(true);
     });
   });
 });
@@ -232,7 +232,7 @@ describe('validateServiceStep', () => {
     const fields = result.map((e) => e.field);
     expect(fields).not.toContain('contact.name');
     expect(fields).not.toContain('contact.email');
-    expect(fields).not.toContain('contact.phone');
+    expect(fields).not.toContain('contact.whatsapp');
   });
 });
 
@@ -241,7 +241,7 @@ describe('validateContactStep', () => {
     const result = validateContactStep({
       name: 'Juan Perez',
       email: 'juan@email.com',
-      phone: '+54 11 1234-5678',
+      whatsapp: '+54 11 1234-5678',
     });
     expect(result).toHaveLength(0);
   });
@@ -253,7 +253,7 @@ describe('validateContactStep', () => {
     const fields = result.map((e) => e.field);
     expect(fields).toContain('contact.name');
     expect(fields).toContain('contact.email');
-    expect(fields).toContain('contact.phone');
+    expect(fields).toContain('contact.whatsapp');
   });
 
   it('should return all errors for empty contact', () => {
@@ -265,7 +265,7 @@ describe('validateContactStep', () => {
     const result = validateContactStep({
       name: 'Juan',
       email: 'invalid-email',
-      phone: '1234',
+      whatsapp: '1234',
     });
     expect(result).toHaveLength(1);
     expect(result[0]?.field).toBe('contact.email');

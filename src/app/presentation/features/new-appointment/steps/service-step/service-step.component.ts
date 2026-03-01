@@ -52,7 +52,7 @@ export class ServiceStepComponent {
   /** Lucide icons */
   protected readonly wrenchIcon = Wrench;
   protected readonly mailIcon = Mail;
-  protected readonly phoneIcon = Phone;
+  protected readonly whatsappIcon = Phone;
 
   /** Minimum date (today) for the date picker - prevents past dates (RN-04) */
   protected readonly minDate = new Date().toISOString().split('T')[0] ?? '';

@@ -51,7 +51,7 @@ describe('WorkshopHttpAdapter', () => {
         name: 'Taller Central',
         address: 'Av. Siempreviva 742',
         email: 'taller@email.com',
-        phone: '+54 11 1234-5678',
+        whatsapp: '+54 11 1234-5678',
       };
       const mockResponse: ApiResponse<Workshop[]> = {
         success: true,

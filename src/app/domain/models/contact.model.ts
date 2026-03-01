@@ -7,12 +7,12 @@
  * const contact: Contact = {
  *   name: 'Juan Perez',
  *   email: 'juan@email.com',
- *   phone: '+54 11 1234-5678',
+ *   whatsapp: '+54 11 1234-5678',
  * };
  * ```
  */
 export interface Contact {
   readonly name: string;
   readonly email: string;
-  readonly phone: string;
+  readonly whatsapp: string;
 }

@@ -76,32 +76,32 @@
     }
   </div>
 
-  <!-- Phone -->
+  <!-- Whatsapp -->
   <div>
     <label
-      for="contact-phone"
+      for="contact-whatsapp"
       class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
     >
       {{ 'STEPPER.STEP2.PHONE' | translate }}
       <span class="text-danger">*</span>
     </label>
     <input
-      id="contact-phone"
+      id="contact-whatsapp"
       type="tel"
-      formControlName="phone"
+      formControlName="whatsapp"
       [placeholder]="'STEPPER.STEP2.PHONE' | translate"
       class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
       [class.border-border-light]="
-        !formGroup().controls.phone.touched || formGroup().controls.phone.valid
+        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid
       "
       [class.dark:border-border-dark]="
-        !formGroup().controls.phone.touched || formGroup().controls.phone.valid
+        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid
       "
       [class.border-danger]="
-        formGroup().controls.phone.touched && formGroup().controls.phone.invalid
+        formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.invalid
       "
     />
-    @if (formGroup().controls.phone.touched && formGroup().controls.phone.hasError('required')) {
+    @if (formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError('required')) {
       <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
     }
   </div>

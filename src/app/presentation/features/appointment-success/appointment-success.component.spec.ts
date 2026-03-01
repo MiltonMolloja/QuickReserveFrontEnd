@@ -11,7 +11,7 @@ const MOCK_APPOINTMENT = {
   placeId: 1,
   appointmentAt: '2026-03-15T10:00:00',
   serviceType: 'Mantenimiento',
-  contact: { name: 'Juan Perez', email: 'juan@email.com', phone: '+54 11 1234-5678' },
+  contact: { name: 'Juan Perez', email: 'juan@email.com', whatsapp: '+54 11 1234-5678' },
 };
 
 describe('AppointmentSuccessComponent', () => {
@@ -106,7 +106,7 @@ describe('AppointmentSuccessComponent', () => {
 
   it('should resolve workshop name from state', () => {
     workshopsState.setWorkshops([
-      { id: 1, name: 'Taller Central', address: '', email: '', phone: '' },
+      { id: 1, name: 'Taller Central', address: '', email: '', whatsapp: '' },
     ]);
     expect(component['workshopName']()).toBe('Taller Central');
   });

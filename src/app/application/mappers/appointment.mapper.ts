@@ -13,7 +13,7 @@ export interface AppointmentApiDto {
   readonly contact: {
     readonly name: string;
     readonly email: string;
-    readonly phone: string;
+    readonly whatsapp: string;
   };
   readonly vehicle?: {
     readonly make?: string;
@@ -35,7 +35,7 @@ export interface CreateAppointmentApiDto {
   readonly contact: {
     readonly name: string;
     readonly email: string;
-    readonly phone: string;
+    readonly whatsapp: string;
   };
   readonly vehicle?: {
     readonly make?: string;
@@ -60,7 +60,7 @@ export function appointmentFromApi(dto: AppointmentApiDto): Appointment {
     contact: {
       name: dto.contact.name,
       email: dto.contact.email,
-      phone: dto.contact.phone,
+      whatsapp: dto.contact.whatsapp,
     },
     vehicle: dto.vehicle
       ? {
@@ -98,7 +98,7 @@ export function appointmentToApi(dto: CreateAppointmentDto): CreateAppointmentAp
     contact: {
       name: dto.contact.name,
       email: dto.contact.email,
-      phone: dto.contact.phone,
+      whatsapp: dto.contact.whatsapp,
     },
     vehicle: dto.vehicle
       ? {

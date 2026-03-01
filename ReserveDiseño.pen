@@ -906,7 +906,7 @@
                         {
                           "type": "frame",
                           "id": "V39jl",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -914,17 +914,17 @@
                             {
                               "type": "icon_font",
                               "id": "7yUw6",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "dhhY4",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 1234-5678",
                               "fontFamily": "Inter",
@@ -1177,7 +1177,7 @@
                         {
                           "type": "frame",
                           "id": "CNKqQ",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1185,17 +1185,17 @@
                             {
                               "type": "icon_font",
                               "id": "7DoaI",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "dFhLR",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 9876-5432",
                               "fontFamily": "Inter",
@@ -1448,7 +1448,7 @@
                         {
                           "type": "frame",
                           "id": "7cgJc",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1456,17 +1456,17 @@
                             {
                               "type": "icon_font",
                               "id": "xjJqz",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "hTOfw",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 5555-1234",
                               "fontFamily": "Inter",
@@ -1728,7 +1728,7 @@
                         {
                           "type": "frame",
                           "id": "iLB7S",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1736,17 +1736,17 @@
                             {
                               "type": "icon_font",
                               "id": "W9j9s",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "f8Phd",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 4444-3333",
                               "fontFamily": "Inter",
@@ -1999,7 +1999,7 @@
                         {
                           "type": "frame",
                           "id": "4fg3w",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -2007,17 +2007,17 @@
                             {
                               "type": "icon_font",
                               "id": "Xx3ag",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "NGoH4",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 2222-1111",
                               "fontFamily": "Inter",
@@ -2270,7 +2270,7 @@
                         {
                           "type": "frame",
                           "id": "yyYDb",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -2278,17 +2278,17 @@
                             {
                               "type": "icon_font",
                               "id": "A5pRT",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "s4d8B",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#6b7280",
                               "content": "+54 11 7777-8888",
                               "fontFamily": "Inter",
@@ -4574,7 +4574,7 @@
                         {
                           "type": "frame",
                           "id": "G92JY",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -4582,17 +4582,17 @@
                             {
                               "type": "icon_font",
                               "id": "kPECG",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "RTKD9",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 1234-5678",
                               "fontFamily": "Inter",
@@ -4845,7 +4845,7 @@
                         {
                           "type": "frame",
                           "id": "aFGye",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -4853,17 +4853,17 @@
                             {
                               "type": "icon_font",
                               "id": "JKrfT",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "ptAwl",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 9876-5432",
                               "fontFamily": "Inter",
@@ -5116,7 +5116,7 @@
                         {
                           "type": "frame",
                           "id": "Sxt6N",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5124,17 +5124,17 @@
                             {
                               "type": "icon_font",
                               "id": "ijI5H",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "TXAkP",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 5555-1234",
                               "fontFamily": "Inter",
@@ -5396,7 +5396,7 @@
                         {
                           "type": "frame",
                           "id": "ZI73z",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5404,17 +5404,17 @@
                             {
                               "type": "icon_font",
                               "id": "v2Dg3",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "bxv41",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 4444-3333",
                               "fontFamily": "Inter",
@@ -5667,7 +5667,7 @@
                         {
                           "type": "frame",
                           "id": "uo925",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5675,17 +5675,17 @@
                             {
                               "type": "icon_font",
                               "id": "DM2Ab",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "tBVeB",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 2222-1111",
                               "fontFamily": "Inter",
@@ -5938,7 +5938,7 @@
                         {
                           "type": "frame",
                           "id": "jntaG",
-                          "name": "c1phoneRow",
+                          "name": "c1whatsappRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5946,17 +5946,17 @@
                             {
                               "type": "icon_font",
                               "id": "RiZxs",
-                              "name": "c1phoneIcon",
+                              "name": "c1whatsappIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "phone",
+                              "iconFontName": "whatsapp",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "V7AhV",
-                              "name": "c1phoneText",
+                              "name": "c1whatsappText",
                               "fill": "#94a3b8",
                               "content": "+54 11 7777-8888",
                               "fontFamily": "Inter",
@@ -7706,7 +7706,7 @@
                     {
                       "type": "text",
                       "id": "A6qJ7",
-                      "name": "phoneLabel",
+                      "name": "whatsappLabel",
                       "fill": "#374151",
                       "content": "Teléfono *",
                       "fontFamily": "Inter",
@@ -7716,7 +7716,7 @@
                     {
                       "type": "frame",
                       "id": "qoZLf",
-                      "name": "phoneInput",
+                      "name": "whatsappInput",
                       "width": "fill_container",
                       "fill": "#ffffff",
                       "cornerRadius": 8,
@@ -7733,7 +7733,7 @@
                         {
                           "type": "text",
                           "id": "xDbCY",
-                          "name": "phoneText",
+                          "name": "whatsappText",
                           "fill": "#1a1a2e",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -8802,7 +8802,7 @@
                     {
                       "type": "text",
                       "id": "Rbr4g",
-                      "name": "phoneLabel",
+                      "name": "whatsappLabel",
                       "fill": "#cbd5e1",
                       "content": "Teléfono *",
                       "fontFamily": "Inter",
@@ -8812,7 +8812,7 @@
                     {
                       "type": "frame",
                       "id": "2FRsk",
-                      "name": "phoneInput",
+                      "name": "whatsappInput",
                       "width": "fill_container",
                       "fill": "#1a1d2e",
                       "cornerRadius": 8,
@@ -8829,7 +8829,7 @@
                         {
                           "type": "text",
                           "id": "t5zKg",
-                          "name": "phoneText",
+                          "name": "whatsappText",
                           "fill": "#f1f5f9",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -11500,7 +11500,7 @@
                     {
                       "type": "frame",
                       "id": "7B79M",
-                      "name": "c1phoneRow",
+                      "name": "c1whatsappRow",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -11508,17 +11508,17 @@
                         {
                           "type": "icon_font",
                           "id": "QMAVc",
-                          "name": "c1phoneIcon",
+                          "name": "c1whatsappIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "phone",
+                          "iconFontName": "whatsapp",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "UiT31",
-                          "name": "c1phoneText",
+                          "name": "c1whatsappText",
                           "fill": "#6b7280",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -11742,7 +11742,7 @@
                     {
                       "type": "frame",
                       "id": "MHdGT",
-                      "name": "c2phone",
+                      "name": "c2whatsapp",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -11750,17 +11750,17 @@
                         {
                           "type": "icon_font",
                           "id": "Iq3I4",
-                          "name": "c2phoneIcon",
+                          "name": "c2whatsappIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "phone",
+                          "iconFontName": "whatsapp",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "hnN6e",
-                          "name": "c2phoneText",
+                          "name": "c2whatsappText",
                           "fill": "#6b7280",
                           "content": "+54 11 9876-5432",
                           "fontFamily": "Inter",
@@ -12662,7 +12662,7 @@
                     {
                       "type": "frame",
                       "id": "AKg6e",
-                      "name": "c1phoneRow",
+                      "name": "c1whatsappRow",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -12670,17 +12670,17 @@
                         {
                           "type": "icon_font",
                           "id": "8Ruki",
-                          "name": "c1phoneIcon",
+                          "name": "c1whatsappIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "phone",
+                          "iconFontName": "whatsapp",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "BnUHi",
-                          "name": "c1phoneText",
+                          "name": "c1whatsappText",
                           "fill": "#94a3b8",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -12904,7 +12904,7 @@
                     {
                       "type": "frame",
                       "id": "BbYPn",
-                      "name": "c2phone",
+                      "name": "c2whatsapp",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -12912,17 +12912,17 @@
                         {
                           "type": "icon_font",
                           "id": "9Aood",
-                          "name": "c2phoneIcon",
+                          "name": "c2whatsappIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "phone",
+                          "iconFontName": "whatsapp",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "0oWOY",
-                          "name": "c2phoneText",
+                          "name": "c2whatsappText",
                           "fill": "#94a3b8",
                           "content": "+54 11 9876-5432",
                           "fontFamily": "Inter",

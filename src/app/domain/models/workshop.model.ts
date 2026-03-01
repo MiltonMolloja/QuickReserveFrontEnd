@@ -9,7 +9,7 @@
  *   name: 'Taller Central',
  *   address: 'Av. Corrientes 1234',
  *   email: 'taller@email.com',
- *   phone: '+54 11 9876-5432',
+ *   whatsapp: '+54 11 9876-5432',
  * };
  * ```
  */
@@ -18,5 +18,5 @@ export interface Workshop {
   readonly name: string;
   readonly address: string;
   readonly email: string;
-  readonly phone: string;
+  readonly whatsapp: string;
 }

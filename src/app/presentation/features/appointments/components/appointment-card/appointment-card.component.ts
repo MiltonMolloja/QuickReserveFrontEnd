@@ -20,7 +20,7 @@ import type { Workshop } from '../../../../../domain/models/workshop.model';
  * - Service type as header title (RF-01.4: no badge, just title)
  * - Workshop info (name + address) when available (RF-01.3)
  * - Date and time
- * - Contact info (name, email, phone)
+ * - Contact info (name, email, whatsapp)
  * - Vehicle info when available (optional, RF-01.3)
  *
  * @example
@@ -51,7 +51,7 @@ export class AppointmentCardComponent {
     clock: Clock3,
     user: User,
     mail: Mail,
-    phone: Phone,
+    whatsapp: Phone,
     car: Car,
   };
 

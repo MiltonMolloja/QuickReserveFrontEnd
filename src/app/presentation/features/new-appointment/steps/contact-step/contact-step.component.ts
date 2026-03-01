@@ -9,7 +9,7 @@ import { LucideAngularModule, User } from 'lucide-angular';
  * Displays form fields for:
  * - Full Name (required) - RF-02.5
  * - Email (required, valid format) - RF-02.6
- * - Phone (required) - RF-02.7
+ * - Whatsapp (required) - RF-02.7
  *
  * Receives the FormGroup from the container.
  */
@@ -25,7 +25,7 @@ export class ContactStepComponent {
     FormGroup<{
       name: FormControl<string>;
       email: FormControl<string>;
-      phone: FormControl<string>;
+      whatsapp: FormControl<string>;
     }>
   >();
 

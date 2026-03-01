@@ -10,7 +10,7 @@ export interface WorkshopApiDto {
   readonly name: string;
   readonly address: string;
   readonly email: string;
-  readonly phone: string;
+  readonly whatsapp: string;
 }
 
 /**
@@ -25,7 +25,7 @@ export function workshopFromApi(dto: WorkshopApiDto): Workshop {
     name: dto.name,
     address: dto.address,
     email: dto.email,
-    phone: dto.phone,
+    whatsapp: dto.whatsapp,
   };
 }
 

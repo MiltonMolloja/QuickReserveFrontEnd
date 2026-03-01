@@ -52,7 +52,7 @@ describe('AppointmentHttpAdapter', () => {
         placeId: 1,
         appointmentAt: '2026-03-15T10:00:00Z',
         serviceType: 'Mantenimiento',
-        contact: { name: 'Juan', email: 'juan@email.com', phone: '123' },
+        contact: { name: 'Juan', email: 'juan@email.com', whatsapp: '123' },
         createdAt: '2026-02-28T12:00:00Z',
       };
       const mockResponse: ApiResponse<Appointment[]> = {
@@ -77,7 +77,7 @@ describe('AppointmentHttpAdapter', () => {
         placeId: 1,
         appointmentAt: '2026-03-15T10:00:00Z',
         serviceType: 'Mantenimiento',
-        contact: { name: 'Juan', email: 'juan@email.com', phone: '123' },
+        contact: { name: 'Juan', email: 'juan@email.com', whatsapp: '123' },
       };
       const mockResponse: ApiResponse<Appointment> = {
         success: true,
@@ -86,7 +86,7 @@ describe('AppointmentHttpAdapter', () => {
           placeId: 1,
           appointmentAt: '2026-03-15T10:00:00Z',
           serviceType: 'Mantenimiento',
-          contact: { name: 'Juan', email: 'juan@email.com', phone: '123' },
+          contact: { name: 'Juan', email: 'juan@email.com', whatsapp: '123' },
           createdAt: '2026-02-28T12:00:00Z',
         },
         errors: null,

@@ -5,8 +5,8 @@ import type { Workshop } from '../../domain/models/workshop.model';
 import { WorkshopsState } from './workshops.state';
 
 const MOCK_WORKSHOPS: Workshop[] = [
-  { id: 1, name: 'Taller Central', address: 'Av. Corrientes 1234', email: 'a@b.com', whatsapp: '123' },
-  { id: 2, name: 'Taller Norte', address: 'Av. Libertador 5678', email: 'c@d.com', whatsapp: '456' },
+  { id: 1, name: 'Taller Central', address: 'Av. Corrientes 1234', email: 'a@b.com', phone: '123' },
+  { id: 2, name: 'Taller Norte', address: 'Av. Libertador 5678', email: 'c@d.com', phone: '456' },
 ];
 
 describe('WorkshopsState', () => {

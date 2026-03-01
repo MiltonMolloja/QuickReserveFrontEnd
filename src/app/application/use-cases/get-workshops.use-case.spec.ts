@@ -16,7 +16,7 @@ const API_RESPONSE_SUCCESS: ApiResponse<unknown[]> = {
       name: 'Taller Central',
       address: 'Av. Siempreviva 742',
       email: 'taller@email.com',
-      whatsapp: '+54 11 1234-5678',
+      phone: '+54 11 1234-5678',
     },
   ],
   errors: null,
@@ -91,7 +91,7 @@ describe('GetWorkshopsUseCase', () => {
 
   it('should skip fetch if workshops are already loaded', () => {
     state.setWorkshops([
-      { id: 1, name: 'Existing', address: 'Addr', email: 'e@e.com', whatsapp: '123' },
+      { id: 1, name: 'Existing', address: 'Addr', email: 'e@e.com', phone: '123' },
     ]);
 
     useCase.execute();

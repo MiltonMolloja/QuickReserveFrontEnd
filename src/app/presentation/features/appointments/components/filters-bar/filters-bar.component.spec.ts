@@ -6,8 +6,8 @@ import type { Workshop } from '../../../../../domain/models/workshop.model';
 import { FiltersBarComponent } from './filters-bar.component';
 
 const WORKSHOPS: Workshop[] = [
-  { id: 1, name: 'Taller A', address: 'Addr A', email: 'a@a.com', whatsapp: '111' },
-  { id: 2, name: 'Taller B', address: 'Addr B', email: 'b@b.com', whatsapp: '222' },
+  { id: 1, name: 'Taller A', address: 'Addr A', email: 'a@a.com', phone: '111' },
+  { id: 2, name: 'Taller B', address: 'Addr B', email: 'b@b.com', phone: '222' },
 ];
 
 const SERVICE_TYPES = [

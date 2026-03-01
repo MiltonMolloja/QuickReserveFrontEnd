@@ -22,7 +22,7 @@ const WORKSHOP: Workshop = {
   name: 'Taller Central',
   address: 'Av. Siempreviva 742',
   email: 'taller@email.com',
-  whatsapp: '+54 11 9999-0000',
+  phone: '+54 11 9999-0000',
 };
 
 describe('AppointmentCardComponent', () => {

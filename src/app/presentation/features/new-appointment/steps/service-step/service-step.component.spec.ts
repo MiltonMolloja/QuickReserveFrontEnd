@@ -12,9 +12,9 @@ const WORKSHOPS: Workshop[] = [
     name: 'Taller Central',
     address: 'Av. Siempreviva 742',
     email: 'a@a.com',
-    whatsapp: '111',
+    phone: '111',
   },
-  { id: 2, name: 'Taller Norte', address: 'Calle Falsa 123', email: 'b@b.com', whatsapp: '222' },
+  { id: 2, name: 'Taller Norte', address: 'Calle Falsa 123', email: 'b@b.com', phone: '222' },
 ];
 
 const SERVICE_TYPES = [
@@ -150,5 +150,66 @@ describe('ServiceStepComponent', () => {
     const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
     expect(infoBox).toBeTruthy();
     expect(infoBox.textContent).toContain('Taller Central');
+  });
+
+  it('should show email and phone in workshop info box when available', () => {
+    const form = createServiceForm();
+    form.controls['place_id']!.setValue(1);
+    fixture.componentRef.setInput('formGroup', form);
+    fixture.detectChanges();
+
+    const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
+    expect(infoBox.textContent).toContain('a@a.com');
+    expect(infoBox.textContent).toContain('111');
+  });
+
+  it('should not show email/phone section when both are empty', () => {
+    const workshopsNoContact: Workshop[] = [
+      { id: 3, name: 'Taller Vacío', address: 'Calle 1', email: '', phone: '' },
+    ];
+    const form = createServiceForm();
+    form.controls['place_id']!.setValue(3);
+    fixture.componentRef.setInput('workshops', workshopsNoContact);
+    fixture.componentRef.setInput('formGroup', form);
+    fixture.detectChanges();
+
+    const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
+    expect(infoBox).toBeTruthy();
+    expect(infoBox.textContent).toContain('Taller Vacío');
+    // No email/phone icons should be rendered
+    const contactSpans = infoBox.querySelectorAll('span');
+    expect(contactSpans.length).toBe(0);
+  });
+
+  it('should show only email when phone is empty', () => {
+    const workshopsEmailOnly: Workshop[] = [
+      { id: 4, name: 'Solo Email', address: 'Calle 2', email: 'only@email.com', phone: '' },
+    ];
+    const form = createServiceForm();
+    form.controls['place_id']!.setValue(4);
+    fixture.componentRef.setInput('workshops', workshopsEmailOnly);
+    fixture.componentRef.setInput('formGroup', form);
+    fixture.detectChanges();
+
+    const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
+    expect(infoBox.textContent).toContain('only@email.com');
+    const contactSpans = infoBox.querySelectorAll('span');
+    expect(contactSpans.length).toBe(1);
+  });
+
+  it('should show only phone when email is empty', () => {
+    const workshopsPhoneOnly: Workshop[] = [
+      { id: 5, name: 'Solo Phone', address: 'Calle 3', email: '', phone: '+54 11 5555-0000' },
+    ];
+    const form = createServiceForm();
+    form.controls['place_id']!.setValue(5);
+    fixture.componentRef.setInput('workshops', workshopsPhoneOnly);
+    fixture.componentRef.setInput('formGroup', form);
+    fixture.detectChanges();
+
+    const infoBox = fixture.nativeElement.querySelector('.rounded-lg.bg-bg-light');
+    expect(infoBox.textContent).toContain('+54 11 5555-0000');
+    const contactSpans = infoBox.querySelectorAll('span');
+    expect(contactSpans.length).toBe(1);
   });
 });

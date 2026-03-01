@@ -85,8 +85,8 @@ describe('AppointmentsComponent', () => {
 
   it('should compute occupancy correctly', () => {
     workshopsState.setWorkshops([
-      { id: 1, name: 'A', address: '', email: '', whatsapp: '' },
-      { id: 2, name: 'B', address: '', email: '', whatsapp: '' },
+      { id: 1, name: 'A', address: '', email: '', phone: '' },
+      { id: 2, name: 'B', address: '', email: '', phone: '' },
     ]);
     appointmentsState.setAppointments([
       {
@@ -103,9 +103,7 @@ describe('AppointmentsComponent', () => {
   });
 
   it('should compute workshopMap', () => {
-    workshopsState.setWorkshops([
-      { id: 1, name: 'Taller A', address: '', email: '', whatsapp: '' },
-    ]);
+    workshopsState.setWorkshops([{ id: 1, name: 'Taller A', address: '', email: '', phone: '' }]);
 
     const map = component['workshopMap']();
     expect(map.get(1)?.name).toBe('Taller A');

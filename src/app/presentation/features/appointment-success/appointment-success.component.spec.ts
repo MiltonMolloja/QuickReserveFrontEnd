@@ -106,7 +106,7 @@ describe('AppointmentSuccessComponent', () => {
 
   it('should resolve workshop name from state', () => {
     workshopsState.setWorkshops([
-      { id: 1, name: 'Taller Central', address: '', email: '', whatsapp: '' },
+      { id: 1, name: 'Taller Central', address: '', email: '', phone: '' },
     ]);
     expect(component['workshopName']()).toBe('Taller Central');
   });

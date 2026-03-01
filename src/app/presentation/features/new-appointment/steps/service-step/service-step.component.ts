@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { type FormControl, type FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, Wrench } from 'lucide-angular';
+import { LucideAngularModule, Mail, Phone, Wrench } from 'lucide-angular';
 
 import type { Workshop } from '../../../../../domain/models/workshop.model';
 import { DatePickerComponent } from '../../../../shared/components/date-picker/date-picker.component';
@@ -51,6 +51,8 @@ export class ServiceStepComponent {
 
   /** Lucide icons */
   protected readonly wrenchIcon = Wrench;
+  protected readonly mailIcon = Mail;
+  protected readonly phoneIcon = Phone;
 
   /** Minimum date (today) for the date picker - prevents past dates (RN-04) */
   protected readonly minDate = new Date().toISOString().split('T')[0] ?? '';

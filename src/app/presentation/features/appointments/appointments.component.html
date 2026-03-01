@@ -1,10 +1,11 @@
 <!-- Navbar (full variant with controls) -->
 <app-navbar>
-  <app-language-selector />
-  <app-theme-selector />
+  <app-language-selector navIcons />
+  <app-theme-selector navIcons />
   <a
+    navAction
     routerLink="/new-appointment"
-    class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-gradient"
+    class="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-gradient px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:opacity-90 sm:w-auto sm:bg-none sm:bg-primary sm:hover:bg-primary-gradient"
   >
     <lucide-angular [img]="icons.plus" [size]="16" [strokeWidth]="2" />
     {{ 'NAV.NEW_APPOINTMENT' | translate }}
@@ -12,7 +13,7 @@
 </app-navbar>
 
 <!-- Main content -->
-<main class="mx-auto max-w-7xl px-6 py-8" aria-labelledby="appointments-title">
+<main class="mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-8" aria-labelledby="appointments-title">
   <!-- Stats Row -->
   <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
     <app-stat-card

@@ -47,12 +47,12 @@ describe('StatCardComponent', () => {
   });
 
   it('should display the value', () => {
-    const value = fixture.nativeElement.querySelector('p.text-2xl');
+    const value = fixture.nativeElement.querySelector('p.text-xl');
     expect(value.textContent.trim()).toBe('24');
   });
 
   it('should apply icon background class', () => {
-    const iconContainer = fixture.nativeElement.querySelector('.rounded-xl.flex.h-12');
+    const iconContainer = fixture.nativeElement.querySelector('.rounded-xl.flex.h-10');
     expect(iconContainer.classList.contains('bg-info-bg')).toBe(true);
   });
 

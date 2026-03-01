@@ -7,24 +7,24 @@
     />
   </div>
 
-  <!-- Workshop filter -->
-  <div class="w-full sm:w-40">
-    <app-filter-dropdown
-      [icon]="icons.mapPin"
-      [label]="'APPOINTMENTS.FILTERS.WORKSHOP' | translate"
-      [options]="workshopOptions()"
-      (filterChange)="workshopChange.emit($event)"
-    />
-  </div>
-
-  <!-- Service type filter -->
-  <div class="w-full sm:w-40">
-    <app-filter-dropdown
-      [icon]="icons.wrench"
-      [label]="'APPOINTMENTS.FILTERS.SERVICE' | translate"
-      [options]="serviceTypes()"
-      (filterChange)="serviceChange.emit($event)"
-    />
+  <!-- Workshop + Service filters (side by side on mobile, individual on sm+) -->
+  <div class="grid w-full grid-cols-2 gap-3 sm:contents">
+    <div class="sm:w-48">
+      <app-filter-dropdown
+        [icon]="icons.mapPin"
+        [label]="'APPOINTMENTS.FILTERS.WORKSHOP' | translate"
+        [options]="workshopOptions()"
+        (filterChange)="workshopChange.emit($event)"
+      />
+    </div>
+    <div class="sm:w-48">
+      <app-filter-dropdown
+        [icon]="icons.wrench"
+        [label]="'APPOINTMENTS.FILTERS.SERVICE' | translate"
+        [options]="serviceTypes()"
+        (filterChange)="serviceChange.emit($event)"
+      />
+    </div>
   </div>
 
   <!-- Date filter -->
@@ -33,7 +33,7 @@
       [img]="icons.calendar"
       [size]="16"
       [strokeWidth]="2"
-      class="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-text-tertiary dark:text-text-dark-muted"
+      class="pointer-events-none absolute left-2.5 top-1/2 z-10 -translate-y-1/2 text-text-tertiary dark:text-text-dark-muted"
     />
     <input
       type="date"

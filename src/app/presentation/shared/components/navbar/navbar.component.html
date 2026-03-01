@@ -1,5 +1,5 @@
 <nav
-  class="flex items-center justify-between bg-card-light px-6 py-4 shadow-sm dark:bg-card-dark dark:shadow-none dark:border-b dark:border-border-dark"
+  class="flex flex-wrap items-center justify-between gap-3 bg-card-light px-4 py-3 shadow-sm sm:px-6 sm:py-4 dark:border-b dark:border-border-dark dark:bg-card-dark dark:shadow-none"
   role="navigation"
   [attr.aria-label]="'APP.TITLE' | translate"
 >
@@ -15,7 +15,7 @@
         {{ 'APP.TITLE' | translate }}
       </h1>
       @if (variant() === 'full') {
-        <p class="text-xs text-text-secondary dark:text-text-dark-secondary">
+        <p class="hidden text-xs text-text-secondary sm:block dark:text-text-dark-secondary">
           {{ 'APP.SUBTITLE' | translate }}
         </p>
       }
@@ -25,12 +25,15 @@
   <!-- Nav Controls -->
   @if (variant() === 'full') {
     <div class="flex items-center gap-3">
-      <ng-content />
+      <ng-content select="[navIcons]" />
+    </div>
+    <div class="w-full sm:w-auto sm:order-none">
+      <ng-content select="[navAction]" />
     </div>
   } @else {
     <a
       routerLink="/appointments"
-      class="text-sm font-medium text-primary hover:text-primary-gradient transition-colors"
+      class="text-sm font-medium text-primary transition-colors hover:text-primary-gradient"
     >
       {{ 'NAV.BACK_HOME' | translate }}
     </a>

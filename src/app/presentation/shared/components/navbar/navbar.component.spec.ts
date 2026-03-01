@@ -6,9 +6,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NavbarComponent } from './navbar.component';
 
 @Component({
-  template: `<app-navbar [variant]="variant()"
-    ><span class="projected">Projected Content</span></app-navbar
-  >`,
+  template: `<app-navbar [variant]="variant()">
+    <span navIcons class="projected-icons">Icon Controls</span>
+    <span navAction class="projected-action">Action Button</span>
+  </app-navbar>`,
   imports: [NavbarComponent],
 })
 class TestHostComponent {
@@ -45,10 +46,16 @@ describe('NavbarComponent', () => {
     expect(h1).toBeTruthy();
   });
 
-  it('should project content in full variant', () => {
-    const projected = fixture.nativeElement.querySelector('.projected');
-    expect(projected).toBeTruthy();
-    expect(projected.textContent).toContain('Projected Content');
+  it('should project icon controls in full variant', () => {
+    const icons = fixture.nativeElement.querySelector('.projected-icons');
+    expect(icons).toBeTruthy();
+    expect(icons.textContent).toContain('Icon Controls');
+  });
+
+  it('should project action button in full variant', () => {
+    const action = fixture.nativeElement.querySelector('.projected-action');
+    expect(action).toBeTruthy();
+    expect(action.textContent).toContain('Action Button');
   });
 
   it('should show subtitle in full variant', () => {

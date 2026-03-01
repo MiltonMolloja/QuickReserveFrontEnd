@@ -60,6 +60,9 @@ export class DatePickerComponent {
   /** Minimum selectable date in YYYY-MM-DD format (dates before this are disabled) */
   readonly minDate = input<string>('');
 
+  /** Whether to show the label above the input (default: true) */
+  readonly showLabel = input<boolean>(true);
+
   /** Emits the selected date string in YYYY-MM-DD format */
   readonly dateSelected = output<string>();
 

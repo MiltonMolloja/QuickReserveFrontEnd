@@ -1,143 +1,150 @@
 <!-- Label -->
-<p class="mb-1.5 text-sm font-medium text-text-dark dark:text-text-dark-tertiary">
-  {{ 'STEPPER.STEP1.DATE' | translate }}
-  <span class="text-danger">*</span>
-</p>
+@if (showLabel()) {
+  <p class="mb-1.5 text-sm font-medium text-text-dark dark:text-text-dark-tertiary">
+    {{ 'STEPPER.STEP1.DATE' | translate }}
+    <span class="text-danger">*</span>
+  </p>
+}
 
-<!-- Date input display (readonly, click to toggle) -->
-<button
-  type="button"
-  [class]="
-    'mb-2 flex w-full items-center justify-between rounded-lg border px-4 py-2.5 ' +
-    (selectedDate()
-      ? 'border-primary dark:border-primary'
-      : 'border-border-light dark:border-border-dark')
-  "
-  [attr.aria-expanded]="isOpen()"
-  [attr.aria-label]="'STEPPER.STEP1.DATE' | translate"
-  aria-haspopup="dialog"
-  (click)="toggleCalendar()"
->
-  <div class="flex items-center gap-3">
-    <lucide-angular [img]="calendarIcon" [size]="18" [strokeWidth]="2" class="text-primary" />
-    <span
-      [class]="
-        'text-sm ' +
-        (selectedDate()
-          ? 'font-medium text-text-title dark:text-text-dark-title'
-          : 'text-text-tertiary dark:text-text-dark-muted')
-      "
-    >
-      @if (displayValue()) {
-        {{ displayValue() }}
-      } @else {
-        {{ 'DATE_PICKER.PLACEHOLDER' | translate }}
-      }
-    </span>
-  </div>
-  <lucide-angular
-    [img]="chevronDownIcon"
-    [size]="16"
-    [strokeWidth]="2"
-    class="text-text-tertiary transition-transform dark:text-text-dark-muted"
-    [class.rotate-180]="isOpen()"
-  />
-</button>
-
-<!-- Calendar dropdown -->
-@if (isOpen()) {
-  <div
-    class="rounded-xl border border-border-light bg-card-light p-4 dark:border-border-dark dark:bg-card-dark"
-    role="dialog"
-    [attr.aria-label]="'DATE_PICKER.CALENDAR_LABEL' | translate"
+<div class="relative">
+  <!-- Date input display (readonly, click to toggle) -->
+  <button
+    type="button"
+    [class]="
+      'flex w-full items-center justify-between rounded-lg border bg-card-light px-4 py-2.5 dark:bg-card-dark ' +
+      (selectedDate()
+        ? 'border-primary dark:border-primary'
+        : 'border-border-light dark:border-border-dark')
+    "
+    [attr.aria-expanded]="isOpen()"
+    [attr.aria-label]="'STEPPER.STEP1.DATE' | translate"
+    aria-haspopup="dialog"
+    (click)="toggleCalendar()"
   >
-    <!-- Month/Year header with navigation -->
-    <div class="mb-3 flex items-center justify-between">
-      <span class="text-[15px] font-bold text-text-title dark:text-text-dark-title">
-        {{ monthYearLabel() }}
+    <div class="flex items-center gap-3">
+      <lucide-angular [img]="calendarIcon" [size]="18" [strokeWidth]="2" class="text-primary" />
+      <span
+        [class]="
+          'text-sm ' +
+          (selectedDate()
+            ? 'font-medium text-text-title dark:text-text-dark-title'
+            : 'text-text-tertiary dark:text-text-dark-muted')
+        "
+      >
+        @if (displayValue()) {
+          {{ displayValue() }}
+        } @else {
+          {{ 'DATE_PICKER.PLACEHOLDER' | translate }}
+        }
       </span>
-      <div class="flex items-center gap-1">
-        <button
-          type="button"
-          class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
-          [attr.aria-label]="'DATE_PICKER.PREV_MONTH' | translate"
-          (click)="prevMonth()"
-        >
-          <lucide-angular
-            [img]="chevronLeftIcon"
-            [size]="16"
-            [strokeWidth]="2"
-            class="text-text-secondary dark:text-text-dark-secondary"
-          />
-        </button>
-        <button
-          type="button"
-          class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
-          [attr.aria-label]="'DATE_PICKER.NEXT_MONTH' | translate"
-          (click)="nextMonth()"
-        >
-          <lucide-angular
-            [img]="chevronRightIcon"
-            [size]="16"
-            [strokeWidth]="2"
-            class="text-text-secondary dark:text-text-dark-secondary"
-          />
-        </button>
-      </div>
     </div>
+    <lucide-angular
+      [img]="chevronDownIcon"
+      [size]="16"
+      [strokeWidth]="2"
+      class="text-text-tertiary transition-transform dark:text-text-dark-muted"
+      [class.rotate-180]="isOpen()"
+    />
+  </button>
 
-    <!-- Weekday headers (Mon-Fri only) -->
-    <div class="mb-1 grid grid-cols-5 gap-0">
-      @for (day of weekdays; track day) {
-        <span
-          class="py-1 text-center text-xs font-semibold text-text-tertiary dark:text-text-dark-muted"
-        >
-          {{ day }}
+  <!-- Calendar dropdown (absolute overlay) -->
+  @if (isOpen()) {
+    <!-- Backdrop to close on outside click -->
+    <div class="fixed inset-0 z-40" aria-hidden="true" (click)="isOpen.set(false)"></div>
+
+    <div
+      class="absolute left-0 z-50 mt-1 w-72 rounded-xl border border-border-light bg-card-light p-4 shadow-lg dark:border-border-dark dark:bg-card-dark"
+      role="dialog"
+      [attr.aria-label]="'DATE_PICKER.CALENDAR_LABEL' | translate"
+    >
+      <!-- Month/Year header with navigation -->
+      <div class="mb-3 flex items-center justify-between">
+        <span class="text-[15px] font-bold text-text-title dark:text-text-dark-title">
+          {{ monthYearLabel() }}
         </span>
-      }
-    </div>
-
-    <!-- Calendar grid (5 columns, weekdays only) -->
-    <div class="grid grid-cols-5 gap-0" role="grid" [attr.aria-label]="monthYearLabel()">
-      @for (week of calendarWeeks(); track $index) {
-        @for (day of week; track day.date) {
+        <div class="flex items-center gap-1">
           <button
             type="button"
-            role="gridcell"
-            [attr.aria-selected]="selectedDate() === day.date"
-            [attr.aria-disabled]="day.isDisabled"
-            [attr.aria-label]="day.date"
-            [disabled]="day.isDisabled"
-            [class]="
-              'flex h-9 items-center justify-center rounded-lg text-[13px] transition-colors ' +
-              (selectedDate() === day.date
-                ? 'bg-primary font-semibold text-white'
-                : day.isDisabled
-                  ? 'cursor-default text-border-light dark:text-border-dark'
-                  : day.isCurrentMonth
-                    ? day.isToday
-                      ? 'cursor-pointer font-semibold text-primary hover:bg-info-bg dark:hover:bg-indigo-dark'
-                      : 'cursor-pointer text-text-dark hover:bg-bg-light dark:text-text-dark-tertiary dark:hover:bg-theme-bg'
-                    : 'cursor-pointer text-text-tertiary hover:bg-bg-light dark:text-text-dark-muted dark:hover:bg-theme-bg')
-            "
-            (click)="selectDay(day)"
+            class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
+            [attr.aria-label]="'DATE_PICKER.PREV_MONTH' | translate"
+            (click)="prevMonth()"
           >
-            {{ day.day }}
+            <lucide-angular
+              [img]="chevronLeftIcon"
+              [size]="16"
+              [strokeWidth]="2"
+              class="text-text-secondary dark:text-text-dark-secondary"
+            />
           </button>
-        }
-      }
-    </div>
+          <button
+            type="button"
+            class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
+            [attr.aria-label]="'DATE_PICKER.NEXT_MONTH' | translate"
+            (click)="nextMonth()"
+          >
+            <lucide-angular
+              [img]="chevronRightIcon"
+              [size]="16"
+              [strokeWidth]="2"
+              class="text-text-secondary dark:text-text-dark-secondary"
+            />
+          </button>
+        </div>
+      </div>
 
-    <!-- Today button -->
-    <button
-      type="button"
-      class="mt-3 flex w-full items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-primary transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
-      [disabled]="isTodayDisabled()"
-      [class.opacity-50]="isTodayDisabled()"
-      [class.cursor-not-allowed]="isTodayDisabled()"
-      (click)="goToToday()"
-    >
-      {{ 'DATE_PICKER.TODAY' | translate }}
-    </button>
-  </div>
-}
+      <!-- Weekday headers (Mon-Fri only) -->
+      <div class="mb-1 grid grid-cols-5 gap-0">
+        @for (day of weekdays; track day) {
+          <span
+            class="py-1 text-center text-xs font-semibold text-text-tertiary dark:text-text-dark-muted"
+          >
+            {{ day }}
+          </span>
+        }
+      </div>
+
+      <!-- Calendar grid (5 columns, weekdays only) -->
+      <div class="grid grid-cols-5 gap-0" role="grid" [attr.aria-label]="monthYearLabel()">
+        @for (week of calendarWeeks(); track $index) {
+          @for (day of week; track day.date) {
+            <button
+              type="button"
+              role="gridcell"
+              [attr.aria-selected]="selectedDate() === day.date"
+              [attr.aria-disabled]="day.isDisabled"
+              [attr.aria-label]="day.date"
+              [disabled]="day.isDisabled"
+              [class]="
+                'flex h-9 items-center justify-center rounded-lg text-[13px] transition-colors ' +
+                (selectedDate() === day.date
+                  ? 'bg-primary font-semibold text-white'
+                  : day.isDisabled
+                    ? 'cursor-default text-border-light dark:text-border-dark'
+                    : day.isCurrentMonth
+                      ? day.isToday
+                        ? 'cursor-pointer font-semibold text-primary hover:bg-info-bg dark:hover:bg-indigo-dark'
+                        : 'cursor-pointer text-text-dark hover:bg-bg-light dark:text-text-dark-tertiary dark:hover:bg-theme-bg'
+                      : 'cursor-pointer text-text-tertiary hover:bg-bg-light dark:text-text-dark-muted dark:hover:bg-theme-bg')
+              "
+              (click)="selectDay(day)"
+            >
+              {{ day.day }}
+            </button>
+          }
+        }
+      </div>
+
+      <!-- Today button -->
+      <button
+        type="button"
+        class="mt-3 flex w-full items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-primary transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"
+        [disabled]="isTodayDisabled()"
+        [class.opacity-50]="isTodayDisabled()"
+        [class.cursor-not-allowed]="isTodayDisabled()"
+        (click)="goToToday()"
+      >
+        {{ 'DATE_PICKER.TODAY' | translate }}
+      </button>
+    </div>
+  }
+</div>

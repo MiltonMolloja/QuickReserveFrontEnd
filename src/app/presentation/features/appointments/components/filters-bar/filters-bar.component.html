@@ -3,6 +3,8 @@
   <div class="w-full sm:w-64">
     <app-search-input
       [placeholder]="'APPOINTMENTS.FILTERS.SEARCH' | translate"
+      [value]="searchValue()"
+      [active]="!!searchValue()"
       (searchChange)="searchChange.emit($event)"
     />
   </div>
@@ -14,6 +16,8 @@
         [icon]="icons.mapPin"
         [label]="'APPOINTMENTS.FILTERS.WORKSHOP' | translate"
         [options]="workshopOptions()"
+        [value]="workshopValue() !== null ? workshopValue()!.toString() : ''"
+        [active]="workshopValue() !== null"
         (filterChange)="workshopChange.emit($event)"
       />
     </div>
@@ -22,24 +26,19 @@
         [icon]="icons.wrench"
         [label]="'APPOINTMENTS.FILTERS.SERVICE' | translate"
         [options]="serviceTypes()"
+        [value]="serviceValue()"
+        [active]="!!serviceValue()"
         (filterChange)="serviceChange.emit($event)"
       />
     </div>
   </div>
 
   <!-- Date filter -->
-  <div class="relative w-full sm:w-40">
-    <lucide-angular
-      [img]="icons.calendar"
-      [size]="16"
-      [strokeWidth]="2"
-      class="pointer-events-none absolute left-2.5 top-1/2 z-10 -translate-y-1/2 text-text-tertiary dark:text-text-dark-muted"
-    />
-    <input
-      type="date"
-      class="w-full rounded-lg border border-border-light bg-card-light py-2.5 pl-9 pr-3 text-sm text-text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-tertiary dark:focus:border-primary dark:focus:ring-primary"
-      [attr.aria-label]="'APPOINTMENTS.FILTERS.DATE' | translate"
-      (change)="dateChange.emit($any($event.target).value)"
+  <div class="w-full sm:w-56">
+    <app-date-picker
+      [selectedDate]="selectedDate()"
+      [showLabel]="false"
+      (dateSelected)="dateChange.emit($event)"
     />
   </div>
 

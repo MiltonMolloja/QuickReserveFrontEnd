@@ -24,6 +24,26 @@
         <p class="text-xs text-text-secondary dark:text-text-dark-secondary">
           {{ ws.address }}
         </p>
+        @if (ws.email || ws.whatsapp) {
+          <div class="mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
+            @if (ws.email) {
+              <span
+                class="inline-flex items-center gap-1 text-xs text-text-secondary dark:text-text-dark-secondary"
+              >
+                <lucide-angular [img]="icons.mail" [size]="12" [strokeWidth]="2" />
+                {{ ws.email }}
+              </span>
+            }
+            @if (ws.whatsapp) {
+              <span
+                class="inline-flex items-center gap-1 text-xs text-text-secondary dark:text-text-dark-secondary"
+              >
+                <lucide-angular [img]="icons.whatsapp" [size]="12" [strokeWidth]="2" />
+                {{ ws.whatsapp }}
+              </span>
+            }
+          </div>
+        }
       </div>
     </div>
   }

@@ -38,6 +38,9 @@ export class FilterDropdownComponent {
   /** Current selected value (for external reset) */
   readonly value = input<string>('');
 
+  /** Whether the filter is active (shows primary border) */
+  readonly active = input<boolean>(false);
+
   /** Emits the selected value on change */
   readonly filterChange = output<string>();
 

@@ -25,6 +25,12 @@ export class SearchInputComponent {
   /** Placeholder text for the input */
   readonly placeholder = input<string>('');
 
+  /** Current value (for controlled reset) */
+  readonly value = input<string>('');
+
+  /** Whether the filter is active (shows primary border) */
+  readonly active = input<boolean>(false);
+
   /** Emits the current search term on each keystroke */
   readonly searchChange = output<string>();
 

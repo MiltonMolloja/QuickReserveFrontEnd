@@ -91,6 +91,51 @@ describe('AppointmentCardComponent', () => {
     expect(el.textContent).toContain('Av. Siempreviva 742');
   });
 
+  it('should display workshop email and whatsapp when available', () => {
+    fixture.componentRef.setInput('workshop', WORKSHOP);
+    fixture.detectChanges();
+
+    const el = fixture.nativeElement;
+    expect(el.textContent).toContain('taller@email.com');
+    expect(el.textContent).toContain('+54 11 9999-0000');
+  });
+
+  it('should not display workshop contact when both are empty', () => {
+    const wsNoContact: Workshop = {
+      id: 3,
+      name: 'Vacío',
+      address: 'Calle 1',
+      email: '',
+      whatsapp: '',
+    };
+    fixture.componentRef.setInput('workshop', wsNoContact);
+    fixture.detectChanges();
+
+    const el = fixture.nativeElement;
+    expect(el.textContent).toContain('Vacío');
+    // No workshop contact spans should be rendered inside the workshop section
+    const workshopDiv = fixture.nativeElement.querySelector('.items-start');
+    const contactSpans = workshopDiv.querySelectorAll('span');
+    expect(contactSpans.length).toBe(0);
+  });
+
+  it('should display only workshop email when whatsapp is empty', () => {
+    const wsEmailOnly: Workshop = {
+      id: 4,
+      name: 'Email Only',
+      address: 'Calle 2',
+      email: 'only@mail.com',
+      whatsapp: '',
+    };
+    fixture.componentRef.setInput('workshop', wsEmailOnly);
+    fixture.detectChanges();
+
+    const workshopDiv = fixture.nativeElement.querySelector('.items-start');
+    expect(workshopDiv.textContent).toContain('only@mail.com');
+    const contactSpans = workshopDiv.querySelectorAll('span');
+    expect(contactSpans.length).toBe(1);
+  });
+
   it('should not display vehicle info when not present', () => {
     expect(component['vehicleDisplay']()).toBeNull();
   });

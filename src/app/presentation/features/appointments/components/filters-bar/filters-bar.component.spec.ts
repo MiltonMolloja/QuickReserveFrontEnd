@@ -47,9 +47,9 @@ describe('FiltersBarComponent', () => {
     expect(dropdowns.length).toBe(2); // workshop + service type
   });
 
-  it('should render date input', () => {
-    const dateInput = fixture.nativeElement.querySelector('input[type="date"]');
-    expect(dateInput).toBeTruthy();
+  it('should render date picker component', () => {
+    const datePicker = fixture.nativeElement.querySelector('app-date-picker');
+    expect(datePicker).toBeTruthy();
   });
 
   it('should not show clear button when no active filters', () => {

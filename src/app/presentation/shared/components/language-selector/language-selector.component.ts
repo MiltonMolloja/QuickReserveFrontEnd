@@ -49,10 +49,11 @@ export class LanguageSelectorComponent {
     this.isOpen.set(false);
   }
 
-  /** Switch language and close dropdown */
+  /** Switch language, update document lang attribute, and close dropdown */
   protected selectLanguage(code: string): void {
     this.translate.use(code);
     this.currentLang.set(code);
+    document.documentElement.lang = code;
     this.closeDropdown();
   }
 }

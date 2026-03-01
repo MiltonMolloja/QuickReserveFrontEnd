@@ -101,6 +101,13 @@
       "GO_HOME": "Go Home"
     }
   },
+  "DATE_PICKER": {
+    "PLACEHOLDER": "Select a date",
+    "TODAY": "Today",
+    "PREV_MONTH": "Previous month",
+    "NEXT_MONTH": "Next month",
+    "CALENDAR_LABEL": "Date selection calendar"
+  },
   "TIME_PICKER": {
     "PLACEHOLDER": "Select a time slot",
     "HINT": "Select an available time slot (09:00 - 17:00)"

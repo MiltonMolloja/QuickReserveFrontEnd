@@ -86,10 +86,9 @@ describe('ServiceStepComponent', () => {
     expect(select).toBeTruthy();
   });
 
-  it('should render date input', () => {
-    const input = fixture.nativeElement.querySelector('#appointment-date');
-    expect(input).toBeTruthy();
-    expect(input.type).toBe('date');
+  it('should render date picker component', () => {
+    const picker = fixture.nativeElement.querySelector('app-date-picker');
+    expect(picker).toBeTruthy();
   });
 
   it('should render time slot picker', () => {
@@ -99,6 +98,13 @@ describe('ServiceStepComponent', () => {
 
   it('should update form control when time slot is selected', () => {
     const form = component.formGroup();
+    // Open the time picker dropdown first
+    const toggleBtn = fixture.nativeElement.querySelector(
+      'app-time-slot-picker button[aria-haspopup="listbox"]',
+    ) as HTMLButtonElement;
+    toggleBtn.click();
+    fixture.detectChanges();
+
     const slotButton = fixture.nativeElement.querySelector(
       'app-time-slot-picker button[aria-label="10:00"]',
     ) as HTMLButtonElement;
@@ -107,6 +113,14 @@ describe('ServiceStepComponent', () => {
 
     expect(form.controls.appointment_time.value).toBe('10:00');
     expect(form.controls.appointment_time.touched).toBe(true);
+  });
+
+  it('should update form control when date is selected', () => {
+    const form = component.formGroup();
+    component['onDateSelected']('2026-03-15');
+
+    expect(form.controls.appointment_date.value).toBe('2026-03-15');
+    expect(form.controls.appointment_date.touched).toBe(true);
   });
 
   it('should set min date to today', () => {

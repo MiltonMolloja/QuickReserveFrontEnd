@@ -12,6 +12,7 @@ export { SummaryRowComponent } from './components/summary-row/summary-row.compon
 export { ErrorIconComponent } from './components/error-icon/error-icon.component';
 export { ErrorDetailRowComponent } from './components/error-detail-row/error-detail-row.component';
 export { TimeSlotPickerComponent } from './components/time-slot-picker/time-slot-picker.component';
+export { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 // Shared types
 export type { LucideIconData } from './types/icon.type';

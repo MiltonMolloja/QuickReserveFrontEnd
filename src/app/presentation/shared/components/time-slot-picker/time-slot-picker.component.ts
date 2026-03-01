@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, Timer } from 'lucide-angular';
+import { ChevronDown, LucideAngularModule, Timer } from 'lucide-angular';
 
 /** Represents a single time slot with availability */
 export interface TimeSlot {
@@ -15,7 +15,8 @@ const DEFAULT_END_HOUR = 17;
 /**
  * Time slot picker component for selecting appointment hours.
  *
- * Displays a grid of hourly time slots (format 24h) from 09:00 to 17:00.
+ * Displays a clickable input that toggles a dropdown grid of hourly
+ * time slots (format 24h) from 09:00 to 17:00.
  * Supports three visual states:
  * - **Available**: Default slot, clickable
  * - **Selected**: Highlighted with primary color
@@ -52,8 +53,12 @@ export class TimeSlotPickerComponent {
   /** Emits the selected time string (e.g., "10:00") */
   readonly timeSelected = output<string>();
 
-  /** Lucide timer icon */
+  /** Lucide icons */
   protected readonly timerIcon = Timer;
+  protected readonly chevronDownIcon = ChevronDown;
+
+  /** Whether the time slots dropdown is open */
+  protected readonly isOpen = signal(false);
 
   /** Generate time slots from startHour to endHour */
   protected readonly slots = computed<TimeSlot[]>(() => {
@@ -66,10 +71,16 @@ export class TimeSlotPickerComponent {
     return result;
   });
 
-  /** Handle slot click */
+  /** Toggle dropdown */
+  protected toggleDropdown(): void {
+    this.isOpen.update((open) => !open);
+  }
+
+  /** Handle slot click — emit and close */
   protected selectSlot(slot: TimeSlot): void {
     if (!slot.disabled) {
       this.timeSelected.emit(slot.time);
+      this.isOpen.set(false);
     }
   }
 }

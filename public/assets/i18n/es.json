@@ -101,6 +101,13 @@
       "GO_HOME": "Volver al Inicio"
     }
   },
+  "DATE_PICKER": {
+    "PLACEHOLDER": "Seleccioná una fecha",
+    "TODAY": "Hoy",
+    "PREV_MONTH": "Mes anterior",
+    "NEXT_MONTH": "Mes siguiente",
+    "CALENDAR_LABEL": "Calendario de selección de fecha"
+  },
   "TIME_PICKER": {
     "PLACEHOLDER": "Seleccioná un horario",
     "HINT": "Seleccioná un horario disponible (09:00 - 17:00)"

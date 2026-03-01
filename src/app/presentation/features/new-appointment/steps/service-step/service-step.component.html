@@ -36,6 +36,7 @@
       [class.border-danger]="
         formGroup().controls.place_id.touched && formGroup().controls.place_id.invalid
       "
+      (change)="onWorkshopChange()"
     >
       <option [ngValue]="0" disabled>{{ 'STEPPER.STEP1.WORKSHOP' | translate }}</option>
       @for (ws of workshops(); track ws.id) {
@@ -82,35 +83,12 @@
     </select>
   </div>
 
-  <!-- Date field -->
-  <div>
-    <label
-      for="appointment-date"
-      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"
-    >
-      {{ 'STEPPER.STEP1.DATE' | translate }}
-      <span class="text-danger">*</span>
-    </label>
-    <input
-      id="appointment-date"
-      type="date"
-      formControlName="appointment_date"
-      [min]="minDate"
-      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title"
-      [class.border-border-light]="
-        !formGroup().controls.appointment_date.touched ||
-        formGroup().controls.appointment_date.valid
-      "
-      [class.dark:border-border-dark]="
-        !formGroup().controls.appointment_date.touched ||
-        formGroup().controls.appointment_date.valid
-      "
-      [class.border-danger]="
-        formGroup().controls.appointment_date.touched &&
-        formGroup().controls.appointment_date.invalid
-      "
-    />
-  </div>
+  <!-- Date picker -->
+  <app-date-picker
+    [selectedDate]="formGroup().controls.appointment_date.value"
+    [minDate]="minDate"
+    (dateSelected)="onDateSelected($event)"
+  />
 
   <!-- Time slot picker -->
   <app-time-slot-picker

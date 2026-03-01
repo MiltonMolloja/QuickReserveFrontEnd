@@ -4,66 +4,83 @@
   <span class="text-danger">*</span>
 </p>
 
-<!-- Selected time display -->
-<div
-  class="mb-2 flex items-center justify-between rounded-lg border px-4 py-2.5"
-  [class.border-primary]="selectedTime()"
-  [class.border-border-light]="!selectedTime()"
-  [class.dark:border-primary]="selectedTime()"
-  [class.dark:border-border-dark]="!selectedTime()"
->
-  <span
-    class="text-sm"
-    [class.text-text-title]="selectedTime()"
-    [class.dark:text-text-dark-title]="selectedTime()"
-    [class.text-text-tertiary]="!selectedTime()"
-    [class.dark:text-text-dark-muted]="!selectedTime()"
-    [class.font-medium]="selectedTime()"
-  >
-    @if (selectedTime()) {
-      {{ selectedTime() }}
-    } @else {
-      {{ 'TIME_PICKER.PLACEHOLDER' | translate }}
-    }
-  </span>
-  <lucide-angular
-    [img]="timerIcon"
-    [size]="18"
-    [strokeWidth]="2"
-    class="text-text-tertiary dark:text-text-dark-muted"
-  />
-</div>
-
-<!-- Hint -->
-<p class="mb-3 text-xs text-text-secondary dark:text-text-dark-secondary">
-  {{ 'TIME_PICKER.HINT' | translate }}
-</p>
-
-<!-- Time slots grid: 3 columns -->
-<div
-  class="grid grid-cols-3 gap-2"
-  role="radiogroup"
+<!-- Selected time display (click to toggle) -->
+<button
+  type="button"
+  [class]="
+    'mb-2 flex w-full items-center justify-between rounded-lg border px-4 py-2.5 ' +
+    (selectedTime()
+      ? 'border-primary dark:border-primary'
+      : 'border-border-light dark:border-border-dark')
+  "
+  [attr.aria-expanded]="isOpen()"
   [attr.aria-label]="'STEPPER.STEP1.TIME' | translate"
+  aria-haspopup="listbox"
+  (click)="toggleDropdown()"
 >
-  @for (slot of slots(); track slot.time) {
-    <button
-      type="button"
-      role="radio"
-      [attr.aria-checked]="selectedTime() === slot.time"
-      [attr.aria-disabled]="slot.disabled"
-      [attr.aria-label]="slot.time"
-      [disabled]="slot.disabled"
+  <div class="flex items-center gap-3">
+    <lucide-angular [img]="timerIcon" [size]="18" [strokeWidth]="2" class="text-primary" />
+    <span
       [class]="
-        'flex items-center justify-center rounded-lg py-2.5 text-sm font-medium transition-all ' +
-        (selectedTime() === slot.time
-          ? 'bg-primary text-white shadow-sm'
-          : slot.disabled
-            ? 'cursor-not-allowed border border-border-light bg-bg-light text-text-tertiary dark:border-border-dark dark:bg-theme-bg dark:text-text-dark-muted'
-            : 'cursor-pointer border border-border-light bg-card-light text-text-dark hover:border-primary hover:text-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-tertiary dark:hover:border-primary dark:hover:text-primary')
+        'text-sm ' +
+        (selectedTime()
+          ? 'font-medium text-text-title dark:text-text-dark-title'
+          : 'text-text-tertiary dark:text-text-dark-muted')
       "
-      (click)="selectSlot(slot)"
     >
-      {{ slot.time }}
-    </button>
-  }
-</div>
+      @if (selectedTime()) {
+        {{ selectedTime() }}
+      } @else {
+        {{ 'TIME_PICKER.PLACEHOLDER' | translate }}
+      }
+    </span>
+  </div>
+  <lucide-angular
+    [img]="chevronDownIcon"
+    [size]="16"
+    [strokeWidth]="2"
+    class="text-text-tertiary transition-transform dark:text-text-dark-muted"
+    [class.rotate-180]="isOpen()"
+  />
+</button>
+
+<!-- Time slots dropdown -->
+@if (isOpen()) {
+  <div
+    class="rounded-xl border border-border-light bg-card-light p-4 dark:border-border-dark dark:bg-card-dark"
+  >
+    <!-- Hint -->
+    <p class="mb-3 text-xs text-text-secondary dark:text-text-dark-secondary">
+      {{ 'TIME_PICKER.HINT' | translate }}
+    </p>
+
+    <!-- Time slots grid: 3 columns -->
+    <div
+      class="grid grid-cols-3 gap-2"
+      role="radiogroup"
+      [attr.aria-label]="'STEPPER.STEP1.TIME' | translate"
+    >
+      @for (slot of slots(); track slot.time) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="selectedTime() === slot.time"
+          [attr.aria-disabled]="slot.disabled"
+          [attr.aria-label]="slot.time"
+          [disabled]="slot.disabled"
+          [class]="
+            'flex items-center justify-center rounded-lg py-2.5 text-sm font-medium transition-all ' +
+            (selectedTime() === slot.time
+              ? 'bg-primary text-white shadow-sm'
+              : slot.disabled
+                ? 'cursor-not-allowed border border-border-light bg-bg-light text-text-tertiary dark:border-border-dark dark:bg-theme-bg dark:text-text-dark-muted'
+                : 'cursor-pointer border border-border-light bg-card-light text-text-dark hover:border-primary hover:text-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-tertiary dark:hover:border-primary dark:hover:text-primary')
+          "
+          (click)="selectSlot(slot)"
+        >
+          {{ slot.time }}
+        </button>
+      }
+    </div>
+  </div>
+}

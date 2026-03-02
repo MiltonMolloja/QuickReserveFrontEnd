@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { type FormControl, type FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LucideAngularModule, Mail, Phone, Wrench } from 'lucide-angular';
@@ -49,6 +57,15 @@ export class ServiceStepComponent {
   readonly serviceTypes =
     input.required<readonly { readonly value: string; readonly label: string }[]>();
 
+  /** Disabled time slots (occupied by existing appointments) */
+  readonly disabledSlots = input<readonly string[]>([]);
+
+  /** Emits when the selected workshop changes (placeId) */
+  readonly workshopChanged = output<number>();
+
+  /** Emits when the selected date changes */
+  readonly dateChanged = output<string>();
+
   /** Lucide icons */
   protected readonly wrenchIcon = Wrench;
   protected readonly mailIcon = Mail;
@@ -56,9 +73,6 @@ export class ServiceStepComponent {
 
   /** Minimum date (today) for the date picker - prevents past dates (RN-04) */
   protected readonly minDate = new Date().toISOString().split('T')[0] ?? '';
-
-  /** Disabled time slots (e.g., last hour of the day) */
-  protected readonly disabledTimeSlots: readonly string[] = ['17:00'];
 
   /** Tracks the selected workshop id as a signal (FormControl.value is not reactive in computed) */
   protected readonly selectedPlaceId = signal(0);
@@ -77,15 +91,18 @@ export class ServiceStepComponent {
     return this.workshops().find((w) => w.id === placeId) ?? null;
   });
 
-  /** Handle workshop selection — syncs signal with form control */
+  /** Handle workshop selection — syncs signal with form control and notifies container */
   protected onWorkshopChange(): void {
-    this.selectedPlaceId.set(this.formGroup().controls.place_id.value);
+    const placeId = this.formGroup().controls.place_id.value;
+    this.selectedPlaceId.set(placeId);
+    this.workshopChanged.emit(placeId);
   }
 
-  /** Handle date selection — updates the form control */
+  /** Handle date selection — updates the form control and notifies container */
   protected onDateSelected(date: string): void {
     this.formGroup().controls.appointment_date.setValue(date);
     this.formGroup().controls.appointment_date.markAsTouched();
+    this.dateChanged.emit(date);
   }
 
   /** Handle time slot selection — updates the form control */

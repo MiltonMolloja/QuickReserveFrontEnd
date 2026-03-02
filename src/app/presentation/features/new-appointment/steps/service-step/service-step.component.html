@@ -43,6 +43,9 @@
         <option [ngValue]="ws.id">{{ ws.name }}</option>
       }
     </select>
+    @if (formGroup().controls.place_id.touched && formGroup().controls.place_id.invalid) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
   </div>
 
   <!-- Workshop info box -->
@@ -101,19 +104,44 @@
         <option [value]="st.value">{{ st.label }}</option>
       }
     </select>
+    @if (formGroup().controls.service_type.touched && formGroup().controls.service_type.invalid) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
   </div>
 
   <!-- Date picker -->
-  <app-date-picker
-    [selectedDate]="formGroup().controls.appointment_date.value"
-    [minDate]="minDate"
-    (dateSelected)="onDateSelected($event)"
-  />
+  <div>
+    <app-date-picker
+      [selectedDate]="formGroup().controls.appointment_date.value"
+      [minDate]="minDate"
+      [invalid]="
+        formGroup().controls.appointment_date.touched &&
+        formGroup().controls.appointment_date.invalid
+      "
+      (dateSelected)="onDateSelected($event)"
+    />
+    @if (
+      formGroup().controls.appointment_date.touched && formGroup().controls.appointment_date.invalid
+    ) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
+  </div>
 
   <!-- Time slot picker -->
-  <app-time-slot-picker
-    [selectedTime]="formGroup().controls.appointment_time.value"
-    [disabledSlots]="disabledTimeSlots"
-    (timeSelected)="onTimeSelected($event)"
-  />
+  <div>
+    <app-time-slot-picker
+      [selectedTime]="formGroup().controls.appointment_time.value"
+      [disabledSlots]="disabledSlots()"
+      [invalid]="
+        formGroup().controls.appointment_time.touched &&
+        formGroup().controls.appointment_time.invalid
+      "
+      (timeSelected)="onTimeSelected($event)"
+    />
+    @if (
+      formGroup().controls.appointment_time.touched && formGroup().controls.appointment_time.invalid
+    ) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    }
+  </div>
 </div>

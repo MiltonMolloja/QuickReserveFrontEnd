@@ -12,9 +12,11 @@
     type="button"
     [class]="
       'flex w-full items-center justify-between rounded-lg border bg-card-light px-4 py-2.5 dark:bg-card-dark ' +
-      (selectedDate()
-        ? 'border-primary dark:border-primary'
-        : 'border-border-light dark:border-border-dark')
+      (invalid()
+        ? 'border-danger dark:border-danger'
+        : selectedDate()
+          ? 'border-primary dark:border-primary'
+          : 'border-border-light dark:border-border-dark')
     "
     [attr.aria-expanded]="isOpen()"
     [attr.aria-label]="'STEPPER.STEP1.DATE' | translate"

@@ -63,6 +63,9 @@ export class DatePickerComponent {
   /** Whether to show the label above the input (default: true) */
   readonly showLabel = input<boolean>(true);
 
+  /** Whether the field is in an invalid state (shows danger border) */
+  readonly invalid = input<boolean>(false);
+
   /** Emits the selected date string in YYYY-MM-DD format */
   readonly dateSelected = output<string>();
 

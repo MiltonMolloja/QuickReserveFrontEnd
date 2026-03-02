@@ -31,6 +31,9 @@
         [formGroup]="serviceForm"
         [workshops]="workshopsState.workshops()"
         [serviceTypes]="serviceTypeOptions"
+        [disabledSlots]="occupiedSlots()"
+        (workshopChanged)="onWorkshopOrDateChange('placeId', $event)"
+        (dateChanged)="onWorkshopOrDateChange('date', $event)"
       />
     }
 

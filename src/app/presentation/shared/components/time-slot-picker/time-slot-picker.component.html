@@ -9,9 +9,11 @@
   type="button"
   [class]="
     'mb-2 flex w-full items-center justify-between rounded-lg border px-4 py-2.5 ' +
-    (selectedTime()
-      ? 'border-primary dark:border-primary'
-      : 'border-border-light dark:border-border-dark')
+    (invalid()
+      ? 'border-danger dark:border-danger'
+      : selectedTime()
+        ? 'border-primary dark:border-primary'
+        : 'border-border-light dark:border-border-dark')
   "
   [attr.aria-expanded]="isOpen()"
   [attr.aria-label]="'STEPPER.STEP1.TIME' | translate"

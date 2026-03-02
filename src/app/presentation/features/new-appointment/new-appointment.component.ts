@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -9,6 +16,8 @@ import { SERVICE_TYPE_OPTIONS } from '../../../domain/enums/service-type.enum';
 import { WorkshopsState } from '../../../application/state/workshops.state';
 import { AppointmentsState } from '../../../application/state/appointments.state';
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
+import { GetAppointmentsUseCase } from '../../../application/use-cases/get-appointments.use-case';
+import { GetOccupiedSlotsUseCase } from '../../../application/use-cases/get-occupied-slots.use-case';
 import { CreateAppointmentUseCase } from '../../../application/use-cases/create-appointment.use-case';
 
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
@@ -51,10 +60,23 @@ import { VehicleStepComponent } from './steps/vehicle-step/vehicle-step.componen
 export class NewAppointmentComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly getWorkshops = inject(GetWorkshopsUseCase);
+  private readonly getAppointments = inject(GetAppointmentsUseCase);
+  private readonly getOccupiedSlots = inject(GetOccupiedSlotsUseCase);
   private readonly createAppointment = inject(CreateAppointmentUseCase);
 
   protected readonly workshopsState = inject(WorkshopsState);
   protected readonly appointmentsState = inject(AppointmentsState);
+
+  /** Tracks selected workshop and date for slot availability computation */
+  protected readonly selectedPlaceId = signal(0);
+  protected readonly selectedDate = signal('');
+
+  /** Occupied time slots for the selected workshop + date */
+  protected readonly occupiedSlots = computed(() => {
+    const placeId = this.selectedPlaceId();
+    const date = this.selectedDate();
+    return this.getOccupiedSlots.execute(placeId, date);
+  });
 
   /** Current step (1-based) */
   protected readonly currentStep = signal(1);
@@ -123,6 +145,7 @@ export class NewAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWorkshops.execute();
+    this.getAppointments.execute();
   }
 
   // --- Stepper navigation ---
@@ -174,6 +197,19 @@ export class NewAppointmentComponent implements OnInit {
         this.contactForm.markAllAsTouched();
         break;
     }
+  }
+
+  // --- Slot availability handlers ---
+
+  /** Called when workshop or date changes in service-step — recomputes available slots and resets time */
+  protected onWorkshopOrDateChange(field: 'placeId' | 'date', value: number | string): void {
+    if (field === 'placeId') {
+      this.selectedPlaceId.set(value as number);
+    } else {
+      this.selectedDate.set(value as string);
+    }
+    // Reset the selected time since availability changed
+    this.serviceForm.controls.appointment_time.setValue('');
   }
 
   // --- Submit ---

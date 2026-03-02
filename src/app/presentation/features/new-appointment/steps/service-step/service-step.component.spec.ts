@@ -212,4 +212,31 @@ describe('ServiceStepComponent', () => {
     const contactSpans = infoBox.querySelectorAll('span');
     expect(contactSpans.length).toBe(1);
   });
+
+  it('should emit workshopChanged when workshop selection changes', () => {
+    const spy = jest.spyOn(component.workshopChanged, 'emit');
+    const form = component.formGroup();
+    form.controls.place_id.setValue(2);
+    component['onWorkshopChange']();
+
+    expect(spy).toHaveBeenCalledWith(2);
+  });
+
+  it('should emit dateChanged when date is selected', () => {
+    const spy = jest.spyOn(component.dateChanged, 'emit');
+    component['onDateSelected']('2026-03-20');
+
+    expect(spy).toHaveBeenCalledWith('2026-03-20');
+  });
+
+  it('should pass disabledSlots input to time slot picker', () => {
+    fixture.componentRef.setInput('disabledSlots', ['10:00', '14:00']);
+    fixture.detectChanges();
+
+    expect(component.disabledSlots()).toEqual(['10:00', '14:00']);
+  });
+
+  it('should default disabledSlots to empty array', () => {
+    expect(component.disabledSlots()).toEqual([]);
+  });
 });

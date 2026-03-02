@@ -169,4 +169,28 @@ describe('NewAppointmentComponent', () => {
     component['nextStep']();
     expect(markSpy).toHaveBeenCalled();
   });
+
+  it('should reset appointment_time when workshop changes', () => {
+    component['serviceForm'].controls.appointment_time.setValue('10:00');
+    component['onWorkshopOrDateChange']('placeId', 2);
+
+    expect(component['serviceForm'].controls.appointment_time.value).toBe('');
+    expect(component['selectedPlaceId']()).toBe(2);
+  });
+
+  it('should reset appointment_time when date changes', () => {
+    component['serviceForm'].controls.appointment_time.setValue('14:00');
+    component['onWorkshopOrDateChange']('date', '2026-03-20');
+
+    expect(component['serviceForm'].controls.appointment_time.value).toBe('');
+    expect(component['selectedDate']()).toBe('2026-03-20');
+  });
+
+  it('should compute occupied slots as empty when no placeId or date', () => {
+    expect(component['occupiedSlots']()).toEqual([]);
+  });
+
+  it('should fetch appointments on init', () => {
+    expect(mockAppointmentPort.getAll).toHaveBeenCalled();
+  });
 });

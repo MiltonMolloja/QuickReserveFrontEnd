@@ -50,6 +50,9 @@ export class TimeSlotPickerComponent {
   /** End hour (inclusive, default 17) */
   readonly endHour = input<number>(DEFAULT_END_HOUR);
 
+  /** Whether the field is in an invalid state (shows danger border) */
+  readonly invalid = input<boolean>(false);
+
   /** Emits the selected time string (e.g., "10:00") */
   readonly timeSelected = output<string>();
 

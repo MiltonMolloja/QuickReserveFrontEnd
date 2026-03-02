@@ -1,0 +1,804 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>QuickReserve Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">QuickReserve Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LoadingButtonComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/shared/components/loading-button/loading-button.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Button component with loading state and optional icon.</p>
+<p>Supports two visual variants:</p>
+<ul>
+<li><strong>solid</strong> (default): Primary background with white text</li>
+<li><strong>outline</strong>: Transparent background with border</li>
+</ul>
+<p>Shows a spinner when loading, disabling the button.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- Solid button with icon --&gt;
+&lt;app-loading-button
+  [label]=&quot;&#39;Crear Turno&#39;&quot;
+  [icon]=&quot;checkIcon&quot;
+  [loading]=&quot;isSubmitting()&quot;
+  (buttonClick)=&quot;onSubmit()&quot;
+/&gt;
+
+
+&lt;!-- Outline button --&gt;
+&lt;app-loading-button
+  [label]=&quot;&#39;Cancelar&#39;&quot;
+  variant=&quot;outline&quot;
+  (buttonClick)=&quot;onCancel()&quot;
+/&gt;</code></pre></div>
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-loading-button</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>LucideAngularModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./loading-button.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#onClick" >onClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#icon" >icon</a>
+                            </li>
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#type" >type</a>
+                            </li>
+                            <li>
+                                <a href="#variant" >variant</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#buttonClick" >buttonClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the button is disabled</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="icon"></a>
+                        <b>icon</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LucideIconData" target="_self" >LucideIconData | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Optional Lucide icon to display before the label</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:41</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Button label text</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <b>loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the button is in loading state</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="type"></a>
+                        <b>type</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;button&quot; | &quot;submit&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;button&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Button type attribute</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="variant"></a>
+                        <b>variant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;solid&quot; | &quot;outline&quot; | &quot;danger&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;solid&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:44</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Visual variant</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="buttonClick"></a>
+                        <b>buttonClick</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClick"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>onClick</b></span>
+                        <a href="#onClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onClick()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/presentation/shared/components/loading-button/loading-button.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle click</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
+import { LucideAngularModule } from &#x27;lucide-angular&#x27;;
+
+import type { LucideIconData } from &#x27;../../types/icon.type&#x27;;
+
+/**
+ * Button component with loading state and optional icon.
+ *
+ * Supports two visual variants:
+ * - **solid** (default): Primary background with white text
+ * - **outline**: Transparent background with border
+ *
+ * Shows a spinner when loading, disabling the button.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;html
+ * &lt;!-- Solid button with icon --&gt;
+ * &lt;app-loading-button
+ *   [label]&#x3D;&quot;&#x27;Crear Turno&#x27;&quot;
+ *   [icon]&#x3D;&quot;checkIcon&quot;
+ *   [loading]&#x3D;&quot;isSubmitting()&quot;
+ *   (buttonClick)&#x3D;&quot;onSubmit()&quot;
+ * /&gt;
+ *
+ * &lt;!-- Outline button --&gt;
+ * &lt;app-loading-button
+ *   [label]&#x3D;&quot;&#x27;Cancelar&#x27;&quot;
+ *   variant&#x3D;&quot;outline&quot;
+ *   (buttonClick)&#x3D;&quot;onCancel()&quot;
+ * /&gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Component({
+  selector: &#x27;app-loading-button&#x27;,
+  imports: [LucideAngularModule],
+  templateUrl: &#x27;./loading-button.component.html&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LoadingButtonComponent {
+  /** Button label text */
+  readonly label &#x3D; input.required&lt;string&gt;();
+
+  /** Visual variant */
+  readonly variant &#x3D; input&lt;&#x27;solid&#x27; | &#x27;outline&#x27; | &#x27;danger&#x27;&gt;(&#x27;solid&#x27;);
+
+  /** Optional Lucide icon to display before the label */
+  readonly icon &#x3D; input&lt;LucideIconData | null&gt;(null);
+
+  /** Whether the button is in loading state */
+  readonly loading &#x3D; input&lt;boolean&gt;(false);
+
+  /** Whether the button is disabled */
+  readonly disabled &#x3D; input&lt;boolean&gt;(false);
+
+  /** Button type attribute */
+  readonly type &#x3D; input&lt;&#x27;button&#x27; | &#x27;submit&#x27;&gt;(&#x27;button&#x27;);
+
+  /** Emits when the button is clicked */
+  readonly buttonClick &#x3D; output();
+
+  /** Handle click */
+  protected onClick(): void {
+    if (!this.loading() &amp;&amp; !this.disabled()) {
+      this.buttonClick.emit();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;button
+  [type]&#x3D;&quot;type()&quot;
+  class&#x3D;&quot;flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50&quot;
+  [class.bg-primary]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;solid&#x27;&quot;
+  [class.text-white]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;solid&#x27; || variant() &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;
+  [class.hover:bg-primary-gradient]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;solid&#x27; &amp;&amp; !loading() &amp;&amp; !disabled()&quot;
+  [class.border]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.border-border-light]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.dark:border-border-dark]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.text-text-dark]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.dark:text-text-dark-tertiary]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.dark:bg-card-dark]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27;&quot;
+  [class.hover:bg-bg-light]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27; &amp;&amp; !loading() &amp;&amp; !disabled()&quot;
+  [class.dark:hover:bg-theme-bg]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;outline&#x27; &amp;&amp; !loading() &amp;&amp; !disabled()&quot;
+  [class.bg-danger]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;danger&#x27;&quot;
+  [class.hover:bg-red-600]&#x3D;&quot;variant() &#x3D;&#x3D;&#x3D; &#x27;danger&#x27; &amp;&amp; !loading() &amp;&amp; !disabled()&quot;
+  [disabled]&#x3D;&quot;loading() || disabled()&quot;
+  (click)&#x3D;&quot;onClick()&quot;
+&gt;
+  @if (loading()) {
+    &lt;!-- Spinner --&gt;
+    &lt;svg
+      class&#x3D;&quot;h-4 w-4 animate-spin&quot;
+      xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+      fill&#x3D;&quot;none&quot;
+      viewBox&#x3D;&quot;0 0 24 24&quot;
+      aria-hidden&#x3D;&quot;true&quot;
+    &gt;
+      &lt;circle class&#x3D;&quot;opacity-25&quot; cx&#x3D;&quot;12&quot; cy&#x3D;&quot;12&quot; r&#x3D;&quot;10&quot; stroke&#x3D;&quot;currentColor&quot; stroke-width&#x3D;&quot;4&quot; /&gt;
+      &lt;path
+        class&#x3D;&quot;opacity-75&quot;
+        fill&#x3D;&quot;currentColor&quot;
+        d&#x3D;&quot;M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z&quot;
+      /&gt;
+    &lt;/svg&gt;
+  } @else if (icon()) {
+    &lt;lucide-angular [img]&#x3D;&quot;icon()!&quot; [size]&#x3D;&quot;16&quot; [strokeWidth]&#x3D;&quot;2&quot; /&gt;
+  }
+  &lt;span&gt;{{ label() }}&lt;/span&gt;
+&lt;/button&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><button  [type]="type()"  class="flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50"  [class.bg-primary]="variant() === \'solid\'"  [class.text-white]="variant() === \'solid\' || variant() === \'danger\'"  [class.hover:bg-primary-gradient]="variant() === \'solid\' && !loading() && !disabled()"  [class.border]="variant() === \'outline\'"  [class.border-border-light]="variant() === \'outline\'"  [class.dark:border-border-dark]="variant() === \'outline\'"  [class.text-text-dark]="variant() === \'outline\'"  [class.dark:text-text-dark-tertiary]="variant() === \'outline\'"  [class.dark:bg-card-dark]="variant() === \'outline\'"  [class.hover:bg-bg-light]="variant() === \'outline\' && !loading() && !disabled()"  [class.dark:hover:bg-theme-bg]="variant() === \'outline\' && !loading() && !disabled()"  [class.bg-danger]="variant() === \'danger\'"  [class.hover:bg-red-600]="variant() === \'danger\' && !loading() && !disabled()"  [disabled]="loading() || disabled()"  (click)="onClick()">  @if (loading()) {    <!-- Spinner -->    <svg      class="h-4 w-4 animate-spin"      xmlns="http://www.w3.org/2000/svg"      fill="none"      viewBox="0 0 24 24"      aria-hidden="true"    >      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />      <path        class="opacity-75"        fill="currentColor"        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"      />    </svg>  } @else if (icon()) {    <lucide-angular [img]="icon()!" [size]="16" [strokeWidth]="2" />  }  <span>{{ label() }}</span></button></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppointmentCardComponent', 'selector': 'app-appointment-card'},{'name': 'AppointmentErrorComponent', 'selector': 'app-appointment-error'},{'name': 'AppointmentsComponent', 'selector': 'app-appointments'},{'name': 'AppointmentSuccessComponent', 'selector': 'app-appointment-success'},{'name': 'ContactStepComponent', 'selector': 'app-contact-step'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'ErrorDetailRowComponent', 'selector': 'app-error-detail-row'},{'name': 'ErrorIconComponent', 'selector': 'app-error-icon'},{'name': 'FilterDropdownComponent', 'selector': 'app-filter-dropdown'},{'name': 'FiltersBarComponent', 'selector': 'app-filters-bar'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoadingButtonComponent', 'selector': 'app-loading-button'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewAppointmentComponent', 'selector': 'app-new-appointment'},{'name': 'ProgressBarComponent', 'selector': 'app-progress-bar'},{'name': 'SearchInputComponent', 'selector': 'app-search-input'},{'name': 'ServiceStepComponent', 'selector': 'app-service-step'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'SuccessIconComponent', 'selector': 'app-success-icon'},{'name': 'SummaryRowComponent', 'selector': 'app-summary-row'},{'name': 'ThemeSelectorComponent', 'selector': 'app-theme-selector'},{'name': 'TimeSlotPickerComponent', 'selector': 'app-time-slot-picker'},{'name': 'VehicleStepComponent', 'selector': 'app-vehicle-step'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'LoadingButtonComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoadingButtonComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

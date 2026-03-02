@@ -1,0 +1,543 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>QuickReserve Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">QuickReserve Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>QuickReserve Frontend</h1>
+<p>Angular 20 application for booking workshop appointments. Built with <strong>Clean Architecture</strong>, <strong>Tailwind CSS v4</strong>, <strong>Zoneless Change Detection</strong>, and full <strong>i18n</strong> support (ES/EN).</p>
+<blockquote>
+<p>Technical challenge for <strong>Tecnom</strong> - Consumes a .NET backend API.</p>
+</blockquote>
+<hr>
+<h2>Tech Stack</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Category</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Angular 20 (Standalone Components, Signals)</td>
+</tr>
+<tr>
+<td>Styling</td>
+<td>Tailwind CSS v4 (<code>@theme</code> directive)</td>
+</tr>
+<tr>
+<td>Icons</td>
+<td>Lucide Angular (tree-shakeable)</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>ngx-translate v17 (runtime language switching)</td>
+</tr>
+<tr>
+<td>State Management</td>
+<td>Angular Signals</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>Angular HttpClient + RxJS</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Jest 30 + jest-preset-angular</td>
+</tr>
+<tr>
+<td>Linting</td>
+<td>ESLint 9 (flat config, strictTypeChecked)</td>
+</tr>
+<tr>
+<td>Formatting</td>
+<td>Prettier</td>
+</tr>
+<tr>
+<td>Git Hooks</td>
+<td>Husky + lint-staged</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Compodoc</td>
+</tr>
+<tr>
+<td>Quality Gate</td>
+<td>SonarQube</td>
+</tr>
+<tr>
+<td>Change Detection</td>
+<td>Zoneless (no Zone.js overhead)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Architecture</h2>
+<p>The project follows <strong>Clean Architecture</strong> with 4 layers and strict dependency inversion:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">src/app/
+├── domain/                    # Pure business logic (no framework deps)
+│   ├── models/                # Appointment, Contact, Vehicle, Workshop, DTOs
+│   ├── enums/                 # ServiceType, Theme
+│   ├── ports/                 # Abstract classes (AppointmentPort, WorkshopPort, StoragePort)
+│   └── validators/            # Pure validation functions
+│
+├── application/               # Use cases &amp; state (depends only on domain)
+│   ├── use-cases/             # GetAppointments, CreateAppointment, FilterAppointments, GetWorkshops
+│   ├── state/                 # Signal-based stores (AppointmentsState, WorkshopsState, ThemeState)
+│   └── mappers/               # API DTO &lt;-&gt; Domain model mappers (snake_case &lt;-&gt; camelCase)
+│
+├── infrastructure/            # External implementations (depends on domain + application)
+│   ├── http/                  # HTTP adapters implementing ports, interceptors (apiUrl, error)
+│   ├── storage/               # LocalStorageAdapter implementing StoragePort
+│   ├── theme/                 # ThemeAdapter (dark mode via class strategy)
+│   └── i18n/                  # ngx-translate configuration
+│
+└── presentation/              # UI layer (depends on application)
+    ├── shared/                # Reusable components (Navbar, StatCard, LoadingButton, etc.)
+    │   ├── components/        # 10 shared components
+    │   └── types/             # LucideIconData type workaround
+    └── features/              # Feature pages (lazy-loaded)
+        ├── appointments/      # List page with filters, stats, &#64;defer grid
+        ├── new-appointment/   # 3-step stepper (Service, Contact, Vehicle)
+        └── appointment-success/ # Confirmation page with summary</code></pre></div><h3>Design Patterns</h3>
+<ul>
+<li><strong>Container-Presentational</strong>: Smart components inject use cases, dumb components receive data via <code>input()</code></li>
+<li><strong>Ports &amp; Adapters</strong>: Domain defines abstract ports, infrastructure provides concrete implementations</li>
+<li><strong>Signal-based State</strong>: Reactive state management without RxJS subscriptions for UI state</li>
+<li><strong>Mapper Pattern</strong>: Clean separation between API DTOs (snake_case) and domain models (camelCase)</li>
+</ul>
+<hr>
+<h2>Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> &gt;= 22.x</li>
+<li><strong>npm</strong> &gt;= 10.x</li>
+<li><strong>Angular CLI</strong> &gt;= 20.x (<code>npm install -g @angular/cli</code>)</li>
+</ul>
+<hr>
+<h2>Getting Started</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Clone the repository
+git clone https://github.com/&lt;your-username&gt;/QuickReserveFrontEnd.git
+cd QuickReserveFrontEnd
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start</code></pre></div><p>Open <a href="http://localhost:4200">http://localhost:4200</a> in your browser.</p>
+<h3>Backend API</h3>
+<p>The app expects a .NET backend running at the URL configured in <code>src/environments/environment.ts</code>. The <code>apiUrlInterceptor</code> prepends this base URL to all API requests.</p>
+<hr>
+<h2>Available Scripts</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Script</th>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm start</code></td>
+<td><code>ng serve</code></td>
+<td>Start dev server at localhost:4200</td>
+</tr>
+<tr>
+<td><code>npm run build</code></td>
+<td><code>ng build</code></td>
+<td>Production build to <code>dist/</code></td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td><code>jest</code></td>
+<td>Run all unit tests</td>
+</tr>
+<tr>
+<td><code>npm run test:watch</code></td>
+<td><code>jest --watch</code></td>
+<td>Run tests in watch mode</td>
+</tr>
+<tr>
+<td><code>npm run test:coverage</code></td>
+<td><code>jest --coverage</code></td>
+<td>Run tests with coverage report</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td><code>eslint &quot;src/**/*.{ts,html}&quot;</code></td>
+<td>Lint TypeScript and HTML files</td>
+</tr>
+<tr>
+<td><code>npm run lint:fix</code></td>
+<td><code>eslint ... --fix</code></td>
+<td>Auto-fix lint errors</td>
+</tr>
+<tr>
+<td><code>npm run format</code></td>
+<td><code>prettier --write ...</code></td>
+<td>Format all source files</td>
+</tr>
+<tr>
+<td><code>npm run format:check</code></td>
+<td><code>prettier --check ...</code></td>
+<td>Check formatting without changes</td>
+</tr>
+<tr>
+<td><code>npm run docs:generate</code></td>
+<td><code>compodoc ...</code></td>
+<td>Generate documentation in <code>docs/</code></td>
+</tr>
+<tr>
+<td><code>npm run docs:serve</code></td>
+<td><code>compodoc ... -s -o</code></td>
+<td>Generate and serve docs at localhost:8080</td>
+</tr>
+<tr>
+<td><code>npm run sonar</code></td>
+<td><code>sonar-scanner</code></td>
+<td>Run SonarQube analysis</td>
+</tr>
+<tr>
+<td><code>npm run sonar:full</code></td>
+<td><code>test:coverage &amp;&amp; sonar</code></td>
+<td>Run tests + SonarQube analysis</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Quality Metrics</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statements</td>
+<td>99.06%</td>
+<td>&gt;= 80%</td>
+</tr>
+<tr>
+<td>Branches</td>
+<td>88.63%</td>
+<td>&gt;= 80%</td>
+</tr>
+<tr>
+<td>Functions</td>
+<td>100%</td>
+<td>&gt;= 80%</td>
+</tr>
+<tr>
+<td>Lines</td>
+<td>98.96%</td>
+<td>&gt;= 80%</td>
+</tr>
+<tr>
+<td>ESLint</td>
+<td>0 errors</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td>298/298</td>
+<td>All pass</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>0 warnings</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Features</h2>
+<ul>
+<li><strong>Appointments List</strong>: View all appointments with real-time search, service type filter, and statistics cards</li>
+<li><strong>New Appointment</strong>: 3-step stepper with reactive form validation (Service &gt; Contact &gt; Vehicle)</li>
+<li><strong>Success Page</strong>: Confirmation with appointment summary and navigation actions</li>
+<li><strong>Dark Mode</strong>: Toggle between light/dark themes, persisted in localStorage</li>
+<li><strong>i18n</strong>: Switch between Spanish and English at runtime (no rebuild needed)</li>
+<li><strong>Responsive Design</strong>: Mobile-first layout with adaptive grid (1 -&gt; 2 -&gt; 3 columns)</li>
+<li><strong>Accessibility</strong>: ARIA labels, keyboard navigation, focus management, semantic HTML</li>
+<li><strong>Error Handling</strong>: Centralized error interceptor + loading/error states in UI</li>
+<li><strong>Lazy Loading</strong>: Routes and <code>@defer</code> blocks for optimal initial load</li>
+</ul>
+<hr>
+<h2>Project Structure Highlights</h2>
+<h3>TypeScript Configuration</h3>
+<ul>
+<li><code>strict: true</code> with <code>noUncheckedIndexedAccess</code></li>
+<li><code>strictTemplates</code> in Angular compiler options</li>
+<li><code>ChangeDetectionStrategy.OnPush</code> on all components</li>
+</ul>
+<h3>ESLint Configuration</h3>
+<ul>
+<li>Flat config (<code>eslint.config.js</code>)</li>
+<li><code>strictTypeChecked</code> from typescript-eslint</li>
+<li>Angular ESLint with template accessibility rules</li>
+<li>Prettier integration via <code>eslint-config-prettier</code></li>
+</ul>
+<h3>Testing</h3>
+<ul>
+<li><strong>Jest 30</strong> with <code>jest-preset-angular</code> (no Karma/browser needed)</li>
+<li>Coverage thresholds enforced at 80% (statements, branches, functions, lines)</li>
+<li>Barrel files (<code>index.ts</code>) excluded from coverage metrics</li>
+</ul>
+<h3>Git Hooks</h3>
+<ul>
+<li><strong>Husky</strong> pre-commit hook runs <code>lint-staged</code></li>
+<li><code>lint-staged</code> runs ESLint fix + Prettier on staged <code>.ts</code> and <code>.html</code> files</li>
+</ul>
+<hr>
+<h2>Design Decisions</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Decision</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ND-01</td>
+<td>Tailwind CSS (no Angular Material)</td>
+<td>Custom design faithful to Pencil mockups</td>
+</tr>
+<tr>
+<td>ND-02</td>
+<td>Signals over RxJS for local state</td>
+<td>Modern Angular; RxJS only for HTTP via HttpClient</td>
+</tr>
+<tr>
+<td>ND-03</td>
+<td>Custom stepper with Signals</td>
+<td>Demonstrates framework mastery without third-party deps</td>
+</tr>
+<tr>
+<td>ND-10</td>
+<td>Jest over Karma/Jasmine</td>
+<td>Faster, better DX, no browser required</td>
+</tr>
+<tr>
+<td>ND-12</td>
+<td>ngx-translate over Angular i18n</td>
+<td>Runtime language switching without rebuild</td>
+</tr>
+<tr>
+<td>ND-20</td>
+<td>Zoneless Change Detection</td>
+<td>Production-ready in Angular 20, eliminates Zone.js</td>
+</tr>
+<tr>
+<td>ND-23</td>
+<td>Tailwind v4 <code>@theme</code> directive</td>
+<td>CSS-first config, design tokens as custom properties</td>
+</tr>
+</tbody>
+</table>
+<p>See the full list of 26 design decisions in the project analysis document.</p>
+<hr>
+<h2>Documentation</h2>
+<p>Generate and view the Compodoc documentation:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Generate static docs
+npm run docs:generate
+
+# Generate and open in browser
+npm run docs:serve</code></pre></div><hr>
+<h2>License</h2>
+<p>This project is part of a technical challenge and is not licensed for public use.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

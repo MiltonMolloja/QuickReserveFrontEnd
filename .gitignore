@@ -45,8 +45,6 @@ Thumbs.db
 # SonarQube
 .scannerwork/
 
-# Compodoc
-/docs
 
 # Temporary files
 coverage-output.txt

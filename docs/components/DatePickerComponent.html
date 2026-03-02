@@ -1,0 +1,2109 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>QuickReserve Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">QuickReserve Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DatePickerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/shared/components/date-picker/date-picker.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Date picker component with a custom calendar dropdown.</p>
+<p>Displays a readonly input that toggles a calendar dropdown on click.
+The calendar shows a full month grid with navigation, prevents past dates,
+and supports a &quot;Today&quot; shortcut button.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;app-date-picker
+  [selectedDate]=&quot;formControl.value&quot;
+  [minDate]=&quot;todayISO&quot;
+  (dateSelected)=&quot;onDateChange($event)&quot;
+/&gt;</code></pre></div>
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-date-picker</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>TranslatePipe</code>
+                            <code>LucideAngularModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./date-picker.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#calendarIcon" >calendarIcon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#calendarWeeks" >calendarWeeks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#chevronDownIcon" >chevronDownIcon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#chevronLeftIcon" >chevronLeftIcon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#chevronRightIcon" >chevronRightIcon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#displayMonth" >displayMonth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#displayValue" >displayValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#displayYear" >displayYear</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isOpen" >isOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isTodayDisabled" >isTodayDisabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#monthYearLabel" >monthYearLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#todayISO" >todayISO</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#weekdays" >weekdays</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#clearDate" >clearDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#goToToday" >goToToday</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#nextMonth" >nextMonth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#prevMonth" >prevMonth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#selectDay" >selectDay</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#toggleCalendar" >toggleCalendar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#invalid" >invalid</a>
+                            </li>
+                            <li>
+                                <a href="#minDate" >minDate</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDate" >selectedDate</a>
+                            </li>
+                            <li>
+                                <a href="#showClear" >showClear</a>
+                            </li>
+                            <li>
+                                <a href="#showLabel" >showLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dateCleared" >dateCleared</a>
+                            </li>
+                            <li>
+                                <a href="#dateSelected" >dateSelected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="invalid"></a>
+                        <b>invalid</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the field is in an invalid state (shows danger border)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="minDate"></a>
+                        <b>minDate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Minimum selectable date in YYYY-MM-DD format (dates before this are disabled)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedDate"></a>
+                        <b>selectedDate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:58</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Currently selected date in YYYY-MM-DD format</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showClear"></a>
+                        <b>showClear</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show the &quot;Clear&quot; button in the calendar footer (default: false)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showLabel"></a>
+                        <b>showLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show the label above the input (default: true)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateCleared"></a>
+                        <b>dateCleared</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:76</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the selected date is cleared</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateSelected"></a>
+                        <b>dateSelected</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits the selected date string in YYYY-MM-DD format</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearDate"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>clearDate</b></span>
+                        <a href="#clearDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clearDate()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Clear the selected date</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToToday"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>goToToday</b></span>
+                        <a href="#goToToday"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToToday()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigate to today and select it</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextMonth"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>nextMonth</b></span>
+                        <a href="#nextMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>nextMonth()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigate to next month</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prevMonth"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>prevMonth</b></span>
+                        <a href="#prevMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prevMonth()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigate to previous month</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectDay"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>selectDay</b></span>
+                        <a href="#selectDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>selectDay(day: <a href="../interfaces/CalendarDay.html" target="_self">CalendarDay</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="267"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:267</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Select a day</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CalendarDay.html" target="_self" >CalendarDay</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleCalendar"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>toggleCalendar</b></span>
+                        <a href="#toggleCalendar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toggleCalendar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggle calendar dropdown</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calendarIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>calendarIcon</b></span>
+                        <a href="#calendarIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CalendarDays</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lucide icons</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calendarWeeks"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>calendarWeeks</b></span>
+                        <a href="#calendarWeeks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;CalendarDay[][]&gt;(() &#x3D;&gt; {
+    const month &#x3D; this.displayMonth();
+    const year &#x3D; this.displayYear();
+    const min &#x3D; this.minDate();
+
+    const daysInMonth &#x3D; new Date(year, month + 1, 0).getDate();
+
+    // getDay() returns 0&#x3D;Sun; convert to Mon&#x3D;0 system
+    const firstDayOfWeek &#x3D; (new Date(year, month, 1).getDay() + 6) % 7;
+
+    // If month starts on a weekday (Mon&#x3D;0..Fri&#x3D;4), fill previous weekdays
+    // If month starts on Sat(5) or Sun(6), no padding needed
+    const startOffset &#x3D; firstDayOfWeek &lt; BUSINESS_DAYS ? firstDayOfWeek : 0;
+
+    const days: CalendarDay[] &#x3D; [];
+
+    // Previous month&#x27;s trailing weekdays to fill the first week
+    if (startOffset &gt; 0) {
+      const prevMonth &#x3D; month &#x3D;&#x3D;&#x3D; 0 ? 11 : month - 1;
+      const prevYear &#x3D; month &#x3D;&#x3D;&#x3D; 0 ? year - 1 : year;
+      const daysInPrevMonth &#x3D; new Date(year, month, 0).getDate();
+      for (let i &#x3D; startOffset - 1; i &gt;&#x3D; 0; i--) {
+        const day &#x3D; daysInPrevMonth - i;
+        const date &#x3D; this.buildISO(prevYear, prevMonth, day);
+        days.push({
+          day,
+          date,
+          isCurrentMonth: false,
+          isDisabled: !!min &amp;&amp; date &lt; min,
+          isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+        });
+      }
+    }
+
+    // Current month days — only weekdays (skip Sat &amp; Sun)
+    for (let d &#x3D; 1; d &lt;&#x3D; daysInMonth; d++) {
+      const dayOfWeek &#x3D; (new Date(year, month, d).getDay() + 6) % 7;
+      if (dayOfWeek &#x3D;&#x3D;&#x3D; SATURDAY_INDEX || dayOfWeek &#x3D;&#x3D;&#x3D; SUNDAY_INDEX) {
+        continue;
+      }
+      const date &#x3D; this.buildISO(year, month, d);
+      days.push({
+        day: d,
+        date,
+        isCurrentMonth: true,
+        isDisabled: !!min &amp;&amp; date &lt; min,
+        isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+      });
+    }
+
+    // Next month&#x27;s leading weekdays to fill the last week
+    const remaining &#x3D; days.length % BUSINESS_DAYS;
+    if (remaining &gt; 0) {
+      const toFill &#x3D; BUSINESS_DAYS - remaining;
+      let nextDay &#x3D; 1;
+      const nextMonth &#x3D; month &#x3D;&#x3D;&#x3D; 11 ? 0 : month + 1;
+      const nextYear &#x3D; month &#x3D;&#x3D;&#x3D; 11 ? year + 1 : year;
+      let filled &#x3D; 0;
+      while (filled &lt; toFill) {
+        const dayOfWeek &#x3D; (new Date(nextYear, nextMonth, nextDay).getDay() + 6) % 7;
+        if (dayOfWeek !&#x3D;&#x3D; SATURDAY_INDEX &amp;&amp; dayOfWeek !&#x3D;&#x3D; SUNDAY_INDEX) {
+          const date &#x3D; this.buildISO(nextYear, nextMonth, nextDay);
+          days.push({
+            day: nextDay,
+            date,
+            isCurrentMonth: false,
+            isDisabled: !!min &amp;&amp; date &lt; min,
+            isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+          });
+          filled++;
+        }
+        nextDay++;
+      }
+    }
+
+    // Split into weeks of 5 (business days)
+    const weeks: CalendarDay[][] &#x3D; [];
+    for (let i &#x3D; 0; i &lt; days.length; i +&#x3D; BUSINESS_DAYS) {
+      weeks.push(days.slice(i, i + BUSINESS_DAYS));
+    }
+    return weeks;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calendar grid: array of weeks, each containing 5 CalendarDay objects (Mon-Fri only)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chevronDownIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>chevronDownIcon</b></span>
+                        <a href="#chevronDownIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ChevronDown</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chevronLeftIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>chevronLeftIcon</b></span>
+                        <a href="#chevronLeftIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ChevronLeft</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chevronRightIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>chevronRightIcon</b></span>
+                        <a href="#chevronRightIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ChevronRight</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayMonth"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>displayMonth</b></span>
+                        <a href="#displayMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(new Date().getMonth())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently displayed month (0-11)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayValue"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>displayValue</b></span>
+                        <a href="#displayValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const date &#x3D; this.selectedDate();
+    if (!date) {
+      return &#x27;&#x27;;
+    }
+    return this.formatDisplayDate(date);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formatted display value for the input field</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayYear"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>displayYear</b></span>
+                        <a href="#displayYear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(new Date().getFullYear())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently displayed year</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isOpen</b></span>
+                        <a href="#isOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the calendar dropdown is open</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTodayDisabled"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isTodayDisabled</b></span>
+                        <a href="#isTodayDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const today &#x3D; new Date();
+    const dayOfWeek &#x3D; (today.getDay() + 6) % 7;
+    // Disable if today is Saturday or Sunday
+    if (dayOfWeek &#x3D;&#x3D;&#x3D; SATURDAY_INDEX || dayOfWeek &#x3D;&#x3D;&#x3D; SUNDAY_INDEX) {
+      return true;
+    }
+    const min &#x3D; this.minDate();
+    if (!min) {
+      return false;
+    }
+    return this.todayISO &lt; min;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the &quot;Today&quot; button should be disabled (past date or weekend)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="monthYearLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>monthYearLabel</b></span>
+                        <a href="#monthYearLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const monthName &#x3D; this.monthNames[this.displayMonth()] ?? &#x27;&#x27;;
+    return &#x60;${monthName} ${String(this.displayYear())}&#x60;;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formatted display label for the month/year header</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="todayISO"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>todayISO</b></span>
+                        <a href="#todayISO"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.toISO(new Date())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Today&#39;s date in YYYY-MM-DD format</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weekdays"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>weekdays</b></span>
+                        <a href="#weekdays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;Lu&#x27;, &#x27;Ma&#x27;, &#x27;Mi&#x27;, &#x27;Ju&#x27;, &#x27;Vi&#x27;] as const</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/presentation/shared/components/date-picker/date-picker.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Weekday labels (Monday-Friday only, no weekends)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input, output, signal } from &#x27;@angular/core&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import {
+  CalendarDays,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  LucideAngularModule,
+} from &#x27;lucide-angular&#x27;;
+
+/** Represents a single day cell in the calendar grid */
+export interface CalendarDay {
+  /** Day number (1-31) */
+  readonly day: number;
+  /** Full ISO date string (YYYY-MM-DD) */
+  readonly date: string;
+  /** Whether this day belongs to the current displayed month */
+  readonly isCurrentMonth: boolean;
+  /** Whether this day is before minDate (disabled) */
+  readonly isDisabled: boolean;
+  /** Whether this day is today */
+  readonly isToday: boolean;
+}
+
+/** Business days per week (Mon-Fri) */
+const BUSINESS_DAYS &#x3D; 5;
+
+/** Saturday index (0&#x3D;Mon in our system) */
+const SATURDAY_INDEX &#x3D; 5;
+
+/** Sunday index (0&#x3D;Mon in our system) */
+const SUNDAY_INDEX &#x3D; 6;
+
+/**
+ * Date picker component with a custom calendar dropdown.
+ *
+ * Displays a readonly input that toggles a calendar dropdown on click.
+ * The calendar shows a full month grid with navigation, prevents past dates,
+ * and supports a &quot;Today&quot; shortcut button.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;html
+ * &lt;app-date-picker
+ *   [selectedDate]&#x3D;&quot;formControl.value&quot;
+ *   [minDate]&#x3D;&quot;todayISO&quot;
+ *   (dateSelected)&#x3D;&quot;onDateChange($event)&quot;
+ * /&gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Component({
+  selector: &#x27;app-date-picker&#x27;,
+  imports: [TranslatePipe, LucideAngularModule],
+  templateUrl: &#x27;./date-picker.component.html&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DatePickerComponent {
+  /** Currently selected date in YYYY-MM-DD format */
+  readonly selectedDate &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+  /** Minimum selectable date in YYYY-MM-DD format (dates before this are disabled) */
+  readonly minDate &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+  /** Whether to show the label above the input (default: true) */
+  readonly showLabel &#x3D; input&lt;boolean&gt;(true);
+
+  /** Whether the field is in an invalid state (shows danger border) */
+  readonly invalid &#x3D; input&lt;boolean&gt;(false);
+
+  /** Whether to show the &quot;Clear&quot; button in the calendar footer (default: false) */
+  readonly showClear &#x3D; input&lt;boolean&gt;(false);
+
+  /** Emits the selected date string in YYYY-MM-DD format */
+  readonly dateSelected &#x3D; output&lt;string&gt;();
+
+  /** Emits when the selected date is cleared */
+  readonly dateCleared &#x3D; output&lt;void&gt;();
+
+  /** Lucide icons */
+  protected readonly calendarIcon &#x3D; CalendarDays;
+  protected readonly chevronDownIcon &#x3D; ChevronDown;
+  protected readonly chevronLeftIcon &#x3D; ChevronLeft;
+  protected readonly chevronRightIcon &#x3D; ChevronRight;
+
+  /** Whether the calendar dropdown is open */
+  protected readonly isOpen &#x3D; signal(false);
+
+  /** Currently displayed month (0-11) */
+  protected readonly displayMonth &#x3D; signal(new Date().getMonth());
+
+  /** Currently displayed year */
+  protected readonly displayYear &#x3D; signal(new Date().getFullYear());
+
+  /** Weekday labels (Monday-Friday only, no weekends) */
+  protected readonly weekdays &#x3D; [&#x27;Lu&#x27;, &#x27;Ma&#x27;, &#x27;Mi&#x27;, &#x27;Ju&#x27;, &#x27;Vi&#x27;] as const;
+
+  /** Month names for display */
+  private readonly monthNames &#x3D; [
+    &#x27;Enero&#x27;,
+    &#x27;Febrero&#x27;,
+    &#x27;Marzo&#x27;,
+    &#x27;Abril&#x27;,
+    &#x27;Mayo&#x27;,
+    &#x27;Junio&#x27;,
+    &#x27;Julio&#x27;,
+    &#x27;Agosto&#x27;,
+    &#x27;Septiembre&#x27;,
+    &#x27;Octubre&#x27;,
+    &#x27;Noviembre&#x27;,
+    &#x27;Diciembre&#x27;,
+  ] as const;
+
+  /** Formatted display label for the month/year header */
+  protected readonly monthYearLabel &#x3D; computed(() &#x3D;&gt; {
+    const monthName &#x3D; this.monthNames[this.displayMonth()] ?? &#x27;&#x27;;
+    return &#x60;${monthName} ${String(this.displayYear())}&#x60;;
+  });
+
+  /** Formatted display value for the input field */
+  protected readonly displayValue &#x3D; computed(() &#x3D;&gt; {
+    const date &#x3D; this.selectedDate();
+    if (!date) {
+      return &#x27;&#x27;;
+    }
+    return this.formatDisplayDate(date);
+  });
+
+  /** Today&#x27;s date in YYYY-MM-DD format */
+  protected readonly todayISO &#x3D; this.toISO(new Date());
+
+  /** Whether the &quot;Today&quot; button should be disabled (past date or weekend) */
+  protected readonly isTodayDisabled &#x3D; computed(() &#x3D;&gt; {
+    const today &#x3D; new Date();
+    const dayOfWeek &#x3D; (today.getDay() + 6) % 7;
+    // Disable if today is Saturday or Sunday
+    if (dayOfWeek &#x3D;&#x3D;&#x3D; SATURDAY_INDEX || dayOfWeek &#x3D;&#x3D;&#x3D; SUNDAY_INDEX) {
+      return true;
+    }
+    const min &#x3D; this.minDate();
+    if (!min) {
+      return false;
+    }
+    return this.todayISO &lt; min;
+  });
+
+  /** Calendar grid: array of weeks, each containing 5 CalendarDay objects (Mon-Fri only) */
+  protected readonly calendarWeeks &#x3D; computed&lt;CalendarDay[][]&gt;(() &#x3D;&gt; {
+    const month &#x3D; this.displayMonth();
+    const year &#x3D; this.displayYear();
+    const min &#x3D; this.minDate();
+
+    const daysInMonth &#x3D; new Date(year, month + 1, 0).getDate();
+
+    // getDay() returns 0&#x3D;Sun; convert to Mon&#x3D;0 system
+    const firstDayOfWeek &#x3D; (new Date(year, month, 1).getDay() + 6) % 7;
+
+    // If month starts on a weekday (Mon&#x3D;0..Fri&#x3D;4), fill previous weekdays
+    // If month starts on Sat(5) or Sun(6), no padding needed
+    const startOffset &#x3D; firstDayOfWeek &lt; BUSINESS_DAYS ? firstDayOfWeek : 0;
+
+    const days: CalendarDay[] &#x3D; [];
+
+    // Previous month&#x27;s trailing weekdays to fill the first week
+    if (startOffset &gt; 0) {
+      const prevMonth &#x3D; month &#x3D;&#x3D;&#x3D; 0 ? 11 : month - 1;
+      const prevYear &#x3D; month &#x3D;&#x3D;&#x3D; 0 ? year - 1 : year;
+      const daysInPrevMonth &#x3D; new Date(year, month, 0).getDate();
+      for (let i &#x3D; startOffset - 1; i &gt;&#x3D; 0; i--) {
+        const day &#x3D; daysInPrevMonth - i;
+        const date &#x3D; this.buildISO(prevYear, prevMonth, day);
+        days.push({
+          day,
+          date,
+          isCurrentMonth: false,
+          isDisabled: !!min &amp;&amp; date &lt; min,
+          isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+        });
+      }
+    }
+
+    // Current month days — only weekdays (skip Sat &amp; Sun)
+    for (let d &#x3D; 1; d &lt;&#x3D; daysInMonth; d++) {
+      const dayOfWeek &#x3D; (new Date(year, month, d).getDay() + 6) % 7;
+      if (dayOfWeek &#x3D;&#x3D;&#x3D; SATURDAY_INDEX || dayOfWeek &#x3D;&#x3D;&#x3D; SUNDAY_INDEX) {
+        continue;
+      }
+      const date &#x3D; this.buildISO(year, month, d);
+      days.push({
+        day: d,
+        date,
+        isCurrentMonth: true,
+        isDisabled: !!min &amp;&amp; date &lt; min,
+        isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+      });
+    }
+
+    // Next month&#x27;s leading weekdays to fill the last week
+    const remaining &#x3D; days.length % BUSINESS_DAYS;
+    if (remaining &gt; 0) {
+      const toFill &#x3D; BUSINESS_DAYS - remaining;
+      let nextDay &#x3D; 1;
+      const nextMonth &#x3D; month &#x3D;&#x3D;&#x3D; 11 ? 0 : month + 1;
+      const nextYear &#x3D; month &#x3D;&#x3D;&#x3D; 11 ? year + 1 : year;
+      let filled &#x3D; 0;
+      while (filled &lt; toFill) {
+        const dayOfWeek &#x3D; (new Date(nextYear, nextMonth, nextDay).getDay() + 6) % 7;
+        if (dayOfWeek !&#x3D;&#x3D; SATURDAY_INDEX &amp;&amp; dayOfWeek !&#x3D;&#x3D; SUNDAY_INDEX) {
+          const date &#x3D; this.buildISO(nextYear, nextMonth, nextDay);
+          days.push({
+            day: nextDay,
+            date,
+            isCurrentMonth: false,
+            isDisabled: !!min &amp;&amp; date &lt; min,
+            isToday: date &#x3D;&#x3D;&#x3D; this.todayISO,
+          });
+          filled++;
+        }
+        nextDay++;
+      }
+    }
+
+    // Split into weeks of 5 (business days)
+    const weeks: CalendarDay[][] &#x3D; [];
+    for (let i &#x3D; 0; i &lt; days.length; i +&#x3D; BUSINESS_DAYS) {
+      weeks.push(days.slice(i, i + BUSINESS_DAYS));
+    }
+    return weeks;
+  });
+
+  /** Toggle calendar dropdown */
+  protected toggleCalendar(): void {
+    const wasOpen &#x3D; this.isOpen();
+    this.isOpen.set(!wasOpen);
+
+    // When opening, navigate to the selected date&#x27;s month if available
+    if (!wasOpen &amp;&amp; this.selectedDate()) {
+      const [yearStr, monthStr] &#x3D; this.selectedDate().split(&#x27;-&#x27;);
+      const year &#x3D; Number(yearStr);
+      const month &#x3D; Number(monthStr) - 1;
+      if (!isNaN(year) &amp;&amp; !isNaN(month)) {
+        this.displayYear.set(year);
+        this.displayMonth.set(month);
+      }
+    }
+  }
+
+  /** Navigate to previous month */
+  protected prevMonth(): void {
+    if (this.displayMonth() &#x3D;&#x3D;&#x3D; 0) {
+      this.displayMonth.set(11);
+      this.displayYear.update((y) &#x3D;&gt; y - 1);
+    } else {
+      this.displayMonth.update((m) &#x3D;&gt; m - 1);
+    }
+  }
+
+  /** Navigate to next month */
+  protected nextMonth(): void {
+    if (this.displayMonth() &#x3D;&#x3D;&#x3D; 11) {
+      this.displayMonth.set(0);
+      this.displayYear.update((y) &#x3D;&gt; y + 1);
+    } else {
+      this.displayMonth.update((m) &#x3D;&gt; m + 1);
+    }
+  }
+
+  /** Select a day */
+  protected selectDay(day: CalendarDay): void {
+    if (day.isDisabled) {
+      return;
+    }
+    this.dateSelected.emit(day.date);
+    this.isOpen.set(false);
+  }
+
+  /** Clear the selected date */
+  protected clearDate(): void {
+    this.dateCleared.emit();
+    this.isOpen.set(false);
+  }
+
+  /** Navigate to today and select it */
+  protected goToToday(): void {
+    if (this.isTodayDisabled()) {
+      return;
+    }
+    const today &#x3D; new Date();
+    this.displayMonth.set(today.getMonth());
+    this.displayYear.set(today.getFullYear());
+    this.dateSelected.emit(this.todayISO);
+    this.isOpen.set(false);
+  }
+
+  /** Build ISO date string from year, month (0-based), day */
+  private buildISO(year: number, month: number, day: number): string {
+    const m &#x3D; (month + 1).toString().padStart(2, &#x27;0&#x27;);
+    const d &#x3D; day.toString().padStart(2, &#x27;0&#x27;);
+    return &#x60;${String(year)}-${m}-${d}&#x60;;
+  }
+
+  /** Convert Date to ISO date string */
+  private toISO(date: Date): string {
+    return this.buildISO(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  /** Format YYYY-MM-DD to &quot;DD Mon YYYY&quot; display format */
+  private formatDisplayDate(isoDate: string): string {
+    const parts &#x3D; isoDate.split(&#x27;-&#x27;);
+    const yearStr &#x3D; parts[0] ?? &#x27;&#x27;;
+    const monthStr &#x3D; parts[1] ?? &#x27;&#x27;;
+    const dayStr &#x3D; parts[2] ?? &#x27;&#x27;;
+    const monthIndex &#x3D; Number(monthStr) - 1;
+    const shortMonths &#x3D; [
+      &#x27;Ene&#x27;,
+      &#x27;Feb&#x27;,
+      &#x27;Mar&#x27;,
+      &#x27;Abr&#x27;,
+      &#x27;May&#x27;,
+      &#x27;Jun&#x27;,
+      &#x27;Jul&#x27;,
+      &#x27;Ago&#x27;,
+      &#x27;Sep&#x27;,
+      &#x27;Oct&#x27;,
+      &#x27;Nov&#x27;,
+      &#x27;Dic&#x27;,
+    ] as const;
+    const monthLabel &#x3D; shortMonths[monthIndex] ?? monthStr;
+    return &#x60;${dayStr} ${monthLabel} ${yearStr}&#x60;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Label --&gt;
+@if (showLabel()) {
+  &lt;p class&#x3D;&quot;mb-1.5 text-sm font-medium text-text-dark dark:text-text-dark-tertiary&quot;&gt;
+    {{ &#x27;STEPPER.STEP1.DATE&#x27; | translate }}
+    &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;
+  &lt;/p&gt;
+}
+
+&lt;div class&#x3D;&quot;relative&quot;&gt;
+  &lt;!-- Date input display (readonly, click to toggle) --&gt;
+  &lt;button
+    type&#x3D;&quot;button&quot;
+    [class]&#x3D;&quot;
+      &#x27;flex w-full items-center justify-between rounded-lg border bg-card-light px-4 py-2.5 dark:bg-card-dark &#x27; +
+      (invalid()
+        ? &#x27;border-danger dark:border-danger&#x27;
+        : selectedDate()
+          ? &#x27;border-primary dark:border-primary&#x27;
+          : &#x27;border-border-light dark:border-border-dark&#x27;)
+    &quot;
+    [attr.aria-expanded]&#x3D;&quot;isOpen()&quot;
+    [attr.aria-label]&#x3D;&quot;&#x27;STEPPER.STEP1.DATE&#x27; | translate&quot;
+    aria-haspopup&#x3D;&quot;dialog&quot;
+    (click)&#x3D;&quot;toggleCalendar()&quot;
+  &gt;
+    &lt;div class&#x3D;&quot;flex items-center gap-3&quot;&gt;
+      &lt;lucide-angular [img]&#x3D;&quot;calendarIcon&quot; [size]&#x3D;&quot;18&quot; [strokeWidth]&#x3D;&quot;2&quot; class&#x3D;&quot;text-primary&quot; /&gt;
+      &lt;span
+        [class]&#x3D;&quot;
+          &#x27;text-sm &#x27; +
+          (selectedDate()
+            ? &#x27;font-medium text-text-title dark:text-text-dark-title&#x27;
+            : &#x27;text-text-tertiary dark:text-text-dark-muted&#x27;)
+        &quot;
+      &gt;
+        @if (displayValue()) {
+          {{ displayValue() }}
+        } @else {
+          {{ &#x27;DATE_PICKER.PLACEHOLDER&#x27; | translate }}
+        }
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;lucide-angular
+      [img]&#x3D;&quot;chevronDownIcon&quot;
+      [size]&#x3D;&quot;16&quot;
+      [strokeWidth]&#x3D;&quot;2&quot;
+      class&#x3D;&quot;text-text-tertiary transition-transform dark:text-text-dark-muted&quot;
+      [class.rotate-180]&#x3D;&quot;isOpen()&quot;
+    /&gt;
+  &lt;/button&gt;
+
+  &lt;!-- Calendar dropdown (absolute overlay) --&gt;
+  @if (isOpen()) {
+    &lt;!-- Backdrop to close on outside click --&gt;
+    &lt;div class&#x3D;&quot;fixed inset-0 z-40&quot; aria-hidden&#x3D;&quot;true&quot; (click)&#x3D;&quot;isOpen.set(false)&quot;&gt;&lt;/div&gt;
+
+    &lt;div
+      class&#x3D;&quot;absolute left-0 z-50 mt-1 w-72 rounded-xl border border-border-light bg-card-light p-4 shadow-lg dark:border-border-dark dark:bg-card-dark&quot;
+      role&#x3D;&quot;dialog&quot;
+      [attr.aria-label]&#x3D;&quot;&#x27;DATE_PICKER.CALENDAR_LABEL&#x27; | translate&quot;
+    &gt;
+      &lt;!-- Month/Year header with navigation --&gt;
+      &lt;div class&#x3D;&quot;mb-3 flex items-center justify-between&quot;&gt;
+        &lt;span class&#x3D;&quot;text-[15px] font-bold text-text-title dark:text-text-dark-title&quot;&gt;
+          {{ monthYearLabel() }}
+        &lt;/span&gt;
+        &lt;div class&#x3D;&quot;flex items-center gap-1&quot;&gt;
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            class&#x3D;&quot;flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark&quot;
+            [attr.aria-label]&#x3D;&quot;&#x27;DATE_PICKER.PREV_MONTH&#x27; | translate&quot;
+            (click)&#x3D;&quot;prevMonth()&quot;
+          &gt;
+            &lt;lucide-angular
+              [img]&#x3D;&quot;chevronLeftIcon&quot;
+              [size]&#x3D;&quot;16&quot;
+              [strokeWidth]&#x3D;&quot;2&quot;
+              class&#x3D;&quot;text-text-secondary dark:text-text-dark-secondary&quot;
+            /&gt;
+          &lt;/button&gt;
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            class&#x3D;&quot;flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark&quot;
+            [attr.aria-label]&#x3D;&quot;&#x27;DATE_PICKER.NEXT_MONTH&#x27; | translate&quot;
+            (click)&#x3D;&quot;nextMonth()&quot;
+          &gt;
+            &lt;lucide-angular
+              [img]&#x3D;&quot;chevronRightIcon&quot;
+              [size]&#x3D;&quot;16&quot;
+              [strokeWidth]&#x3D;&quot;2&quot;
+              class&#x3D;&quot;text-text-secondary dark:text-text-dark-secondary&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Weekday headers (Mon-Fri only) --&gt;
+      &lt;div class&#x3D;&quot;mb-1 grid grid-cols-5 gap-0&quot;&gt;
+        @for (day of weekdays; track day) {
+          &lt;span
+            class&#x3D;&quot;py-1 text-center text-xs font-semibold text-text-tertiary dark:text-text-dark-muted&quot;
+          &gt;
+            {{ day }}
+          &lt;/span&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;!-- Calendar grid (5 columns, weekdays only) --&gt;
+      &lt;div class&#x3D;&quot;grid grid-cols-5 gap-0&quot; role&#x3D;&quot;grid&quot; [attr.aria-label]&#x3D;&quot;monthYearLabel()&quot;&gt;
+        @for (week of calendarWeeks(); track $index) {
+          @for (day of week; track day.date) {
+            &lt;button
+              type&#x3D;&quot;button&quot;
+              role&#x3D;&quot;gridcell&quot;
+              [attr.aria-selected]&#x3D;&quot;selectedDate() &#x3D;&#x3D;&#x3D; day.date&quot;
+              [attr.aria-disabled]&#x3D;&quot;day.isDisabled&quot;
+              [attr.aria-label]&#x3D;&quot;day.date&quot;
+              [disabled]&#x3D;&quot;day.isDisabled&quot;
+              [class]&#x3D;&quot;
+                &#x27;flex h-9 items-center justify-center rounded-lg text-[13px] transition-colors &#x27; +
+                (selectedDate() &#x3D;&#x3D;&#x3D; day.date
+                  ? &#x27;bg-primary font-semibold text-white&#x27;
+                  : day.isDisabled
+                    ? &#x27;cursor-default text-border-light dark:text-border-dark&#x27;
+                    : day.isCurrentMonth
+                      ? day.isToday
+                        ? &#x27;cursor-pointer font-semibold text-primary hover:bg-info-bg dark:hover:bg-indigo-dark&#x27;
+                        : &#x27;cursor-pointer text-text-dark hover:bg-bg-light dark:text-text-dark-tertiary dark:hover:bg-theme-bg&#x27;
+                      : &#x27;cursor-pointer text-text-tertiary hover:bg-bg-light dark:text-text-dark-muted dark:hover:bg-theme-bg&#x27;)
+              &quot;
+              (click)&#x3D;&quot;selectDay(day)&quot;
+            &gt;
+              {{ day.day }}
+            &lt;/button&gt;
+          }
+        }
+      &lt;/div&gt;
+
+      &lt;!-- Today / Clear buttons --&gt;
+      &lt;div class&#x3D;&quot;mt-3 flex gap-2&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          class&#x3D;&quot;flex flex-1 items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-primary transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark&quot;
+          [disabled]&#x3D;&quot;isTodayDisabled()&quot;
+          [class.opacity-50]&#x3D;&quot;isTodayDisabled()&quot;
+          [class.cursor-not-allowed]&#x3D;&quot;isTodayDisabled()&quot;
+          (click)&#x3D;&quot;goToToday()&quot;
+        &gt;
+          {{ &#x27;DATE_PICKER.TODAY&#x27; | translate }}
+        &lt;/button&gt;
+        @if (showClear()) {
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            class&#x3D;&quot;flex flex-1 items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-danger transition-colors hover:bg-red-50 dark:bg-theme-bg dark:hover:bg-border-dark&quot;
+            [disabled]&#x3D;&quot;!selectedDate()&quot;
+            [class.opacity-50]&#x3D;&quot;!selectedDate()&quot;
+            [class.cursor-not-allowed]&#x3D;&quot;!selectedDate()&quot;
+            (click)&#x3D;&quot;clearDate()&quot;
+          &gt;
+            {{ &#x27;DATE_PICKER.CLEAR&#x27; | translate }}
+          &lt;/button&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Label -->@if (showLabel()) {  <p class="mb-1.5 text-sm font-medium text-text-dark dark:text-text-dark-tertiary">    {{ \'STEPPER.STEP1.DATE\' | translate }}    <span class="text-danger">*</span>  </p>}<div class="relative">  <!-- Date input display (readonly, click to toggle) -->  <button    type="button"    [class]="      \'flex w-full items-center justify-between rounded-lg border bg-card-light px-4 py-2.5 dark:bg-card-dark \' +      (invalid()        ? \'border-danger dark:border-danger\'        : selectedDate()          ? \'border-primary dark:border-primary\'          : \'border-border-light dark:border-border-dark\')    "    [attr.aria-expanded]="isOpen()"    [attr.aria-label]="\'STEPPER.STEP1.DATE\' | translate"    aria-haspopup="dialog"    (click)="toggleCalendar()"  >    <div class="flex items-center gap-3">      <lucide-angular [img]="calendarIcon" [size]="18" [strokeWidth]="2" class="text-primary" />      <span        [class]="          \'text-sm \' +          (selectedDate()            ? \'font-medium text-text-title dark:text-text-dark-title\'            : \'text-text-tertiary dark:text-text-dark-muted\')        "      >        @if (displayValue()) {          {{ displayValue() }}        } @else {          {{ \'DATE_PICKER.PLACEHOLDER\' | translate }}        }      </span>    </div>    <lucide-angular      [img]="chevronDownIcon"      [size]="16"      [strokeWidth]="2"      class="text-text-tertiary transition-transform dark:text-text-dark-muted"      [class.rotate-180]="isOpen()"    />  </button>  <!-- Calendar dropdown (absolute overlay) -->  @if (isOpen()) {    <!-- Backdrop to close on outside click -->    <div class="fixed inset-0 z-40" aria-hidden="true" (click)="isOpen.set(false)"></div>    <div      class="absolute left-0 z-50 mt-1 w-72 rounded-xl border border-border-light bg-card-light p-4 shadow-lg dark:border-border-dark dark:bg-card-dark"      role="dialog"      [attr.aria-label]="\'DATE_PICKER.CALENDAR_LABEL\' | translate"    >      <!-- Month/Year header with navigation -->      <div class="mb-3 flex items-center justify-between">        <span class="text-[15px] font-bold text-text-title dark:text-text-dark-title">          {{ monthYearLabel() }}        </span>        <div class="flex items-center gap-1">          <button            type="button"            class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"            [attr.aria-label]="\'DATE_PICKER.PREV_MONTH\' | translate"            (click)="prevMonth()"          >            <lucide-angular              [img]="chevronLeftIcon"              [size]="16"              [strokeWidth]="2"              class="text-text-secondary dark:text-text-dark-secondary"            />          </button>          <button            type="button"            class="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-light transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"            [attr.aria-label]="\'DATE_PICKER.NEXT_MONTH\' | translate"            (click)="nextMonth()"          >            <lucide-angular              [img]="chevronRightIcon"              [size]="16"              [strokeWidth]="2"              class="text-text-secondary dark:text-text-dark-secondary"            />          </button>        </div>      </div>      <!-- Weekday headers (Mon-Fri only) -->      <div class="mb-1 grid grid-cols-5 gap-0">        @for (day of weekdays; track day) {          <span            class="py-1 text-center text-xs font-semibold text-text-tertiary dark:text-text-dark-muted"          >            {{ day }}          </span>        }      </div>      <!-- Calendar grid (5 columns, weekdays only) -->      <div class="grid grid-cols-5 gap-0" role="grid" [attr.aria-label]="monthYearLabel()">        @for (week of calendarWeeks(); track $index) {          @for (day of week; track day.date) {            <button              type="button"              role="gridcell"              [attr.aria-selected]="selectedDate() === day.date"              [attr.aria-disabled]="day.isDisabled"              [attr.aria-label]="day.date"              [disabled]="day.isDisabled"              [class]="                \'flex h-9 items-center justify-center rounded-lg text-[13px] transition-colors \' +                (selectedDate() === day.date                  ? \'bg-primary font-semibold text-white\'                  : day.isDisabled                    ? \'cursor-default text-border-light dark:text-border-dark\'                    : day.isCurrentMonth                      ? day.isToday                        ? \'cursor-pointer font-semibold text-primary hover:bg-info-bg dark:hover:bg-indigo-dark\'                        : \'cursor-pointer text-text-dark hover:bg-bg-light dark:text-text-dark-tertiary dark:hover:bg-theme-bg\'                      : \'cursor-pointer text-text-tertiary hover:bg-bg-light dark:text-text-dark-muted dark:hover:bg-theme-bg\')              "              (click)="selectDay(day)"            >              {{ day.day }}            </button>          }        }      </div>      <!-- Today / Clear buttons -->      <div class="mt-3 flex gap-2">        <button          type="button"          class="flex flex-1 items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-primary transition-colors hover:bg-border-light dark:bg-theme-bg dark:hover:bg-border-dark"          [disabled]="isTodayDisabled()"          [class.opacity-50]="isTodayDisabled()"          [class.cursor-not-allowed]="isTodayDisabled()"          (click)="goToToday()"        >          {{ \'DATE_PICKER.TODAY\' | translate }}        </button>        @if (showClear()) {          <button            type="button"            class="flex flex-1 items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-danger transition-colors hover:bg-red-50 dark:bg-theme-bg dark:hover:bg-border-dark"            [disabled]="!selectedDate()"            [class.opacity-50]="!selectedDate()"            [class.cursor-not-allowed]="!selectedDate()"            (click)="clearDate()"          >            {{ \'DATE_PICKER.CLEAR\' | translate }}          </button>        }      </div>    </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppointmentCardComponent', 'selector': 'app-appointment-card'},{'name': 'AppointmentErrorComponent', 'selector': 'app-appointment-error'},{'name': 'AppointmentsComponent', 'selector': 'app-appointments'},{'name': 'AppointmentSuccessComponent', 'selector': 'app-appointment-success'},{'name': 'ContactStepComponent', 'selector': 'app-contact-step'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'ErrorDetailRowComponent', 'selector': 'app-error-detail-row'},{'name': 'ErrorIconComponent', 'selector': 'app-error-icon'},{'name': 'FilterDropdownComponent', 'selector': 'app-filter-dropdown'},{'name': 'FiltersBarComponent', 'selector': 'app-filters-bar'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoadingButtonComponent', 'selector': 'app-loading-button'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewAppointmentComponent', 'selector': 'app-new-appointment'},{'name': 'ProgressBarComponent', 'selector': 'app-progress-bar'},{'name': 'SearchInputComponent', 'selector': 'app-search-input'},{'name': 'ServiceStepComponent', 'selector': 'app-service-step'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'SuccessIconComponent', 'selector': 'app-success-icon'},{'name': 'SummaryRowComponent', 'selector': 'app-summary-row'},{'name': 'ThemeSelectorComponent', 'selector': 'app-theme-selector'},{'name': 'TimeSlotPickerComponent', 'selector': 'app-time-slot-picker'},{'name': 'VehicleStepComponent', 'selector': 'app-vehicle-step'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DatePickerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DatePickerComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

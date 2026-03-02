@@ -1,0 +1,622 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>QuickReserve Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">QuickReserve Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ContactStepComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/features/new-appointment/steps/contact-step/contact-step.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Presentational component for Step 2 of the appointment stepper.</p>
+<p>Displays form fields for:</p>
+<ul>
+<li>Full Name (required) - RF-02.5</li>
+<li>Email (required, valid format) - RF-02.6</li>
+<li>Whatsapp (required) - RF-02.7</li>
+</ul>
+<p>Receives the FormGroup from the container.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-contact-step</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                            <code>TranslatePipe</code>
+                            <code>LucideAngularModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./contact-step.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#userIcon" >userIcon</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formGroup"></a>
+                        <b>formGroup</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>    FormGroup&lt;{      name: FormControl&lt;string&gt;;      email: FormControl&lt;string&gt;;      whatsapp: FormControl&lt;string&gt;;    }&gt;  </code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/presentation/features/new-appointment/steps/contact-step/contact-step.component.ts:24</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Form group for step 2 (passed from container)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>userIcon</b></span>
+                        <a href="#userIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>User</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/presentation/features/new-appointment/steps/contact-step/contact-step.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lucide icons</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+import { type FormControl, type FormGroup, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { LucideAngularModule, User } from &#x27;lucide-angular&#x27;;
+
+/**
+ * Presentational component for Step 2 of the appointment stepper.
+ *
+ * Displays form fields for:
+ * - Full Name (required) - RF-02.5
+ * - Email (required, valid format) - RF-02.6
+ * - Whatsapp (required) - RF-02.7
+ *
+ * Receives the FormGroup from the container.
+ */
+@Component({
+  selector: &#x27;app-contact-step&#x27;,
+  imports: [ReactiveFormsModule, TranslatePipe, LucideAngularModule],
+  templateUrl: &#x27;./contact-step.component.html&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ContactStepComponent {
+  /** Form group for step 2 (passed from container) */
+  readonly formGroup &#x3D; input.required&lt;
+    FormGroup&lt;{
+      name: FormControl&lt;string&gt;;
+      email: FormControl&lt;string&gt;;
+      whatsapp: FormControl&lt;string&gt;;
+    }&gt;
+  &gt;();
+
+  /** Lucide icons */
+  protected readonly userIcon &#x3D; User;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Step header --&gt;
+&lt;div class&#x3D;&quot;mb-6 flex items-center gap-3&quot;&gt;
+  &lt;div class&#x3D;&quot;flex h-11 w-11 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark&quot;&gt;
+    &lt;lucide-angular [img]&#x3D;&quot;userIcon&quot; [size]&#x3D;&quot;20&quot; [strokeWidth]&#x3D;&quot;2&quot; class&#x3D;&quot;text-primary&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h3 class&#x3D;&quot;text-lg font-semibold text-text-title dark:text-text-dark-title&quot;&gt;
+      {{ &#x27;STEPPER.STEP2.TITLE&#x27; | translate }}
+    &lt;/h3&gt;
+    &lt;p class&#x3D;&quot;text-sm text-text-secondary dark:text-text-dark-muted&quot;&gt;
+      {{ &#x27;STEPPER.STEP2.SUBTITLE&#x27; | translate }}
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div [formGroup]&#x3D;&quot;formGroup()&quot; class&#x3D;&quot;space-y-5&quot;&gt;
+  &lt;!-- Full Name --&gt;
+  &lt;div&gt;
+    &lt;label
+      for&#x3D;&quot;contact-name&quot;
+      class&#x3D;&quot;mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary&quot;
+    &gt;
+      {{ &#x27;STEPPER.STEP2.NAME&#x27; | translate }}
+      &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input
+      id&#x3D;&quot;contact-name&quot;
+      type&#x3D;&quot;text&quot;
+      formControlName&#x3D;&quot;name&quot;
+      [placeholder]&#x3D;&quot;&#x27;STEPPER.STEP2.NAME&#x27; | translate&quot;
+      class&#x3D;&quot;w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted&quot;
+      [class.border-border-light]&#x3D;&quot;
+        !formGroup().controls.name.touched || formGroup().controls.name.valid
+      &quot;
+      [class.dark:border-border-dark]&#x3D;&quot;
+        !formGroup().controls.name.touched || formGroup().controls.name.valid
+      &quot;
+      [class.border-danger]&#x3D;&quot;formGroup().controls.name.touched &amp;&amp; formGroup().controls.name.invalid&quot;
+    /&gt;
+    @if (formGroup().controls.name.touched &amp;&amp; formGroup().controls.name.hasError(&#x27;required&#x27;)) {
+      &lt;p class&#x3D;&quot;mt-1 text-xs text-danger&quot;&gt;{{ &#x27;VALIDATION.REQUIRED&#x27; | translate }}&lt;/p&gt;
+    }
+  &lt;/div&gt;
+
+  &lt;!-- Email --&gt;
+  &lt;div&gt;
+    &lt;label
+      for&#x3D;&quot;contact-email&quot;
+      class&#x3D;&quot;mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary&quot;
+    &gt;
+      {{ &#x27;STEPPER.STEP2.EMAIL&#x27; | translate }}
+      &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input
+      id&#x3D;&quot;contact-email&quot;
+      type&#x3D;&quot;email&quot;
+      formControlName&#x3D;&quot;email&quot;
+      [placeholder]&#x3D;&quot;&#x27;STEPPER.STEP2.EMAIL&#x27; | translate&quot;
+      class&#x3D;&quot;w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted&quot;
+      [class.border-border-light]&#x3D;&quot;
+        !formGroup().controls.email.touched || formGroup().controls.email.valid
+      &quot;
+      [class.dark:border-border-dark]&#x3D;&quot;
+        !formGroup().controls.email.touched || formGroup().controls.email.valid
+      &quot;
+      [class.border-danger]&#x3D;&quot;
+        formGroup().controls.email.touched &amp;&amp; formGroup().controls.email.invalid
+      &quot;
+    /&gt;
+    @if (formGroup().controls.email.touched &amp;&amp; formGroup().controls.email.hasError(&#x27;required&#x27;)) {
+      &lt;p class&#x3D;&quot;mt-1 text-xs text-danger&quot;&gt;{{ &#x27;VALIDATION.REQUIRED&#x27; | translate }}&lt;/p&gt;
+    } @else if (
+      formGroup().controls.email.touched &amp;&amp; formGroup().controls.email.hasError(&#x27;pattern&#x27;)
+    ) {
+      &lt;p class&#x3D;&quot;mt-1 text-xs text-danger&quot;&gt;{{ &#x27;VALIDATION.EMAIL_INVALID&#x27; | translate }}&lt;/p&gt;
+    }
+  &lt;/div&gt;
+
+  &lt;!-- Whatsapp --&gt;
+  &lt;div&gt;
+    &lt;label
+      for&#x3D;&quot;contact-whatsapp&quot;
+      class&#x3D;&quot;mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary&quot;
+    &gt;
+      {{ &#x27;STEPPER.STEP2.PHONE&#x27; | translate }}
+      &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input
+      id&#x3D;&quot;contact-whatsapp&quot;
+      type&#x3D;&quot;tel&quot;
+      formControlName&#x3D;&quot;whatsapp&quot;
+      [placeholder]&#x3D;&quot;&#x27;STEPPER.STEP2.PHONE&#x27; | translate&quot;
+      class&#x3D;&quot;w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted&quot;
+      [class.border-border-light]&#x3D;&quot;
+        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid
+      &quot;
+      [class.dark:border-border-dark]&#x3D;&quot;
+        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid
+      &quot;
+      [class.border-danger]&#x3D;&quot;
+        formGroup().controls.whatsapp.touched &amp;&amp; formGroup().controls.whatsapp.invalid
+      &quot;
+    /&gt;
+    @if (
+      formGroup().controls.whatsapp.touched &amp;&amp; formGroup().controls.whatsapp.hasError(&#x27;required&#x27;)
+    ) {
+      &lt;p class&#x3D;&quot;mt-1 text-xs text-danger&quot;&gt;{{ &#x27;VALIDATION.REQUIRED&#x27; | translate }}&lt;/p&gt;
+    } @else if (
+      formGroup().controls.whatsapp.touched &amp;&amp; formGroup().controls.whatsapp.hasError(&#x27;pattern&#x27;)
+    ) {
+      &lt;p class&#x3D;&quot;mt-1 text-xs text-danger&quot;&gt;{{ &#x27;VALIDATION.PHONE_INVALID&#x27; | translate }}&lt;/p&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Step header --><div class="mb-6 flex items-center gap-3">  <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-bg dark:bg-indigo-dark">    <lucide-angular [img]="userIcon" [size]="20" [strokeWidth]="2" class="text-primary" />  </div>  <div>    <h3 class="text-lg font-semibold text-text-title dark:text-text-dark-title">      {{ \'STEPPER.STEP2.TITLE\' | translate }}    </h3>    <p class="text-sm text-text-secondary dark:text-text-dark-muted">      {{ \'STEPPER.STEP2.SUBTITLE\' | translate }}    </p>  </div></div><div [formGroup]="formGroup()" class="space-y-5">  <!-- Full Name -->  <div>    <label      for="contact-name"      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"    >      {{ \'STEPPER.STEP2.NAME\' | translate }}      <span class="text-danger">*</span>    </label>    <input      id="contact-name"      type="text"      formControlName="name"      [placeholder]="\'STEPPER.STEP2.NAME\' | translate"      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"      [class.border-border-light]="        !formGroup().controls.name.touched || formGroup().controls.name.valid      "      [class.dark:border-border-dark]="        !formGroup().controls.name.touched || formGroup().controls.name.valid      "      [class.border-danger]="formGroup().controls.name.touched && formGroup().controls.name.invalid"    />    @if (formGroup().controls.name.touched && formGroup().controls.name.hasError(\'required\')) {      <p class="mt-1 text-xs text-danger">{{ \'VALIDATION.REQUIRED\' | translate }}</p>    }  </div>  <!-- Email -->  <div>    <label      for="contact-email"      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"    >      {{ \'STEPPER.STEP2.EMAIL\' | translate }}      <span class="text-danger">*</span>    </label>    <input      id="contact-email"      type="email"      formControlName="email"      [placeholder]="\'STEPPER.STEP2.EMAIL\' | translate"      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"      [class.border-border-light]="        !formGroup().controls.email.touched || formGroup().controls.email.valid      "      [class.dark:border-border-dark]="        !formGroup().controls.email.touched || formGroup().controls.email.valid      "      [class.border-danger]="        formGroup().controls.email.touched && formGroup().controls.email.invalid      "    />    @if (formGroup().controls.email.touched && formGroup().controls.email.hasError(\'required\')) {      <p class="mt-1 text-xs text-danger">{{ \'VALIDATION.REQUIRED\' | translate }}</p>    } @else if (      formGroup().controls.email.touched && formGroup().controls.email.hasError(\'pattern\')    ) {      <p class="mt-1 text-xs text-danger">{{ \'VALIDATION.EMAIL_INVALID\' | translate }}</p>    }  </div>  <!-- Whatsapp -->  <div>    <label      for="contact-whatsapp"      class="mb-1.5 block text-sm font-medium text-text-dark dark:text-text-dark-tertiary"    >      {{ \'STEPPER.STEP2.PHONE\' | translate }}      <span class="text-danger">*</span>    </label>    <input      id="contact-whatsapp"      type="tel"      formControlName="whatsapp"      [placeholder]="\'STEPPER.STEP2.PHONE\' | translate"      class="w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"      [class.border-border-light]="        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid      "      [class.dark:border-border-dark]="        !formGroup().controls.whatsapp.touched || formGroup().controls.whatsapp.valid      "      [class.border-danger]="        formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.invalid      "    />    @if (      formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError(\'required\')    ) {      <p class="mt-1 text-xs text-danger">{{ \'VALIDATION.REQUIRED\' | translate }}</p>    } @else if (      formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError(\'pattern\')    ) {      <p class="mt-1 text-xs text-danger">{{ \'VALIDATION.PHONE_INVALID\' | translate }}</p>    }  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppointmentCardComponent', 'selector': 'app-appointment-card'},{'name': 'AppointmentErrorComponent', 'selector': 'app-appointment-error'},{'name': 'AppointmentsComponent', 'selector': 'app-appointments'},{'name': 'AppointmentSuccessComponent', 'selector': 'app-appointment-success'},{'name': 'ContactStepComponent', 'selector': 'app-contact-step'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'ErrorDetailRowComponent', 'selector': 'app-error-detail-row'},{'name': 'ErrorIconComponent', 'selector': 'app-error-icon'},{'name': 'FilterDropdownComponent', 'selector': 'app-filter-dropdown'},{'name': 'FiltersBarComponent', 'selector': 'app-filters-bar'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoadingButtonComponent', 'selector': 'app-loading-button'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewAppointmentComponent', 'selector': 'app-new-appointment'},{'name': 'ProgressBarComponent', 'selector': 'app-progress-bar'},{'name': 'SearchInputComponent', 'selector': 'app-search-input'},{'name': 'ServiceStepComponent', 'selector': 'app-service-step'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'SuccessIconComponent', 'selector': 'app-success-icon'},{'name': 'SummaryRowComponent', 'selector': 'app-summary-row'},{'name': 'ThemeSelectorComponent', 'selector': 'app-theme-selector'},{'name': 'TimeSlotPickerComponent', 'selector': 'app-time-slot-picker'},{'name': 'VehicleStepComponent', 'selector': 'app-vehicle-step'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ContactStepComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContactStepComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

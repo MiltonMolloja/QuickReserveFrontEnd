@@ -1,0 +1,1042 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>QuickReserve Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">QuickReserve Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FiltersBarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Presentational component for the appointments filter bar.</p>
+<p>Displays:</p>
+<ul>
+<li>Search input (by name or email)</li>
+<li>Workshop dropdown filter</li>
+<li>Service type dropdown filter</li>
+<li>Date filter</li>
+<li>Clear filters button (danger variant)</li>
+</ul>
+<p>All filtering is client-side (RN-07). This component only emits
+filter change events — the container handles the logic.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;app-filters-bar
+  [workshops]=&quot;workshops()&quot;
+  [serviceTypes]=&quot;serviceTypeOptions&quot;
+  (searchChange)=&quot;onSearch($event)&quot;
+  (workshopChange)=&quot;onWorkshopFilter($event)&quot;
+  (serviceChange)=&quot;onServiceFilter($event)&quot;
+  (dateChange)=&quot;onDateFilter($event)&quot;
+  (clearFilters)=&quot;onClearFilters()&quot;
+/&gt;</code></pre></div>
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-filters-bar</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>TranslatePipe</code>
+                            <code>LucideAngularModule</code>
+                                <code><a href="../components/SearchInputComponent.html" target="_self" >SearchInputComponent</a></code>
+                                <code><a href="../components/FilterDropdownComponent.html" target="_self" >FilterDropdownComponent</a></code>
+                                <code><a href="../components/LoadingButtonComponent.html" target="_self" >LoadingButtonComponent</a></code>
+                                <code><a href="../components/DatePickerComponent.html" target="_self" >DatePickerComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./filters-bar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#icons" >icons</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#workshopOptions" >workshopOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#hasActiveFilters" >hasActiveFilters</a>
+                            </li>
+                            <li>
+                                <a href="#searchValue" >searchValue</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDate" >selectedDate</a>
+                            </li>
+                            <li>
+                                <a href="#serviceTypes" >serviceTypes</a>
+                            </li>
+                            <li>
+                                <a href="#serviceValue" >serviceValue</a>
+                            </li>
+                            <li>
+                                <a href="#workshops" >workshops</a>
+                            </li>
+                            <li>
+                                <a href="#workshopValue" >workshopValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearFilters" >clearFilters</a>
+                            </li>
+                            <li>
+                                <a href="#dateChange" >dateChange</a>
+                            </li>
+                            <li>
+                                <a href="#searchChange" >searchChange</a>
+                            </li>
+                            <li>
+                                <a href="#serviceChange" >serviceChange</a>
+                            </li>
+                            <li>
+                                <a href="#workshopChange" >workshopChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasActiveFilters"></a>
+                        <b>hasActiveFilters</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:58</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether any filter is active (to show/hide clear button)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchValue"></a>
+                        <b>searchValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current search value (for active border indicator)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedDate"></a>
+                        <b>selectedDate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Currently selected date (controlled by the container)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serviceTypes"></a>
+                        <b>serviceTypes</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>readonly { readonly value: string; readonly label: string }[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available service types for the dropdown</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serviceValue"></a>
+                        <b>serviceValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current service filter value (for active border indicator)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="workshops"></a>
+                        <b>workshops</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Workshop.html" target="_self" >readonly Workshop[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available workshops for the dropdown</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="workshopValue"></a>
+                        <b>workshopValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current workshop filter value (for active border indicator)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="clearFilters"></a>
+                        <b>clearFilters</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:77</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateChange"></a>
+                        <b>dateChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:76</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchChange"></a>
+                        <b>searchChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Filter change events</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serviceChange"></a>
+                        <b>serviceChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="workshopChange"></a>
+                        <b>workshopChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:74</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workshopOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>workshopOptions</b></span>
+                        <a href="#workshopOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>workshopOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Workshop options mapped for FilterDropdownComponent</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="icons"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>icons</b></span>
+                        <a href="#icons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    mapPin: MapPin,
+    wrench: Wrench,
+    x: X,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/presentation/features/appointments/components/filters-bar/filters-bar.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lucide icons</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { LucideAngularModule, MapPin, Wrench, X } from &#x27;lucide-angular&#x27;;
+
+import type { Workshop } from &#x27;../../../../../domain/models/workshop.model&#x27;;
+import { SearchInputComponent } from &#x27;../../../../shared/components/search-input/search-input.component&#x27;;
+import { FilterDropdownComponent } from &#x27;../../../../shared/components/filter-dropdown/filter-dropdown.component&#x27;;
+import { LoadingButtonComponent } from &#x27;../../../../shared/components/loading-button/loading-button.component&#x27;;
+import { DatePickerComponent } from &#x27;../../../../shared/components/date-picker/date-picker.component&#x27;;
+
+/**
+ * Presentational component for the appointments filter bar.
+ *
+ * Displays:
+ * - Search input (by name or email)
+ * - Workshop dropdown filter
+ * - Service type dropdown filter
+ * - Date filter
+ * - Clear filters button (danger variant)
+ *
+ * All filtering is client-side (RN-07). This component only emits
+ * filter change events — the container handles the logic.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;html
+ * &lt;app-filters-bar
+ *   [workshops]&#x3D;&quot;workshops()&quot;
+ *   [serviceTypes]&#x3D;&quot;serviceTypeOptions&quot;
+ *   (searchChange)&#x3D;&quot;onSearch($event)&quot;
+ *   (workshopChange)&#x3D;&quot;onWorkshopFilter($event)&quot;
+ *   (serviceChange)&#x3D;&quot;onServiceFilter($event)&quot;
+ *   (dateChange)&#x3D;&quot;onDateFilter($event)&quot;
+ *   (clearFilters)&#x3D;&quot;onClearFilters()&quot;
+ * /&gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Component({
+  selector: &#x27;app-filters-bar&#x27;,
+  imports: [
+    TranslatePipe,
+    LucideAngularModule,
+    SearchInputComponent,
+    FilterDropdownComponent,
+    LoadingButtonComponent,
+    DatePickerComponent,
+  ],
+  templateUrl: &#x27;./filters-bar.component.html&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FiltersBarComponent {
+  /** Available workshops for the dropdown */
+  readonly workshops &#x3D; input&lt;readonly Workshop[]&gt;([]);
+
+  /** Available service types for the dropdown */
+  readonly serviceTypes &#x3D; input&lt;readonly { readonly value: string; readonly label: string }[]&gt;([]);
+
+  /** Whether any filter is active (to show/hide clear button) */
+  readonly hasActiveFilters &#x3D; input&lt;boolean&gt;(false);
+
+  /** Currently selected date (controlled by the container) */
+  readonly selectedDate &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+  /** Current search value (for active border indicator) */
+  readonly searchValue &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+  /** Current workshop filter value (for active border indicator) */
+  readonly workshopValue &#x3D; input&lt;number | null&gt;(null);
+
+  /** Current service filter value (for active border indicator) */
+  readonly serviceValue &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+
+  /** Filter change events */
+  readonly searchChange &#x3D; output&lt;string&gt;();
+  readonly workshopChange &#x3D; output&lt;string&gt;();
+  readonly serviceChange &#x3D; output&lt;string&gt;();
+  readonly dateChange &#x3D; output&lt;string&gt;();
+  readonly clearFilters &#x3D; output();
+
+  /** Lucide icons */
+  protected readonly icons &#x3D; {
+    mapPin: MapPin,
+    wrench: Wrench,
+    x: X,
+  };
+
+  /** Workshop options mapped for FilterDropdownComponent */
+  protected workshopOptions(): readonly { readonly value: string; readonly label: string }[] {
+    return this.workshops().map((w) &#x3D;&gt; ({ value: w.id.toString(), label: w.name }));
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;flex flex-wrap items-center gap-3&quot;&gt;
+  &lt;!-- Search input --&gt;
+  &lt;div class&#x3D;&quot;w-full sm:w-64&quot;&gt;
+    &lt;app-search-input
+      [placeholder]&#x3D;&quot;&#x27;APPOINTMENTS.FILTERS.SEARCH&#x27; | translate&quot;
+      [value]&#x3D;&quot;searchValue()&quot;
+      [active]&#x3D;&quot;!!searchValue()&quot;
+      (searchChange)&#x3D;&quot;searchChange.emit($event)&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Workshop + Service filters (side by side on mobile, individual on sm+) --&gt;
+  &lt;div class&#x3D;&quot;grid w-full grid-cols-2 gap-3 sm:contents&quot;&gt;
+    &lt;div class&#x3D;&quot;sm:w-48&quot;&gt;
+      &lt;app-filter-dropdown
+        [icon]&#x3D;&quot;icons.mapPin&quot;
+        [label]&#x3D;&quot;&#x27;APPOINTMENTS.FILTERS.WORKSHOP&#x27; | translate&quot;
+        [options]&#x3D;&quot;workshopOptions()&quot;
+        [value]&#x3D;&quot;workshopValue() !&#x3D;&#x3D; null ? workshopValue()!.toString() : &#x27;&#x27;&quot;
+        [active]&#x3D;&quot;workshopValue() !&#x3D;&#x3D; null&quot;
+        (filterChange)&#x3D;&quot;workshopChange.emit($event)&quot;
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;sm:w-48&quot;&gt;
+      &lt;app-filter-dropdown
+        [icon]&#x3D;&quot;icons.wrench&quot;
+        [label]&#x3D;&quot;&#x27;APPOINTMENTS.FILTERS.SERVICE&#x27; | translate&quot;
+        [options]&#x3D;&quot;serviceTypes()&quot;
+        [value]&#x3D;&quot;serviceValue()&quot;
+        [active]&#x3D;&quot;!!serviceValue()&quot;
+        (filterChange)&#x3D;&quot;serviceChange.emit($event)&quot;
+      /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Date filter --&gt;
+  &lt;div class&#x3D;&quot;w-full sm:w-56&quot;&gt;
+    &lt;app-date-picker
+      [selectedDate]&#x3D;&quot;selectedDate()&quot;
+      [showLabel]&#x3D;&quot;false&quot;
+      [showClear]&#x3D;&quot;true&quot;
+      (dateSelected)&#x3D;&quot;dateChange.emit($event)&quot;
+      (dateCleared)&#x3D;&quot;dateChange.emit(&#x27;&#x27;)&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Clear filters button --&gt;
+  @if (hasActiveFilters()) {
+    &lt;app-loading-button
+      [label]&#x3D;&quot;&#x27;APPOINTMENTS.FILTERS.CLEAR&#x27; | translate&quot;
+      [icon]&#x3D;&quot;icons.x&quot;
+      variant&#x3D;&quot;danger&quot;
+      (buttonClick)&#x3D;&quot;clearFilters.emit()&quot;
+    /&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="flex flex-wrap items-center gap-3">  <!-- Search input -->  <div class="w-full sm:w-64">    <app-search-input      [placeholder]="\'APPOINTMENTS.FILTERS.SEARCH\' | translate"      [value]="searchValue()"      [active]="!!searchValue()"      (searchChange)="searchChange.emit($event)"    />  </div>  <!-- Workshop + Service filters (side by side on mobile, individual on sm+) -->  <div class="grid w-full grid-cols-2 gap-3 sm:contents">    <div class="sm:w-48">      <app-filter-dropdown        [icon]="icons.mapPin"        [label]="\'APPOINTMENTS.FILTERS.WORKSHOP\' | translate"        [options]="workshopOptions()"        [value]="workshopValue() !== null ? workshopValue()!.toString() : \'\'"        [active]="workshopValue() !== null"        (filterChange)="workshopChange.emit($event)"      />    </div>    <div class="sm:w-48">      <app-filter-dropdown        [icon]="icons.wrench"        [label]="\'APPOINTMENTS.FILTERS.SERVICE\' | translate"        [options]="serviceTypes()"        [value]="serviceValue()"        [active]="!!serviceValue()"        (filterChange)="serviceChange.emit($event)"      />    </div>  </div>  <!-- Date filter -->  <div class="w-full sm:w-56">    <app-date-picker      [selectedDate]="selectedDate()"      [showLabel]="false"      [showClear]="true"      (dateSelected)="dateChange.emit($event)"      (dateCleared)="dateChange.emit(\'\')"    />  </div>  <!-- Clear filters button -->  @if (hasActiveFilters()) {    <app-loading-button      [label]="\'APPOINTMENTS.FILTERS.CLEAR\' | translate"      [icon]="icons.x"      variant="danger"      (buttonClick)="clearFilters.emit()"    />  }</div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppointmentCardComponent', 'selector': 'app-appointment-card'},{'name': 'AppointmentErrorComponent', 'selector': 'app-appointment-error'},{'name': 'AppointmentsComponent', 'selector': 'app-appointments'},{'name': 'AppointmentSuccessComponent', 'selector': 'app-appointment-success'},{'name': 'ContactStepComponent', 'selector': 'app-contact-step'},{'name': 'DatePickerComponent', 'selector': 'app-date-picker'},{'name': 'ErrorDetailRowComponent', 'selector': 'app-error-detail-row'},{'name': 'ErrorIconComponent', 'selector': 'app-error-icon'},{'name': 'FilterDropdownComponent', 'selector': 'app-filter-dropdown'},{'name': 'FiltersBarComponent', 'selector': 'app-filters-bar'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoadingButtonComponent', 'selector': 'app-loading-button'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewAppointmentComponent', 'selector': 'app-new-appointment'},{'name': 'ProgressBarComponent', 'selector': 'app-progress-bar'},{'name': 'SearchInputComponent', 'selector': 'app-search-input'},{'name': 'ServiceStepComponent', 'selector': 'app-service-step'},{'name': 'StatCardComponent', 'selector': 'app-stat-card'},{'name': 'SuccessIconComponent', 'selector': 'app-success-icon'},{'name': 'SummaryRowComponent', 'selector': 'app-summary-row'},{'name': 'ThemeSelectorComponent', 'selector': 'app-theme-selector'},{'name': 'TimeSlotPickerComponent', 'selector': 'app-time-slot-picker'},{'name': 'VehicleStepComponent', 'selector': 'app-vehicle-step'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FiltersBarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FiltersBarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

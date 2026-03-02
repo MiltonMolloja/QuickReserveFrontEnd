@@ -69,22 +69,30 @@
       >
         {{ 'STEPPER.STEP3.YEAR' | translate }}
       </label>
-      <select
+      <input
         id="vehicle-year"
+        type="number"
         formControlName="year"
+        [min]="yearMin"
+        [max]="yearMax"
+        [placeholder]="'STEPPER.STEP3.YEAR' | translate"
+        (keydown.ArrowUp)="onYearSpin($event)"
+        (keydown.ArrowDown)="onYearSpin($event)"
         [class]="
-          'w-full appearance-none rounded-lg border bg-card-light px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark ' +
-          (formGroup().controls.year.value === null
-            ? 'text-text-tertiary dark:text-text-dark-muted'
-            : 'text-text-title dark:text-text-dark-title') +
-          ' border-border-light dark:border-border-dark'
+          'w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted ' +
+          (formGroup().controls.year.dirty && formGroup().controls.year.invalid
+            ? 'border-danger dark:border-danger'
+            : 'border-border-light dark:border-border-dark')
         "
-      >
-        <option [ngValue]="null">{{ 'STEPPER.STEP3.YEAR' | translate }}</option>
-        @for (year of yearOptions; track year) {
-          <option [ngValue]="year">{{ year }}</option>
-        }
-      </select>
+      />
+      @if (
+        formGroup().controls.year.dirty &&
+        (formGroup().controls.year.hasError('min') || formGroup().controls.year.hasError('max'))
+      ) {
+        <p class="mt-1 text-xs text-danger">
+          {{ 'VALIDATION.YEAR_INVALID' | translate: { max: yearMax } }}
+        </p>
+      }
     </div>
 
     <!-- License Plate -->

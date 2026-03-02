@@ -41,12 +41,18 @@ export class VehicleStepComponent {
   protected readonly yearMin = VEHICLE_YEAR_MIN;
   protected readonly yearMax = VEHICLE_YEAR_MAX;
 
-  /** Year options from max to min (descending: 2027, 2026, ..., 1960) */
-  protected readonly yearOptions: readonly number[] = Array.from(
-    { length: VEHICLE_YEAR_MAX - VEHICLE_YEAR_MIN + 1 },
-    (_, i) => VEHICLE_YEAR_MAX - i,
-  );
-
   /** Lucide icons */
   protected readonly carIcon = Car;
+
+  /**
+   * When the year input is empty and the user presses arrow up/down,
+   * start from the max year (2027) instead of the min (1960).
+   */
+  protected onYearSpin(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.value) {
+      this.formGroup().controls.year.setValue(this.yearMax);
+      event.preventDefault();
+    }
+  }
 }

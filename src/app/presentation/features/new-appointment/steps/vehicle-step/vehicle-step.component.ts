@@ -41,6 +41,12 @@ export class VehicleStepComponent {
   protected readonly yearMin = VEHICLE_YEAR_MIN;
   protected readonly yearMax = VEHICLE_YEAR_MAX;
 
+  /** Year options from max to min (descending: 2027, 2026, ..., 1960) */
+  protected readonly yearOptions: readonly number[] = Array.from(
+    { length: VEHICLE_YEAR_MAX - VEHICLE_YEAR_MIN + 1 },
+    (_, i) => VEHICLE_YEAR_MAX - i,
+  );
+
   /** Lucide icons */
   protected readonly carIcon = Car;
 }

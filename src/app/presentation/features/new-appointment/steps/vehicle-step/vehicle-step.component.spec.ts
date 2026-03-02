@@ -66,10 +66,20 @@ describe('VehicleStepComponent', () => {
     expect(input.type).toBe('text');
   });
 
-  it('should render year input', () => {
-    const input = fixture.nativeElement.querySelector('#vehicle-year');
-    expect(input).toBeTruthy();
-    expect(input.type).toBe('number');
+  it('should render year select dropdown', () => {
+    const select = fixture.nativeElement.querySelector('#vehicle-year');
+    expect(select).toBeTruthy();
+    expect(select.tagName).toBe('SELECT');
+  });
+
+  it('should render year options from max to min (descending)', () => {
+    const options = fixture.nativeElement.querySelectorAll('#vehicle-year option');
+    // First option is placeholder, then years from max to min
+    expect(options.length).toBe(VEHICLE_YEAR_MAX - VEHICLE_YEAR_MIN + 2); // +1 for range, +1 for placeholder
+    // Second option should be the max year
+    expect(options[1].textContent.trim()).toBe(String(VEHICLE_YEAR_MAX));
+    // Last option should be the min year
+    expect(options[options.length - 1].textContent.trim()).toBe(String(VEHICLE_YEAR_MIN));
   });
 
   it('should render license plate input', () => {
@@ -113,16 +123,6 @@ describe('VehicleStepComponent', () => {
     form.controls['year'].setValue(VEHICLE_YEAR_MAX + 1);
     expect(form.controls['year'].invalid).toBe(true);
     expect(form.controls['year'].hasError('max')).toBe(true);
-  });
-
-  it('should show year error message when invalid', () => {
-    const form = component.formGroup();
-    form.controls['year'].setValue(1900);
-    form.controls['year'].markAsDirty();
-    fixture.detectChanges();
-
-    const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
-    expect(errors.length).toBeGreaterThan(0);
   });
 
   it('should accept year at boundaries (1960 and max)', () => {

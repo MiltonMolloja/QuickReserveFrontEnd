@@ -906,7 +906,7 @@
                         {
                           "type": "frame",
                           "id": "V39jl",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -914,17 +914,17 @@
                             {
                               "type": "icon_font",
                               "id": "7yUw6",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "dhhY4",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 1234-5678",
                               "fontFamily": "Inter",
@@ -1177,7 +1177,7 @@
                         {
                           "type": "frame",
                           "id": "CNKqQ",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1185,17 +1185,17 @@
                             {
                               "type": "icon_font",
                               "id": "7DoaI",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "dFhLR",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 9876-5432",
                               "fontFamily": "Inter",
@@ -1448,7 +1448,7 @@
                         {
                           "type": "frame",
                           "id": "7cgJc",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1456,17 +1456,17 @@
                             {
                               "type": "icon_font",
                               "id": "xjJqz",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "hTOfw",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 5555-1234",
                               "fontFamily": "Inter",
@@ -1728,7 +1728,7 @@
                         {
                           "type": "frame",
                           "id": "iLB7S",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -1736,17 +1736,17 @@
                             {
                               "type": "icon_font",
                               "id": "W9j9s",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "f8Phd",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 4444-3333",
                               "fontFamily": "Inter",
@@ -1999,7 +1999,7 @@
                         {
                           "type": "frame",
                           "id": "4fg3w",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -2007,17 +2007,17 @@
                             {
                               "type": "icon_font",
                               "id": "Xx3ag",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "NGoH4",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 2222-1111",
                               "fontFamily": "Inter",
@@ -2270,7 +2270,7 @@
                         {
                           "type": "frame",
                           "id": "yyYDb",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -2278,17 +2278,17 @@
                             {
                               "type": "icon_font",
                               "id": "A5pRT",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "s4d8B",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#6b7280",
                               "content": "+54 11 7777-8888",
                               "fontFamily": "Inter",
@@ -4574,7 +4574,7 @@
                         {
                           "type": "frame",
                           "id": "G92JY",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -4582,17 +4582,17 @@
                             {
                               "type": "icon_font",
                               "id": "kPECG",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "RTKD9",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 1234-5678",
                               "fontFamily": "Inter",
@@ -4845,7 +4845,7 @@
                         {
                           "type": "frame",
                           "id": "aFGye",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -4853,17 +4853,17 @@
                             {
                               "type": "icon_font",
                               "id": "JKrfT",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "ptAwl",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 9876-5432",
                               "fontFamily": "Inter",
@@ -5116,7 +5116,7 @@
                         {
                           "type": "frame",
                           "id": "Sxt6N",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5124,17 +5124,17 @@
                             {
                               "type": "icon_font",
                               "id": "ijI5H",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "TXAkP",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 5555-1234",
                               "fontFamily": "Inter",
@@ -5396,7 +5396,7 @@
                         {
                           "type": "frame",
                           "id": "ZI73z",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5404,17 +5404,17 @@
                             {
                               "type": "icon_font",
                               "id": "v2Dg3",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "bxv41",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 4444-3333",
                               "fontFamily": "Inter",
@@ -5667,7 +5667,7 @@
                         {
                           "type": "frame",
                           "id": "uo925",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5675,17 +5675,17 @@
                             {
                               "type": "icon_font",
                               "id": "DM2Ab",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "tBVeB",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 2222-1111",
                               "fontFamily": "Inter",
@@ -5938,7 +5938,7 @@
                         {
                           "type": "frame",
                           "id": "jntaG",
-                          "name": "c1whatsappRow",
+                          "name": "c1phoneRow",
                           "width": "fill_container",
                           "gap": 8,
                           "alignItems": "center",
@@ -5946,17 +5946,17 @@
                             {
                               "type": "icon_font",
                               "id": "RiZxs",
-                              "name": "c1whatsappIcon",
+                              "name": "c1phoneIcon",
                               "width": 14,
                               "height": 14,
-                              "iconFontName": "whatsapp",
+                              "iconFontName": "phone",
                               "iconFontFamily": "lucide",
                               "fill": "#9ca3af"
                             },
                             {
                               "type": "text",
                               "id": "V7AhV",
-                              "name": "c1whatsappText",
+                              "name": "c1phoneText",
                               "fill": "#94a3b8",
                               "content": "+54 11 7777-8888",
                               "fontFamily": "Inter",
@@ -7706,7 +7706,7 @@
                     {
                       "type": "text",
                       "id": "A6qJ7",
-                      "name": "whatsappLabel",
+                      "name": "phoneLabel",
                       "fill": "#374151",
                       "content": "Teléfono *",
                       "fontFamily": "Inter",
@@ -7716,7 +7716,7 @@
                     {
                       "type": "frame",
                       "id": "qoZLf",
-                      "name": "whatsappInput",
+                      "name": "phoneInput",
                       "width": "fill_container",
                       "fill": "#ffffff",
                       "cornerRadius": 8,
@@ -7733,7 +7733,7 @@
                         {
                           "type": "text",
                           "id": "xDbCY",
-                          "name": "whatsappText",
+                          "name": "phoneText",
                           "fill": "#1a1a2e",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -8802,7 +8802,7 @@
                     {
                       "type": "text",
                       "id": "Rbr4g",
-                      "name": "whatsappLabel",
+                      "name": "phoneLabel",
                       "fill": "#cbd5e1",
                       "content": "Teléfono *",
                       "fontFamily": "Inter",
@@ -8812,7 +8812,7 @@
                     {
                       "type": "frame",
                       "id": "2FRsk",
-                      "name": "whatsappInput",
+                      "name": "phoneInput",
                       "width": "fill_container",
                       "fill": "#1a1d2e",
                       "cornerRadius": 8,
@@ -8829,7 +8829,7 @@
                         {
                           "type": "text",
                           "id": "t5zKg",
-                          "name": "whatsappText",
+                          "name": "phoneText",
                           "fill": "#f1f5f9",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -11500,7 +11500,7 @@
                     {
                       "type": "frame",
                       "id": "7B79M",
-                      "name": "c1whatsappRow",
+                      "name": "c1phoneRow",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -11508,17 +11508,17 @@
                         {
                           "type": "icon_font",
                           "id": "QMAVc",
-                          "name": "c1whatsappIcon",
+                          "name": "c1phoneIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "whatsapp",
+                          "iconFontName": "phone",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "UiT31",
-                          "name": "c1whatsappText",
+                          "name": "c1phoneText",
                           "fill": "#6b7280",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -11742,7 +11742,7 @@
                     {
                       "type": "frame",
                       "id": "MHdGT",
-                      "name": "c2whatsapp",
+                      "name": "c2phone",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -11750,17 +11750,17 @@
                         {
                           "type": "icon_font",
                           "id": "Iq3I4",
-                          "name": "c2whatsappIcon",
+                          "name": "c2phoneIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "whatsapp",
+                          "iconFontName": "phone",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "hnN6e",
-                          "name": "c2whatsappText",
+                          "name": "c2phoneText",
                           "fill": "#6b7280",
                           "content": "+54 11 9876-5432",
                           "fontFamily": "Inter",
@@ -12662,7 +12662,7 @@
                     {
                       "type": "frame",
                       "id": "AKg6e",
-                      "name": "c1whatsappRow",
+                      "name": "c1phoneRow",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -12670,17 +12670,17 @@
                         {
                           "type": "icon_font",
                           "id": "8Ruki",
-                          "name": "c1whatsappIcon",
+                          "name": "c1phoneIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "whatsapp",
+                          "iconFontName": "phone",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "BnUHi",
-                          "name": "c1whatsappText",
+                          "name": "c1phoneText",
                           "fill": "#94a3b8",
                           "content": "+54 11 1234-5678",
                           "fontFamily": "Inter",
@@ -12904,7 +12904,7 @@
                     {
                       "type": "frame",
                       "id": "BbYPn",
-                      "name": "c2whatsapp",
+                      "name": "c2phone",
                       "width": "fill_container",
                       "gap": 6,
                       "alignItems": "center",
@@ -12912,17 +12912,17 @@
                         {
                           "type": "icon_font",
                           "id": "9Aood",
-                          "name": "c2whatsappIcon",
+                          "name": "c2phoneIcon",
                           "width": 13,
                           "height": 13,
-                          "iconFontName": "whatsapp",
+                          "iconFontName": "phone",
                           "iconFontFamily": "lucide",
                           "fill": "#9ca3af"
                         },
                         {
                           "type": "text",
                           "id": "0oWOY",
-                          "name": "c2whatsappText",
+                          "name": "c2phoneText",
                           "fill": "#94a3b8",
                           "content": "+54 11 9876-5432",
                           "fontFamily": "Inter",
@@ -14104,14 +14104,14 @@
                 },
                 {
                   "type": "frame",
-                  "id": "Mncf0",
+                  "id": "ULKTg",
                   "name": "Weekday Headers",
                   "width": "fill_container",
                   "justifyContent": "space_between",
                   "children": [
                     {
                       "type": "text",
-                      "id": "RKQwF",
+                      "id": "aICkg",
                       "name": "wLu",
                       "fill": "#9ca3af",
                       "content": "Lu",
@@ -14122,7 +14122,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "FpFkL",
+                      "id": "rCwGn",
                       "name": "wMa",
                       "fill": "#9ca3af",
                       "content": "Ma",
@@ -14133,7 +14133,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "Itd14",
+                      "id": "UTtuq",
                       "name": "wMi",
                       "fill": "#9ca3af",
                       "content": "Mi",
@@ -14144,7 +14144,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "0CwPf",
+                      "id": "iWDKz",
                       "name": "wJu",
                       "fill": "#9ca3af",
                       "content": "Ju",
@@ -14155,32 +14155,10 @@
                     },
                     {
                       "type": "text",
-                      "id": "MpwMp",
+                      "id": "YNP1h",
                       "name": "wVi",
                       "fill": "#9ca3af",
                       "content": "Vi",
-                      "textAlign": "center",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "NJMPL",
-                      "name": "wSa",
-                      "fill": "#9ca3af",
-                      "content": "Sá",
-                      "textAlign": "center",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "Ymdw0",
-                      "name": "wDo",
-                      "fill": "#9ca3af",
-                      "content": "Do",
                       "textAlign": "center",
                       "fontFamily": "Inter",
                       "fontSize": 12,
@@ -14198,146 +14176,14 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "dvtXy",
+                      "id": "1TH1P",
                       "name": "Week 1",
                       "width": "fill_container",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "oyvw7",
-                          "name": "d23",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "2SuAL",
-                              "name": "t23",
-                              "fill": "#cbd5e1",
-                              "content": "23",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "Rs8Mm",
-                          "name": "d24",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "EVGcg",
-                              "name": "t24",
-                              "fill": "#cbd5e1",
-                              "content": "24",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "8gHML",
-                          "name": "d25",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "VxzFi",
-                              "name": "t25",
-                              "fill": "#cbd5e1",
-                              "content": "25",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "VKGIw",
-                          "name": "d26",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "HOZO5",
-                              "name": "t26",
-                              "fill": "#cbd5e1",
-                              "content": "26",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "x6eh9",
-                          "name": "d27",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "j3iWH",
-                              "name": "t27",
-                              "fill": "#cbd5e1",
-                              "content": "27",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "JShz0",
-                          "name": "d28",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "2r8bX",
-                              "name": "t28",
-                              "fill": "#cbd5e1",
-                              "content": "28",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "Cbfx4",
-                          "name": "d1",
+                          "id": "MNl6R",
+                          "name": "d2",
                           "width": "fill_container",
                           "height": 36,
                           "fill": "#4f46e5",
@@ -14347,49 +14193,19 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "gPAna",
-                              "name": "t1",
+                              "id": "wAIRZ",
+                              "name": "t2",
                               "fill": "#ffffff",
-                              "content": "1",
+                              "content": "2",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "600"
                             }
                           ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "DgOru",
-                      "name": "Week 2",
-                      "width": "fill_container",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "WKbBy",
-                          "name": "d2",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "zPYrA",
-                              "name": "t2",
-                              "fill": "#374151",
-                              "content": "2",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
                         },
                         {
                           "type": "frame",
-                          "id": "csg85",
+                          "id": "PktpV",
                           "name": "d3",
                           "width": "fill_container",
                           "height": 36,
@@ -14399,7 +14215,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "LLMpa",
+                              "id": "IaVIg",
                               "name": "t3",
                               "fill": "#374151",
                               "content": "3",
@@ -14411,7 +14227,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "0HlX5",
+                          "id": "NOUcx",
                           "name": "d4",
                           "width": "fill_container",
                           "height": 36,
@@ -14421,7 +14237,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "dGISZ",
+                              "id": "kX1Ct",
                               "name": "t4",
                               "fill": "#374151",
                               "content": "4",
@@ -14433,7 +14249,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "h2sSc",
+                          "id": "f5HPh",
                           "name": "d5",
                           "width": "fill_container",
                           "height": 36,
@@ -14443,7 +14259,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "08S6L",
+                              "id": "Ov8Dp",
                               "name": "t5",
                               "fill": "#374151",
                               "content": "5",
@@ -14455,7 +14271,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "znAC5",
+                          "id": "E1GhD",
                           "name": "d6",
                           "width": "fill_container",
                           "height": 36,
@@ -14465,54 +14281,10 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "zrwq0",
+                              "id": "KHsXV",
                               "name": "t6",
                               "fill": "#374151",
                               "content": "6",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "NS9xv",
-                          "name": "d7",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "7iE16",
-                              "name": "t7",
-                              "fill": "#374151",
-                              "content": "7",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "EoThd",
-                          "name": "d8",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "niOpK",
-                              "name": "t8",
-                              "fill": "#374151",
-                              "content": "8",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -14523,13 +14295,13 @@
                     },
                     {
                       "type": "frame",
-                      "id": "DBUsg",
-                      "name": "Week 3",
+                      "id": "mUcis",
+                      "name": "Week 2",
                       "width": "fill_container",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "Ox9DR",
+                          "id": "FZuPs",
                           "name": "d9",
                           "width": "fill_container",
                           "height": 36,
@@ -14539,7 +14311,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "uJSJK",
+                              "id": "AHFRF",
                               "name": "t9",
                               "fill": "#374151",
                               "content": "9",
@@ -14551,7 +14323,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "THFGL",
+                          "id": "Ijx74",
                           "name": "d10",
                           "width": "fill_container",
                           "height": 36,
@@ -14561,7 +14333,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "0ltyA",
+                              "id": "cE7Md",
                               "name": "t10",
                               "fill": "#374151",
                               "content": "10",
@@ -14573,7 +14345,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "tYc53",
+                          "id": "5kcRq",
                           "name": "d11",
                           "width": "fill_container",
                           "height": 36,
@@ -14583,7 +14355,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "9MrrL",
+                              "id": "HKsxg",
                               "name": "t11",
                               "fill": "#374151",
                               "content": "11",
@@ -14595,7 +14367,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "8Zc3c",
+                          "id": "5MBzH",
                           "name": "d12",
                           "width": "fill_container",
                           "height": 36,
@@ -14605,7 +14377,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "0klPy",
+                              "id": "gZ7WM",
                               "name": "t12",
                               "fill": "#374151",
                               "content": "12",
@@ -14617,7 +14389,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "OUqzk",
+                          "id": "O3LTh",
                           "name": "d13",
                           "width": "fill_container",
                           "height": 36,
@@ -14627,54 +14399,10 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "YJN4b",
+                              "id": "8sfXO",
                               "name": "t13",
                               "fill": "#374151",
                               "content": "13",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "9p5xG",
-                          "name": "d14",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "uoFgE",
-                              "name": "t14",
-                              "fill": "#374151",
-                              "content": "14",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "48Oho",
-                          "name": "d15",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "bJnZK",
-                              "name": "t15",
-                              "fill": "#374151",
-                              "content": "15",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -14685,13 +14413,13 @@
                     },
                     {
                       "type": "frame",
-                      "id": "kqFRj",
-                      "name": "Week 4",
+                      "id": "0aXIG",
+                      "name": "Week 3",
                       "width": "fill_container",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "WluAT",
+                          "id": "4rj3k",
                           "name": "d16",
                           "width": "fill_container",
                           "height": 36,
@@ -14701,7 +14429,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "UEvJf",
+                              "id": "I77hA",
                               "name": "t16",
                               "fill": "#374151",
                               "content": "16",
@@ -14713,7 +14441,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "goSE1",
+                          "id": "aPTaQ",
                           "name": "d17",
                           "width": "fill_container",
                           "height": 36,
@@ -14723,7 +14451,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "nk48A",
+                              "id": "ADHga",
                               "name": "t17",
                               "fill": "#374151",
                               "content": "17",
@@ -14735,7 +14463,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "YPIIq",
+                          "id": "54Zi7",
                           "name": "d18",
                           "width": "fill_container",
                           "height": 36,
@@ -14745,7 +14473,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "pnIp0",
+                              "id": "FS1qS",
                               "name": "t18",
                               "fill": "#374151",
                               "content": "18",
@@ -14757,7 +14485,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "4MnzB",
+                          "id": "vhjCp",
                           "name": "d19",
                           "width": "fill_container",
                           "height": 36,
@@ -14767,7 +14495,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "GHf9e",
+                              "id": "A3Gzk",
                               "name": "t19",
                               "fill": "#374151",
                               "content": "19",
@@ -14779,7 +14507,7 @@
                         },
                         {
                           "type": "frame",
-                          "id": "ClGQh",
+                          "id": "kYBZH",
                           "name": "d20",
                           "width": "fill_container",
                           "height": 36,
@@ -14789,378 +14517,10 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "w2iWI",
+                              "id": "2jpAR",
                               "name": "t20",
                               "fill": "#374151",
                               "content": "20",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "IB4i2",
-                          "name": "d21",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "FUsyU",
-                              "name": "t21",
-                              "fill": "#374151",
-                              "content": "21",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "y7z1P",
-                          "name": "d22",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "JIxrK",
-                              "name": "t22",
-                              "fill": "#374151",
-                              "content": "22",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "PvPf0",
-                      "name": "Week 5",
-                      "width": "fill_container",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "EnUhl",
-                          "name": "d23",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "xYnMZ",
-                              "name": "t23",
-                              "fill": "#374151",
-                              "content": "23",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "BNFJf",
-                          "name": "d24",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "A3h7R",
-                              "name": "t24",
-                              "fill": "#374151",
-                              "content": "24",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "VOOrO",
-                          "name": "d25",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "gSw07",
-                              "name": "t25",
-                              "fill": "#374151",
-                              "content": "25",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "B8M5e",
-                          "name": "d26",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "lJoN4",
-                              "name": "t26",
-                              "fill": "#374151",
-                              "content": "26",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "PjUMu",
-                          "name": "d27",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "jP1Bn",
-                              "name": "t27",
-                              "fill": "#374151",
-                              "content": "27",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "oJdVj",
-                          "name": "d28",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "Tecy1",
-                              "name": "t28",
-                              "fill": "#374151",
-                              "content": "28",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ObbQT",
-                          "name": "d29",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "GJYcu",
-                              "name": "t29",
-                              "fill": "#374151",
-                              "content": "29",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "J3j9Q",
-                      "name": "Week 6",
-                      "width": "fill_container",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "RIKfe",
-                          "name": "d30",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "liC5z",
-                              "name": "t30",
-                              "fill": "#374151",
-                              "content": "30",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "JgvVV",
-                          "name": "d31",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "c4TVv",
-                              "name": "t31",
-                              "fill": "#374151",
-                              "content": "31",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "4db8O",
-                          "name": "d1apr",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "QjjO1",
-                              "name": "t1apr",
-                              "fill": "#cbd5e1",
-                              "content": "1",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "M8Zaw",
-                          "name": "d2apr",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "qrUgs",
-                              "name": "t2apr",
-                              "fill": "#cbd5e1",
-                              "content": "2",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "3kuWm",
-                          "name": "d3apr",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "l3L7k",
-                              "name": "t3apr",
-                              "fill": "#cbd5e1",
-                              "content": "3",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "cFUcJ",
-                          "name": "d4apr",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "zMnKG",
-                              "name": "t4apr",
-                              "fill": "#cbd5e1",
-                              "content": "4",
-                              "fontFamily": "Inter",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "O4ZHA",
-                          "name": "d5apr",
-                          "width": "fill_container",
-                          "height": 36,
-                          "cornerRadius": 8,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "brdhB",
-                              "name": "t5apr",
-                              "fill": "#cbd5e1",
-                              "content": "5",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "normal"

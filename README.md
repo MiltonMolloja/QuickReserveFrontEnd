@@ -14,53 +14,53 @@ Angular 20 application for booking workshop appointments. Built with **Clean Arc
 ### Light Theme
 
 <p align="center">
-  <img width="720" alt="Appointments List - Light" src="https://github.com/user-attachments/assets/3ee51fa5-d17a-443d-a6df-3a7e41e6aa6e" />
+  <img width="480" alt="Appointments List - Light" src="https://github.com/user-attachments/assets/3ee51fa5-d17a-443d-a6df-3a7e41e6aa6e" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 1 - Light" src="https://github.com/user-attachments/assets/acf9bf48-10b2-403d-a932-ae779c0dcc9a" />
+  <img width="480" alt="New Appointment Step 1 - Light" src="https://github.com/user-attachments/assets/acf9bf48-10b2-403d-a932-ae779c0dcc9a" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 2 - Light" src="https://github.com/user-attachments/assets/04216c38-47fb-4cfc-9417-4cf2c4c9b253" />
+  <img width="480" alt="New Appointment Step 2 - Light" src="https://github.com/user-attachments/assets/04216c38-47fb-4cfc-9417-4cf2c4c9b253" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 3 - Light" src="https://github.com/user-attachments/assets/45c9c886-074c-4e53-a4f7-4801c4651047" />
+  <img width="480" alt="New Appointment Step 3 - Light" src="https://github.com/user-attachments/assets/45c9c886-074c-4e53-a4f7-4801c4651047" />
 </p>
 
 <p align="center">
-  <img width="720" alt="Appointment Success - Light" src="https://github.com/user-attachments/assets/2277db40-d5e5-408b-904c-e1fb6fbe7a62" />
+  <img width="480" alt="Appointment Success - Light" src="https://github.com/user-attachments/assets/2277db40-d5e5-408b-904c-e1fb6fbe7a62" />
 </p>
 
 <p align="center">
-  <img width="720" alt="Appointment Error - Light" src="https://github.com/user-attachments/assets/e30c82b9-5850-43d7-92b7-7e0b2159ebcf" />
+  <img width="480" alt="Appointment Error - Light" src="https://github.com/user-attachments/assets/e30c82b9-5850-43d7-92b7-7e0b2159ebcf" />
 </p>
 
 ### Dark Theme
 
 <p align="center">
-  <img width="720" alt="Appointments List - Dark" src="https://github.com/user-attachments/assets/7b44a68e-5b3e-40d5-a8ce-72a0a1429a0e" />
+  <img width="480" alt="Appointments List - Dark" src="https://github.com/user-attachments/assets/7b44a68e-5b3e-40d5-a8ce-72a0a1429a0e" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 1 - Dark" src="https://github.com/user-attachments/assets/f6819c21-55fc-4b23-bb1c-52b5e7ac84a6" />
+  <img width="480" alt="New Appointment Step 1 - Dark" src="https://github.com/user-attachments/assets/f6819c21-55fc-4b23-bb1c-52b5e7ac84a6" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 2 - Dark" src="https://github.com/user-attachments/assets/45be09cf-139c-41b2-b08c-7b0e561a64c7" />
+  <img width="480" alt="New Appointment Step 2 - Dark" src="https://github.com/user-attachments/assets/45be09cf-139c-41b2-b08c-7b0e561a64c7" />
 </p>
 
 <p align="center">
-  <img width="720" alt="New Appointment Step 3 - Dark" src="https://github.com/user-attachments/assets/9649c3f5-9760-4a16-b2ce-d8d21a6da546" />
+  <img width="480" alt="New Appointment Step 3 - Dark" src="https://github.com/user-attachments/assets/9649c3f5-9760-4a16-b2ce-d8d21a6da546" />
 </p>
 
 <p align="center">
-  <img width="720" alt="Appointment Success - Dark" src="https://github.com/user-attachments/assets/7ae63b15-a011-4f6c-920e-aba73112d22d" />
+  <img width="480" alt="Appointment Success - Dark" src="https://github.com/user-attachments/assets/7ae63b15-a011-4f6c-920e-aba73112d22d" />
 </p>
 
 <p align="center">
-  <img width="720" alt="Appointment Error - Dark" src="https://github.com/user-attachments/assets/d731e862-afcf-4f86-9bb0-034536e700f0" />
+  <img width="480" alt="Appointment Error - Dark" src="https://github.com/user-attachments/assets/d731e862-afcf-4f86-9bb0-034536e700f0" />
 </p>
 
 > **More designs** (mobile, components, date/time pickers): [Design Issue #1](https://github.com/MiltonMolloja/QuickReserveFrontEnd/issues/1)

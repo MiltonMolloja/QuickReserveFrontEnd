@@ -4,6 +4,9 @@ Angular 20 application for booking workshop appointments. Built with **Clean Arc
 
 > Technical challenge for **Tecnom** - Consumes a .NET backend API.
 
+> **Important**: The full project analysis document — covering architecture decisions, phase-by-phase implementation plan, UI/UX specifications, and technical constraints — is available here:
+> **[QuickReserve Frontend Analysis](https://github.com/MiltonMolloja/QuickReserveFrontEnd/blob/master/docsDise%C3%B1o/QuickReserve-Frontend-Analisis.md)**
+
 ---
 
 ## Design Preview

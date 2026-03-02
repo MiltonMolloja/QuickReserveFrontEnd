@@ -12,7 +12,7 @@
     "STATS": {
       "TOTAL": "Total de Turnos",
       "TODAY": "Turnos Hoy",
-      "OCCUPANCY": "Ocupación Talleres"
+      "OCCUPANCY": "Ocupación Talleres Hoy"
     },
     "FILTERS": {
       "SEARCH": "Buscar por nombre o email...",

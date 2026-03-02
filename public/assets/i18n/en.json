@@ -12,7 +12,7 @@
     "STATS": {
       "TOTAL": "Total Appointments",
       "TODAY": "Today's Appointments",
-      "OCCUPANCY": "Workshop Occupancy"
+      "OCCUPANCY": "Today's Workshop Occupancy"
     },
     "FILTERS": {
       "SEARCH": "Search by name or email...",

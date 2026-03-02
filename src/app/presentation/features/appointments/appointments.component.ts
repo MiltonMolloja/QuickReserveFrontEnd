@@ -9,6 +9,7 @@ import { GetAppointmentsUseCase } from '../../../application/use-cases/get-appoi
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
 import { FilterAppointmentsUseCase } from '../../../application/use-cases/filter-appointments.use-case';
 import { SERVICE_TYPE_OPTIONS } from '../../../domain/enums/service-type.enum';
+import { MAX_DAILY_APPOINTMENTS_PER_WORKSHOP } from '../../../domain/models/workshop.model';
 
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { LanguageSelectorComponent } from '../../shared/components/language-selector/language-selector.component';
@@ -77,16 +78,37 @@ export class AppointmentsComponent implements OnInit {
     return map;
   });
 
-  /** Occupancy: unique workshops with appointments / total workshops */
+  /**
+   * Today's workshop occupancy: average of (today's appointments / max capacity)
+   * across all workshops. Each workshop can handle MAX_DAILY_APPOINTMENTS_PER_WORKSHOP per day.
+   */
   protected readonly occupancy = computed(() => {
     const workshops = this.workshopsState.workshops();
     if (workshops.length === 0) {
       return '0%';
     }
+    const today = new Date().toDateString();
     const appointments = this.appointmentsState.appointments();
-    const uniqueWorkshopIds = new Set(appointments.map((a) => a.placeId));
-    const percentage = Math.round((uniqueWorkshopIds.size / workshops.length) * 100);
-    return `${percentage.toString()}%`;
+    const todayAppointments = appointments.filter(
+      (a) => new Date(a.appointmentAt).toDateString() === today,
+    );
+
+    const countByWorkshop = new Map<number, number>();
+    for (const ws of workshops) {
+      countByWorkshop.set(ws.id, 0);
+    }
+    for (const appt of todayAppointments) {
+      const current = countByWorkshop.get(appt.placeId) ?? 0;
+      countByWorkshop.set(appt.placeId, current + 1);
+    }
+
+    let totalOccupancy = 0;
+    for (const count of countByWorkshop.values()) {
+      totalOccupancy += Math.min(count / MAX_DAILY_APPOINTMENTS_PER_WORKSHOP, 1);
+    }
+
+    const percentage = Math.round((totalOccupancy / workshops.length) * 100);
+    return `${String(percentage)}%`;
   });
 
   /** Whether any filter is currently active */

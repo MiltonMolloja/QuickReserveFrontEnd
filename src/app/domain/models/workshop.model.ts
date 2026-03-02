@@ -20,3 +20,6 @@ export interface Workshop {
   readonly email: string;
   readonly whatsapp: string;
 }
+
+/** Maximum number of appointments a workshop can handle per day */
+export const MAX_DAILY_APPOINTMENTS_PER_WORKSHOP = 9;

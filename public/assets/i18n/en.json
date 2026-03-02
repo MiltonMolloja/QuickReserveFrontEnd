@@ -122,6 +122,8 @@
     "REQUIRED": "This field is required",
     "EMAIL_INVALID": "Invalid email format",
     "PHONE_INVALID": "Invalid format (e.g. +54 11 1234-5678)",
+    "YEAR_INVALID": "Invalid year (must be between 1960 and {{max}})",
+    "PLATE_INVALID": "Invalid plate format (e.g. ABC 123 or AB 123 CD)",
     "DATE_PAST": "Date must be in the future"
   }
 }

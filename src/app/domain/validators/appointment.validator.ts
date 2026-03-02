@@ -8,6 +8,19 @@ export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const PHONE_REGEX = /^\+?[\d\s-]{6,}$/;
 
 /**
+ * Regex for Argentine license plates (case-insensitive, spaces optional):
+ * - Old format: ABC 123 or ABC123 (3 letters + 3 digits)
+ * - Mercosur format: AB 123 CD or AB123CD (2 letters + 3 digits + 2 letters)
+ */
+export const LICENSE_PLATE_REGEX = /^([A-Za-z]{3}\s?\d{3}|[A-Za-z]{2}\s?\d{3}\s?[A-Za-z]{2})$/;
+
+/** Minimum valid vehicle year */
+export const VEHICLE_YEAR_MIN = 1960;
+
+/** Maximum valid vehicle year (current year + 1 for next-year models) */
+export const VEHICLE_YEAR_MAX = new Date().getFullYear() + 1;
+
+/**
  * Validates a CreateAppointmentDto and returns an array of validation errors.
  * This is a pure function with no Angular dependencies — core domain logic.
  *

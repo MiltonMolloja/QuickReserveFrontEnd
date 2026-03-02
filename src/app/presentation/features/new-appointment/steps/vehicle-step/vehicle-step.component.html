@@ -73,9 +73,24 @@
         id="vehicle-year"
         type="number"
         formControlName="year"
+        [min]="yearMin"
+        [max]="yearMax"
         [placeholder]="'STEPPER.STEP3.YEAR' | translate"
-        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+        [class]="
+          'w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted ' +
+          (formGroup().controls.year.dirty && formGroup().controls.year.invalid
+            ? 'border-danger dark:border-danger'
+            : 'border-border-light dark:border-border-dark')
+        "
       />
+      @if (
+        formGroup().controls.year.dirty &&
+        (formGroup().controls.year.hasError('min') || formGroup().controls.year.hasError('max'))
+      ) {
+        <p class="mt-1 text-xs text-danger">
+          {{ 'VALIDATION.YEAR_INVALID' | translate: { max: yearMax } }}
+        </p>
+      }
     </div>
 
     <!-- License Plate -->
@@ -90,9 +105,20 @@
         id="vehicle-plate"
         type="text"
         formControlName="license_plate"
-        [placeholder]="'STEPPER.STEP3.LICENSE_PLATE' | translate"
-        class="w-full rounded-lg border border-border-light bg-card-light px-4 py-2.5 text-sm text-text-title placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-border-dark dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted"
+        placeholder="ABC 123 / AB 123 CD"
+        [class]="
+          'w-full rounded-lg border bg-card-light px-4 py-2.5 text-sm uppercase text-text-title placeholder:normal-case placeholder:text-text-tertiary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:bg-card-dark dark:text-text-dark-title dark:placeholder:text-text-dark-muted ' +
+          (formGroup().controls.license_plate.dirty && formGroup().controls.license_plate.invalid
+            ? 'border-danger dark:border-danger'
+            : 'border-border-light dark:border-border-dark')
+        "
       />
+      @if (
+        formGroup().controls.license_plate.dirty &&
+        formGroup().controls.license_plate.hasError('pattern')
+      ) {
+        <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.PLATE_INVALID' | translate }}</p>
+      }
     </div>
   </div>
 </div>

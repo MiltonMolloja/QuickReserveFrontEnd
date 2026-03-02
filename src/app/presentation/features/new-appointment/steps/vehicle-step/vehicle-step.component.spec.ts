@@ -1,16 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
+import {
+  LICENSE_PLATE_REGEX,
+  VEHICLE_YEAR_MAX,
+  VEHICLE_YEAR_MIN,
+} from '../../../../../domain/validators/appointment.validator';
 import { VehicleStepComponent } from './vehicle-step.component';
 
 function createVehicleForm(): FormGroup {
   return new FormGroup({
     make: new FormControl<string>('', { nonNullable: true }),
     model: new FormControl<string>('', { nonNullable: true }),
-    year: new FormControl<number | null>(null),
-    license_plate: new FormControl<string>('', { nonNullable: true }),
+    year: new FormControl<number | null>(null, {
+      validators: [Validators.min(VEHICLE_YEAR_MIN), Validators.max(VEHICLE_YEAR_MAX)],
+    }),
+    license_plate: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.pattern(LICENSE_PLATE_REGEX)],
+    }),
   });
 }
 
@@ -81,5 +91,101 @@ describe('VehicleStepComponent', () => {
 
     const makeInput = fixture.nativeElement.querySelector('#vehicle-make') as HTMLInputElement;
     expect(makeInput.value).toBe('Toyota');
+  });
+
+  // --- Year validation ---
+
+  it('should accept valid year within range', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(2020);
+    expect(form.controls['year'].valid).toBe(true);
+  });
+
+  it('should reject year below minimum (1960)', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(1950);
+    expect(form.controls['year'].invalid).toBe(true);
+    expect(form.controls['year'].hasError('min')).toBe(true);
+  });
+
+  it('should reject year above maximum (currentYear+1)', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(VEHICLE_YEAR_MAX + 1);
+    expect(form.controls['year'].invalid).toBe(true);
+    expect(form.controls['year'].hasError('max')).toBe(true);
+  });
+
+  it('should show year error message when invalid', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(1900);
+    form.controls['year'].markAsDirty();
+    fixture.detectChanges();
+
+    const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
+    expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it('should accept year at boundaries (1960 and max)', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(1960);
+    expect(form.controls['year'].valid).toBe(true);
+
+    form.controls['year'].setValue(VEHICLE_YEAR_MAX);
+    expect(form.controls['year'].valid).toBe(true);
+  });
+
+  // --- License plate validation ---
+
+  it('should accept old format plate (ABC 123)', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('ABC 123');
+    expect(form.controls['license_plate'].valid).toBe(true);
+  });
+
+  it('should accept old format plate without space (ABC123)', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('ABC123');
+    expect(form.controls['license_plate'].valid).toBe(true);
+  });
+
+  it('should accept Mercosur format plate (AB 123 CD)', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('AB 123 CD');
+    expect(form.controls['license_plate'].valid).toBe(true);
+  });
+
+  it('should accept Mercosur format plate without spaces (AB123CD)', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('AB123CD');
+    expect(form.controls['license_plate'].valid).toBe(true);
+  });
+
+  it('should reject invalid plate format', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('asddsadsasdasdasda');
+    expect(form.controls['license_plate'].invalid).toBe(true);
+    expect(form.controls['license_plate'].hasError('pattern')).toBe(true);
+  });
+
+  it('should show plate error message when invalid', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('INVALID');
+    form.controls['license_plate'].markAsDirty();
+    fixture.detectChanges();
+
+    const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
+    expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it('should accept empty plate (field is optional)', () => {
+    const form = component.formGroup();
+    form.controls['license_plate'].setValue('');
+    expect(form.controls['license_plate'].valid).toBe(true);
+  });
+
+  it('should accept null year (field is optional)', () => {
+    const form = component.formGroup();
+    form.controls['year'].setValue(null);
+    expect(form.controls['year'].valid).toBe(true);
   });
 });

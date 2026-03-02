@@ -13,7 +13,13 @@ import { LucideAngularModule, Check, ArrowLeft } from 'lucide-angular';
 
 import type { CreateAppointmentDto } from '../../../domain/models/create-appointment.dto';
 import { SERVICE_TYPE_OPTIONS } from '../../../domain/enums/service-type.enum';
-import { EMAIL_REGEX, PHONE_REGEX } from '../../../domain/validators/appointment.validator';
+import {
+  EMAIL_REGEX,
+  LICENSE_PLATE_REGEX,
+  PHONE_REGEX,
+  VEHICLE_YEAR_MAX,
+  VEHICLE_YEAR_MIN,
+} from '../../../domain/validators/appointment.validator';
 import { WorkshopsState } from '../../../application/state/workshops.state';
 import { AppointmentsState } from '../../../application/state/appointments.state';
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
@@ -136,12 +142,17 @@ export class NewAppointmentComponent implements OnInit {
     }),
   });
 
-  /** Step 3: Vehicle info (all optional) */
+  /** Step 3: Vehicle info (all optional, but validated if filled) */
   protected readonly vehicleForm = new FormGroup({
     make: new FormControl<string>('', { nonNullable: true }),
     model: new FormControl<string>('', { nonNullable: true }),
-    year: new FormControl<number | null>(null),
-    license_plate: new FormControl<string>('', { nonNullable: true }),
+    year: new FormControl<number | null>(null, {
+      validators: [Validators.min(VEHICLE_YEAR_MIN), Validators.max(VEHICLE_YEAR_MAX)],
+    }),
+    license_plate: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.pattern(LICENSE_PLATE_REGEX)],
+    }),
   });
 
   ngOnInit(): void {
@@ -182,7 +193,7 @@ export class NewAppointmentComponent implements OnInit {
       case 2:
         return this.contactForm.valid;
       case 3:
-        return true; // Vehicle is all optional
+        return this.vehicleForm.valid;
       default:
         return false;
     }
@@ -196,6 +207,9 @@ export class NewAppointmentComponent implements OnInit {
         break;
       case 2:
         this.contactForm.markAllAsTouched();
+        break;
+      case 3:
+        this.vehicleForm.markAllAsTouched();
         break;
     }
   }
@@ -217,7 +231,7 @@ export class NewAppointmentComponent implements OnInit {
 
   /** Submit the appointment form */
   protected onSubmit(): void {
-    if (!this.serviceForm.valid || !this.contactForm.valid) {
+    if (!this.serviceForm.valid || !this.contactForm.valid || !this.vehicleForm.valid) {
       return;
     }
 

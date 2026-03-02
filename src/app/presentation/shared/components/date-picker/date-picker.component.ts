@@ -66,6 +66,9 @@ export class DatePickerComponent {
   /** Whether the field is in an invalid state (shows danger border) */
   readonly invalid = input<boolean>(false);
 
+  /** Whether to show the "Clear" button in the calendar footer (default: false) */
+  readonly showClear = input<boolean>(false);
+
   /** Emits the selected date string in YYYY-MM-DD format */
   readonly dateSelected = output<string>();
 

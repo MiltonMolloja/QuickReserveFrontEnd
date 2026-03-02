@@ -148,10 +148,13 @@
         >
           {{ 'DATE_PICKER.TODAY' | translate }}
         </button>
-        @if (selectedDate()) {
+        @if (showClear()) {
           <button
             type="button"
             class="flex flex-1 items-center justify-center rounded-lg bg-bg-light py-2 text-[13px] font-semibold text-danger transition-colors hover:bg-red-50 dark:bg-theme-bg dark:hover:bg-border-dark"
+            [disabled]="!selectedDate()"
+            [class.opacity-50]="!selectedDate()"
+            [class.cursor-not-allowed]="!selectedDate()"
             (click)="clearDate()"
           >
             {{ 'DATE_PICKER.CLEAR' | translate }}

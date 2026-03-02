@@ -38,6 +38,7 @@
     <app-date-picker
       [selectedDate]="selectedDate()"
       [showLabel]="false"
+      [showClear]="true"
       (dateSelected)="dateChange.emit($event)"
       (dateCleared)="dateChange.emit('')"
     />

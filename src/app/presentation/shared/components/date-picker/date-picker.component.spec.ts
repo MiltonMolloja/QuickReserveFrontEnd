@@ -382,7 +382,7 @@ describe('DatePickerComponent', () => {
 
   // --- Clear button ---
 
-  it('should not show Clear button when no date is selected', () => {
+  it('should not show Clear button when showClear is false (default)', () => {
     (
       fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]') as HTMLButtonElement
     ).click();
@@ -395,8 +395,8 @@ describe('DatePickerComponent', () => {
     expect(clearBtn).toBeFalsy();
   });
 
-  it('should show Clear button when a date is selected', () => {
-    fixture.componentRef.setInput('selectedDate', '2026-03-15');
+  it('should show Clear button when showClear is true', () => {
+    fixture.componentRef.setInput('showClear', true);
     fixture.detectChanges();
 
     (
@@ -411,7 +411,24 @@ describe('DatePickerComponent', () => {
     expect(clearBtn).toBeTruthy();
   });
 
+  it('should disable Clear button when no date is selected', () => {
+    fixture.componentRef.setInput('showClear', true);
+    fixture.detectChanges();
+
+    (
+      fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]') as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
+    const clearBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
+      b.textContent?.includes('DATE_PICKER.CLEAR'),
+    );
+    expect(clearBtn?.disabled).toBe(true);
+  });
+
   it('should emit dateCleared and close calendar on Clear click', () => {
+    fixture.componentRef.setInput('showClear', true);
     fixture.componentRef.setInput('selectedDate', '2026-03-15');
     fixture.detectChanges();
 

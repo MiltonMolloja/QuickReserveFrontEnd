@@ -78,50 +78,50 @@
   <div class="mb-3 border-b border-border-light dark:border-border-dark"></div>
 
   <!-- Contact info -->
-  <div class="mb-2 flex items-center gap-2">
+  <div class="mb-2 flex items-start gap-2">
     <lucide-angular
       [img]="icons.user"
       [size]="14"
       [strokeWidth]="2"
-      class="text-text-tertiary dark:text-text-dark-muted"
+      class="mt-0.5 shrink-0 text-text-tertiary dark:text-text-dark-muted"
     />
-    <span class="text-sm text-text-dark dark:text-text-dark-tertiary">
+    <span class="break-all text-sm text-text-dark dark:text-text-dark-tertiary">
       {{ appointment().contact.name }}
     </span>
   </div>
 
-  <div class="mb-2 flex items-center gap-2">
+  <div class="mb-2 flex items-start gap-2">
     <lucide-angular
       [img]="icons.mail"
       [size]="14"
       [strokeWidth]="2"
-      class="text-text-tertiary dark:text-text-dark-muted"
+      class="mt-0.5 shrink-0 text-text-tertiary dark:text-text-dark-muted"
     />
-    <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+    <span class="break-all text-sm text-text-secondary dark:text-text-dark-secondary">
       {{ appointment().contact.email }}
     </span>
   </div>
 
-  <div class="mb-2 flex items-center gap-2">
+  <div class="mb-2 flex items-start gap-2">
     <lucide-angular
       [img]="icons.whatsapp"
       [size]="14"
       [strokeWidth]="2"
-      class="text-text-tertiary dark:text-text-dark-muted"
+      class="mt-0.5 shrink-0 text-text-tertiary dark:text-text-dark-muted"
     />
-    <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
+    <span class="break-all text-sm text-text-secondary dark:text-text-dark-secondary">
       {{ appointment().contact.whatsapp }}
     </span>
   </div>
 
   <!-- Vehicle info (optional) -->
   @if (vehicleDisplay(); as vehicle) {
-    <div class="mt-1 flex items-center gap-2">
+    <div class="mt-1 flex items-start gap-2">
       <lucide-angular
         [img]="icons.car"
         [size]="14"
         [strokeWidth]="2"
-        class="text-text-tertiary dark:text-text-dark-muted"
+        class="mt-0.5 shrink-0 text-text-tertiary dark:text-text-dark-muted"
       />
       <span class="text-sm text-text-secondary dark:text-text-dark-secondary">
         {{ vehicle }}

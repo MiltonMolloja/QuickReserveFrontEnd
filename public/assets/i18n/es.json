@@ -104,6 +104,7 @@
   "DATE_PICKER": {
     "PLACEHOLDER": "Seleccioná una fecha",
     "TODAY": "Hoy",
+    "CLEAR": "Limpiar",
     "PREV_MONTH": "Mes anterior",
     "NEXT_MONTH": "Mes siguiente",
     "CALENDAR_LABEL": "Calendario de selección de fecha"

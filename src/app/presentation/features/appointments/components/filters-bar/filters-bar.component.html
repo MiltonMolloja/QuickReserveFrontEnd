@@ -39,6 +39,7 @@
       [selectedDate]="selectedDate()"
       [showLabel]="false"
       (dateSelected)="dateChange.emit($event)"
+      (dateCleared)="dateChange.emit('')"
     />
   </div>
 

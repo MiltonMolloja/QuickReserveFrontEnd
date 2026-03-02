@@ -69,6 +69,9 @@ export class DatePickerComponent {
   /** Emits the selected date string in YYYY-MM-DD format */
   readonly dateSelected = output<string>();
 
+  /** Emits when the selected date is cleared */
+  readonly dateCleared = output<void>();
+
   /** Lucide icons */
   protected readonly calendarIcon = CalendarDays;
   protected readonly chevronDownIcon = ChevronDown;
@@ -263,6 +266,12 @@ export class DatePickerComponent {
       return;
     }
     this.dateSelected.emit(day.date);
+    this.isOpen.set(false);
+  }
+
+  /** Clear the selected date */
+  protected clearDate(): void {
+    this.dateCleared.emit();
     this.isOpen.set(false);
   }
 

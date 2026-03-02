@@ -348,7 +348,7 @@ describe('DatePickerComponent', () => {
     ).click();
     fixture.detectChanges();
 
-    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] > button');
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
     const todayBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
       b.textContent?.includes('DATE_PICKER.TODAY'),
     );
@@ -369,7 +369,7 @@ describe('DatePickerComponent', () => {
     fixture.detectChanges();
 
     const emitSpy = jest.spyOn(component.dateSelected, 'emit');
-    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] > button');
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
     const todayBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
       b.textContent?.includes('DATE_PICKER.TODAY'),
     );
@@ -377,6 +377,58 @@ describe('DatePickerComponent', () => {
     fixture.detectChanges();
 
     expect(emitSpy).toHaveBeenCalledWith(component['todayISO']);
+    expect(component['isOpen']()).toBe(false);
+  });
+
+  // --- Clear button ---
+
+  it('should not show Clear button when no date is selected', () => {
+    (
+      fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]') as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
+    const clearBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
+      b.textContent?.includes('DATE_PICKER.CLEAR'),
+    );
+    expect(clearBtn).toBeFalsy();
+  });
+
+  it('should show Clear button when a date is selected', () => {
+    fixture.componentRef.setInput('selectedDate', '2026-03-15');
+    fixture.detectChanges();
+
+    (
+      fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]') as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
+    const clearBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
+      b.textContent?.includes('DATE_PICKER.CLEAR'),
+    );
+    expect(clearBtn).toBeTruthy();
+  });
+
+  it('should emit dateCleared and close calendar on Clear click', () => {
+    fixture.componentRef.setInput('selectedDate', '2026-03-15');
+    fixture.detectChanges();
+
+    (
+      fixture.nativeElement.querySelector('button[aria-haspopup="dialog"]') as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    const emitSpy = jest.spyOn(component.dateCleared, 'emit');
+    const buttons = fixture.nativeElement.querySelectorAll('[role="dialog"] button');
+    const clearBtn = Array.from<HTMLButtonElement>(buttons).find((b) =>
+      b.textContent?.includes('DATE_PICKER.CLEAR'),
+    );
+    clearBtn?.click();
+    fixture.detectChanges();
+
+    expect(emitSpy).toHaveBeenCalled();
     expect(component['isOpen']()).toBe(false);
   });
 

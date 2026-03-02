@@ -70,7 +70,7 @@
     @if (formGroup().controls.email.touched && formGroup().controls.email.hasError('required')) {
       <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
     } @else if (
-      formGroup().controls.email.touched && formGroup().controls.email.hasError('email')
+      formGroup().controls.email.touched && formGroup().controls.email.hasError('pattern')
     ) {
       <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</p>
     }
@@ -101,8 +101,14 @@
         formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.invalid
       "
     />
-    @if (formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError('required')) {
+    @if (
+      formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError('required')
+    ) {
       <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+    } @else if (
+      formGroup().controls.whatsapp.touched && formGroup().controls.whatsapp.hasError('pattern')
+    ) {
+      <p class="mt-1 text-xs text-danger">{{ 'VALIDATION.PHONE_INVALID' | translate }}</p>
     }
   </div>
 </div>

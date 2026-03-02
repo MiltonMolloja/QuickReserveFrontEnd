@@ -3,6 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { EMAIL_REGEX, PHONE_REGEX } from '../../../../../domain/validators/appointment.validator';
 import { ContactStepComponent } from './contact-step.component';
 
 function createContactForm(): FormGroup {
@@ -10,9 +11,12 @@ function createContactForm(): FormGroup {
     name: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
     email: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required, Validators.pattern(EMAIL_REGEX)],
     }),
-    whatsapp: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+    whatsapp: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.pattern(PHONE_REGEX)],
+    }),
   });
 }
 
@@ -91,11 +95,55 @@ describe('ContactStepComponent', () => {
     const form = component.formGroup();
     form.controls['name'].setValue('Juan');
     form.controls['email'].setValue('juan@email.com');
-    form.controls['whatsapp'].setValue('123456');
+    form.controls['whatsapp'].setValue('+54 11 1234-5678');
     form.markAllAsTouched();
     fixture.detectChanges();
 
     const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
     expect(errors.length).toBe(0);
+  });
+
+  it('should show email format error for email without TLD', () => {
+    const form = component.formGroup();
+    form.controls['email'].setValue('user@domain');
+    form.controls['email'].markAsTouched();
+    fixture.detectChanges();
+
+    const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
+    expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it('should accept valid email with TLD', () => {
+    const form = component.formGroup();
+    form.controls['email'].setValue('user@domain.com');
+    form.controls['email'].markAsTouched();
+    fixture.detectChanges();
+
+    const emailErrors = Array.from<HTMLElement>(
+      fixture.nativeElement.querySelectorAll('p.text-xs.text-danger'),
+    ).filter((el) => el.textContent?.includes('VALIDATION.EMAIL_INVALID'));
+    expect(emailErrors.length).toBe(0);
+  });
+
+  it('should show phone format error for invalid whatsapp', () => {
+    const form = component.formGroup();
+    form.controls['whatsapp'].setValue('abc');
+    form.controls['whatsapp'].markAsTouched();
+    fixture.detectChanges();
+
+    const errors = fixture.nativeElement.querySelectorAll('p.text-xs.text-danger');
+    expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it('should accept valid whatsapp number', () => {
+    const form = component.formGroup();
+    form.controls['whatsapp'].setValue('+54 11 1234-5678');
+    form.controls['whatsapp'].markAsTouched();
+    fixture.detectChanges();
+
+    const phoneErrors = Array.from<HTMLElement>(
+      fixture.nativeElement.querySelectorAll('p.text-xs.text-danger'),
+    ).filter((el) => el.textContent?.includes('VALIDATION.PHONE_INVALID'));
+    expect(phoneErrors.length).toBe(0);
   });
 });

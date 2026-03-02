@@ -121,6 +121,7 @@
   "VALIDATION": {
     "REQUIRED": "Este campo es requerido",
     "EMAIL_INVALID": "El formato del email no es válido",
+    "PHONE_INVALID": "Formato inválido (ej: +54 11 1234-5678)",
     "DATE_PAST": "La fecha debe ser futura"
   }
 }

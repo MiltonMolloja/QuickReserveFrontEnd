@@ -13,6 +13,7 @@ import { LucideAngularModule, Check, ArrowLeft } from 'lucide-angular';
 
 import type { CreateAppointmentDto } from '../../../domain/models/create-appointment.dto';
 import { SERVICE_TYPE_OPTIONS } from '../../../domain/enums/service-type.enum';
+import { EMAIL_REGEX, PHONE_REGEX } from '../../../domain/validators/appointment.validator';
 import { WorkshopsState } from '../../../application/state/workshops.state';
 import { AppointmentsState } from '../../../application/state/appointments.state';
 import { GetWorkshopsUseCase } from '../../../application/use-cases/get-workshops.use-case';
@@ -127,11 +128,11 @@ export class NewAppointmentComponent implements OnInit {
     }),
     email: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required, Validators.pattern(EMAIL_REGEX)],
     }),
     whatsapp: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.pattern(PHONE_REGEX)],
     }),
   });
 

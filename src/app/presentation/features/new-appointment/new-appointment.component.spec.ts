@@ -154,7 +154,7 @@ describe('NewAppointmentComponent', () => {
     component['serviceForm'].controls.appointment_time.setValue('10:00');
     component['contactForm'].controls.name.setValue('Juan');
     component['contactForm'].controls.email.setValue('j@e.com');
-    component['contactForm'].controls.whatsapp.setValue('123');
+    component['contactForm'].controls.whatsapp.setValue('+54 11 1234-5678');
 
     mockAppointmentPort.create.mockReturnValue(throwError(() => new Error('Server error')));
 

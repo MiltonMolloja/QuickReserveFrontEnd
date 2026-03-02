@@ -265,11 +265,44 @@ describe('validateContactStep', () => {
     const result = validateContactStep({
       name: 'Juan',
       email: 'invalid-email',
-      whatsapp: '1234',
+      whatsapp: '+54 11 1234-5678',
     });
     expect(result).toHaveLength(1);
     expect(result[0]?.field).toBe('contact.email');
     expect(result[0]?.message).toBe('El formato del email no es valido');
+  });
+
+  it('should reject email without TLD (e.g. user@domain)', () => {
+    const result = validateContactStep({
+      name: 'Juan',
+      email: 'user@domain',
+      whatsapp: '+54 11 1234-5678',
+    });
+    expect(result).toHaveLength(1);
+    expect(result[0]?.field).toBe('contact.email');
+  });
+
+  it('should validate whatsapp format', () => {
+    const result = validateContactStep({
+      name: 'Juan',
+      email: 'juan@email.com',
+      whatsapp: 'abc',
+    });
+    expect(result).toHaveLength(1);
+    expect(result[0]?.field).toBe('contact.whatsapp');
+    expect(result[0]?.message).toBe('El formato del telefono no es valido');
+  });
+
+  it('should accept valid whatsapp formats', () => {
+    const validNumbers = ['+54 11 1234-5678', '1234567890', '+1-555-123-4567'];
+    for (const whatsapp of validNumbers) {
+      const result = validateContactStep({
+        name: 'Juan',
+        email: 'juan@email.com',
+        whatsapp,
+      });
+      expect(result).toHaveLength(0);
+    }
   });
 
   it('should validate only contact fields (no service fields)', () => {

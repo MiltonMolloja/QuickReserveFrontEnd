@@ -1,8 +1,11 @@
 import type { CreateAppointmentDto } from '../models/create-appointment.dto';
 import type { ValidationError } from '../models/validation-error.model';
 
-/** Regex pattern for basic email validation */
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** Regex pattern for email validation (requires TLD, e.g. user@domain.com) */
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Regex pattern for phone/whatsapp validation (digits, +, spaces, dashes, min 6 chars) */
+export const PHONE_REGEX = /^\+?[\d\s-]{6,}$/;
 
 /**
  * Validates a CreateAppointmentDto and returns an array of validation errors.
@@ -62,6 +65,8 @@ export function validateAppointment(data: Partial<CreateAppointmentDto>): Valida
 
   if (!contact?.whatsapp.trim()) {
     errors.push({ field: 'contact.whatsapp', message: 'El telefono es requerido' });
+  } else if (!PHONE_REGEX.test(contact.whatsapp)) {
+    errors.push({ field: 'contact.whatsapp', message: 'El formato del telefono no es valido' });
   }
 
   return errors;
@@ -120,6 +125,8 @@ export function validateContactStep(
 
   if (!data?.whatsapp?.trim()) {
     errors.push({ field: 'contact.whatsapp', message: 'El telefono es requerido' });
+  } else if (!PHONE_REGEX.test(data.whatsapp)) {
+    errors.push({ field: 'contact.whatsapp', message: 'El formato del telefono no es valido' });
   }
 
   return errors;

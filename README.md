@@ -6,6 +6,64 @@ Angular 20 application for booking workshop appointments. Built with **Clean Arc
 
 ---
 
+## Design Preview
+
+### Light Theme
+
+<p align="center">
+  <img width="720" alt="Appointments List - Light" src="https://github.com/user-attachments/assets/3ee51fa5-d17a-443d-a6df-3a7e41e6aa6e" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 1 - Light" src="https://github.com/user-attachments/assets/acf9bf48-10b2-403d-a932-ae779c0dcc9a" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 2 - Light" src="https://github.com/user-attachments/assets/04216c38-47fb-4cfc-9417-4cf2c4c9b253" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 3 - Light" src="https://github.com/user-attachments/assets/45c9c886-074c-4e53-a4f7-4801c4651047" />
+</p>
+
+<p align="center">
+  <img width="720" alt="Appointment Success - Light" src="https://github.com/user-attachments/assets/2277db40-d5e5-408b-904c-e1fb6fbe7a62" />
+</p>
+
+<p align="center">
+  <img width="720" alt="Appointment Error - Light" src="https://github.com/user-attachments/assets/e30c82b9-5850-43d7-92b7-7e0b2159ebcf" />
+</p>
+
+### Dark Theme
+
+<p align="center">
+  <img width="720" alt="Appointments List - Dark" src="https://github.com/user-attachments/assets/7b44a68e-5b3e-40d5-a8ce-72a0a1429a0e" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 1 - Dark" src="https://github.com/user-attachments/assets/f6819c21-55fc-4b23-bb1c-52b5e7ac84a6" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 2 - Dark" src="https://github.com/user-attachments/assets/45be09cf-139c-41b2-b08c-7b0e561a64c7" />
+</p>
+
+<p align="center">
+  <img width="720" alt="New Appointment Step 3 - Dark" src="https://github.com/user-attachments/assets/9649c3f5-9760-4a16-b2ce-d8d21a6da546" />
+</p>
+
+<p align="center">
+  <img width="720" alt="Appointment Success - Dark" src="https://github.com/user-attachments/assets/7ae63b15-a011-4f6c-920e-aba73112d22d" />
+</p>
+
+<p align="center">
+  <img width="720" alt="Appointment Error - Dark" src="https://github.com/user-attachments/assets/d731e862-afcf-4f86-9bb0-034536e700f0" />
+</p>
+
+> **More designs** (mobile, components, date/time pickers): [Design Issue #1](https://github.com/MiltonMolloja/QuickReserveFrontEnd/issues/1)
+
+---
+
 ## Tech Stack
 
 | Category         | Technology                                     |
@@ -56,7 +114,8 @@ src/app/
     └── features/              # Feature pages (lazy-loaded)
         ├── appointments/      # List page with filters, stats, @defer grid
         ├── new-appointment/   # 3-step stepper (Service, Contact, Vehicle)
-        └── appointment-success/ # Confirmation page with summary
+        ├── appointment-success/ # Confirmation page with summary
+        └── appointment-error/ # Error page with details and suggestions
 ```
 
 ### Design Patterns
@@ -80,7 +139,7 @@ src/app/
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/QuickReserveFrontEnd.git
+git clone https://github.com/MiltonMolloja/QuickReserveFrontEnd.git
 cd QuickReserveFrontEnd
 
 # Install dependencies
@@ -122,27 +181,49 @@ The app expects a .NET backend running at the URL configured in `src/environment
 
 | Metric     | Value      | Threshold |
 | ---------- | ---------- | --------- |
-| Statements | 99.06%     | >= 80%    |
-| Branches   | 88.63%     | >= 80%    |
+| Statements | 98.07%     | >= 80%    |
+| Branches   | 83.94%     | >= 80%    |
 | Functions  | 100%       | >= 80%    |
-| Lines      | 98.96%     | >= 80%    |
-| ESLint     | 0 errors   | 0         |
-| Tests      | 298/298    | All pass  |
+| Lines      | 97.88%     | >= 80%    |
+| ESLint     | 2 warnings | 0         |
+| Tests      | 455/455    | All pass  |
 | Build      | 0 warnings | 0         |
+| Bundle     | 79.19 KB   | < 500 KB  |
 
 ---
 
 ## Features
 
-- **Appointments List**: View all appointments with real-time search, service type filter, and statistics cards
+- **Appointments List**: View all appointments with real-time search, workshop/service/date filters, and statistics cards
 - **New Appointment**: 3-step stepper with reactive form validation (Service > Contact > Vehicle)
 - **Success Page**: Confirmation with appointment summary and navigation actions
+- **Error Page**: Detailed error information with error code, message, and suggestions
 - **Dark Mode**: Toggle between light/dark themes, persisted in localStorage
 - **i18n**: Switch between Spanish and English at runtime (no rebuild needed)
 - **Responsive Design**: Mobile-first layout with adaptive grid (1 -> 2 -> 3 columns)
 - **Accessibility**: ARIA labels, keyboard navigation, focus management, semantic HTML
 - **Error Handling**: Centralized error interceptor + loading/error states in UI
 - **Lazy Loading**: Routes and `@defer` blocks for optimal initial load
+- **Custom Date Picker**: Calendar popover with month navigation, today button, and clear option
+- **Time Slot Picker**: Visual grid with available/selected/disabled states and dynamic slot availability
+- **Form Validation**: Email regex, phone pattern, Argentine license plates (old + Mercosur), vehicle year range
+
+---
+
+## Documentation
+
+Full API documentation is generated with **Compodoc** and committed to the repository:
+
+- **Online**: [View Documentation](https://github.com/MiltonMolloja/QuickReserveFrontEnd/blob/master/docs/index.html)
+- **Local**: Run `npm run docs:serve` to browse at `http://localhost:8080`
+
+```bash
+# Generate static docs
+npm run docs:generate
+
+# Generate and open in browser
+npm run docs:serve
+```
 
 ---
 
@@ -187,20 +268,6 @@ The app expects a .NET backend running at the URL configured in `src/environment
 | ND-23 | Tailwind v4 `@theme` directive     | CSS-first config, design tokens as custom properties    |
 
 See the full list of 26 design decisions in the project analysis document.
-
----
-
-## Documentation
-
-Generate and view the Compodoc documentation:
-
-```bash
-# Generate static docs
-npm run docs:generate
-
-# Generate and open in browser
-npm run docs:serve
-```
 
 ---
 

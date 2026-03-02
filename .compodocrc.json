@@ -3,8 +3,5 @@
   "hideGenerator": true,
   "disablePrivate": true,
   "disableInternal": true,
-  "disableLifeCycleHooks": false,
-  "customFavicon": "",
-  "coverageTest": 70,
-  "coverageTestThresholdFail": true
+  "disableLifeCycleHooks": false
 }

@@ -70,9 +70,9 @@ describe('AppointmentSuccessComponent', () => {
     expect(icon).toBeTruthy();
   });
 
-  it('should render summary rows', () => {
+  it('should render summary rows (without vehicle)', () => {
     const rows = fixture.nativeElement.querySelectorAll('app-summary-row');
-    expect(rows.length).toBeGreaterThanOrEqual(6);
+    expect(rows.length).toBe(5);
   });
 
   it('should render action buttons', () => {

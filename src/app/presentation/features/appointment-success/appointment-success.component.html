@@ -56,20 +56,13 @@
         [icon]="icons.user"
         [label]="'SUCCESS.FIELDS.CONTACT' | translate"
         [value]="contactDisplay()"
+        [showDivider]="!!vehicleDisplay()"
       />
       @if (vehicleDisplay(); as vehicle) {
         <app-summary-row
           [icon]="icons.car"
           [label]="'SUCCESS.FIELDS.VEHICLE' | translate"
           [value]="vehicle"
-          [showDivider]="false"
-        />
-      } @else {
-        <!-- Last row without vehicle: hide divider on contact row -->
-        <app-summary-row
-          [icon]="icons.car"
-          [label]="'SUCCESS.FIELDS.VEHICLE' | translate"
-          value="-"
           [showDivider]="false"
         />
       }

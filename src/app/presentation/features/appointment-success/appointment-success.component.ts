@@ -117,7 +117,7 @@ export class AppointmentSuccessComponent implements OnInit {
     if (!appt) {
       return '';
     }
-    return `${appt.contact.name} · ${appt.contact.email}`;
+    return `${appt.contact.name} · ${appt.contact.email} · ${appt.contact.whatsapp}`;
   });
 
   /** Vehicle display string */

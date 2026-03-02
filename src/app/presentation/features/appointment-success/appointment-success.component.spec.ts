@@ -81,7 +81,7 @@ describe('AppointmentSuccessComponent', () => {
   });
 
   it('should compute contact display', () => {
-    expect(component['contactDisplay']()).toBe('Juan Perez · juan@email.com');
+    expect(component['contactDisplay']()).toBe('Juan Perez · juan@email.com · +54 11 1234-5678');
   });
 
   it('should compute formatted date', () => {

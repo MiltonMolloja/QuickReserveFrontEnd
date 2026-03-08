@@ -26,10 +26,18 @@ FROM nginx:alpine AS production
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Copy custom entrypoint that generates runtime config
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 # Copy built Angular app from build stage
 # Angular 20 outputs to dist/<project-name>/browser/
 COPY --from=build /app/dist/quick-reserve/browser /usr/share/nginx/html
 
+# Default API URL — override at runtime via Dokploy env vars
+ENV API_URL=http://localhost:5000
+
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# Custom entrypoint generates /assets/config.json from env vars, then starts nginx
+ENTRYPOINT ["/docker-entrypoint.sh"]

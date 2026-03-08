@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   type ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
@@ -17,6 +18,7 @@ import { WorkshopHttpAdapter } from './infrastructure/http/workshop-http.adapter
 import { LocalStorageAdapter } from './infrastructure/storage/local-storage.adapter';
 import { apiUrlInterceptor } from './infrastructure/http/api-url.interceptor';
 import { errorInterceptor } from './infrastructure/http/error.interceptor';
+import { RuntimeConfigService } from './infrastructure/http/runtime-config.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +27,14 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([apiUrlInterceptor, errorInterceptor])),
+
+    // Runtime config: load /assets/config.json before app starts
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (configService: RuntimeConfigService) => () => configService.load(),
+      deps: [RuntimeConfigService],
+      multi: true,
+    },
 
     // i18n (ngx-translate v17)
     provideTranslateService({

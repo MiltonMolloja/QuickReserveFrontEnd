@@ -25,8 +25,8 @@ FROM nginx:alpine AS production
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom nginx config (template for envsubst)
-COPY nginx.conf /etc/nginx/templates/default.conf.template
+# Copy custom nginx config as a TEMPLATE (not to templates/ dir)
+COPY nginx.conf /etc/nginx/nginx-template.conf
 
 # Copy built Angular app from build stage
 # Angular 20 outputs to dist/<project-name>/browser/
@@ -35,13 +35,9 @@ COPY --from=build /app/dist/quick-reserve/browser /usr/share/nginx/html
 # Default API URL (override at runtime with -e API_URL=...)
 ENV API_URL=http://host.docker.internal:5000
 
-# IMPORTANT: Restrict envsubst to only replace API_URL.
-# Without this filter, envsubst replaces ALL $VAR patterns,
-# including nginx-native variables ($host, $uri, $remote_addr, etc.)
-ENV NGINX_ENVSUBST_FILTER=API_URL
-
 EXPOSE 80
 
-# Nginx's docker-entrypoint automatically runs envsubst on
-# /etc/nginx/templates/*.template → /etc/nginx/conf.d/
-CMD ["nginx", "-g", "daemon off;"]
+# Use a custom entrypoint that:
+# 1. Runs envsubst ONLY on $API_URL (preserving nginx variables)
+# 2. Starts nginx
+CMD ["/bin/sh", "-c", "envsubst '${API_URL}' < /etc/nginx/nginx-template.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

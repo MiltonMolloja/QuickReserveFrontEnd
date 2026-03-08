@@ -22,25 +22,14 @@ RUN npm run build
 # ============================================================
 FROM nginx:alpine AS production
 
-# Remove default nginx config
+# Remove default nginx config and add our own
 RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy custom nginx config as a template
-COPY nginx.conf /etc/nginx/nginx-template.conf
-
-# Copy custom entrypoint script
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built Angular app from build stage
 # Angular 20 outputs to dist/<project-name>/browser/
 COPY --from=build /app/dist/quick-reserve/browser /usr/share/nginx/html
 
-# Default API URL (override at runtime with -e API_URL=...)
-ENV API_URL=http://host.docker.internal:5000
-
 EXPOSE 80
 
-# Override the default nginx entrypoint with our custom one
-# that runs envsubst only on $API_URL, then starts nginx
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

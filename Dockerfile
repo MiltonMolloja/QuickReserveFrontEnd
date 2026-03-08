@@ -25,8 +25,12 @@ FROM nginx:alpine AS production
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom nginx config as a TEMPLATE (not to templates/ dir)
+# Copy custom nginx config as a template
 COPY nginx.conf /etc/nginx/nginx-template.conf
+
+# Copy custom entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Copy built Angular app from build stage
 # Angular 20 outputs to dist/<project-name>/browser/
@@ -37,7 +41,6 @@ ENV API_URL=http://host.docker.internal:5000
 
 EXPOSE 80
 
-# Use a custom entrypoint that:
-# 1. Runs envsubst ONLY on $API_URL (preserving nginx variables)
-# 2. Starts nginx
-CMD ["/bin/sh", "-c", "envsubst '${API_URL}' < /etc/nginx/nginx-template.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Override the default nginx entrypoint with our custom one
+# that runs envsubst only on $API_URL, then starts nginx
+ENTRYPOINT ["/docker-entrypoint.sh"]

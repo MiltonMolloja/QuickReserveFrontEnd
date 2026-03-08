@@ -35,6 +35,11 @@ COPY --from=build /app/dist/quick-reserve/browser /usr/share/nginx/html
 # Default API URL (override at runtime with -e API_URL=...)
 ENV API_URL=http://host.docker.internal:5000
 
+# IMPORTANT: Restrict envsubst to only replace API_URL.
+# Without this filter, envsubst replaces ALL $VAR patterns,
+# including nginx-native variables ($host, $uri, $remote_addr, etc.)
+ENV NGINX_ENVSUBST_FILTER=API_URL
+
 EXPOSE 80
 
 # Nginx's docker-entrypoint automatically runs envsubst on

@@ -158,6 +158,29 @@ Open [http://localhost:4200](http://localhost:4200) in your browser.
 
 The app expects a .NET backend running at the URL configured in `src/environments/environment.ts`. The `apiUrlInterceptor` prepends this base URL to all API requests.
 
+### Docker
+
+Run the frontend in a container with **Nginx** serving the production build:
+
+```bash
+# Build the image
+docker build -t quick-reserve-frontend .
+
+# Run the container (backend on host machine)
+docker run -d -p 4200:80 quick-reserve-frontend
+
+# Run with custom backend URL
+docker run -d -p 4200:80 -e API_URL=http://my-backend:5000 quick-reserve-frontend
+```
+
+Open [http://localhost:4200](http://localhost:4200) in your browser.
+
+| Variable  | Default                            | Description          |
+| --------- | ---------------------------------- | -------------------- |
+| `API_URL` | `http://host.docker.internal:5000` | Backend API base URL |
+
+> The image uses a **multi-stage build** (Node 22 → Nginx Alpine) resulting in a ~30 MB final image. Nginx handles gzip compression, static asset caching, SPA routing fallback, and reverse proxy to the backend API.
+
 ---
 
 ## Available Scripts
